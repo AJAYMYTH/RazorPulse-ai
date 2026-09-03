@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none">
+  <!-- Dark Obsidian Base with Rounded Corners -->
+  <rect width="36" height="36" rx="8" fill="#0C1527" stroke="#1E293B" stroke-width="1" />
+  
+  <!-- Primary Sharp Razor Slash (Vivid Blue) -->
+  <path d="M9 25L17 7H24L16 25H9Z" fill="#0066FF" />
+  
+  <!-- Interlocking Ascending Pulse Chevron (Electric Cyan-Blue) -->
+  <path d="M17 29L22 17H28L23 29H17Z" fill="#38BDF8" />
+
+  <!-- Autonomous Apex Dot -->
+  <circle cx="26" cy="10" r="2.5" fill="#38BDF8" />
+</svg>

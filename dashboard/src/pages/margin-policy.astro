@@ -1,0 +1,137 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Profit Margin Safeguard Policy">
+  <!-- Breadcrumb & Header -->
+  <div class="mb-10 space-y-3">
+    <nav class="flex items-center space-x-2 text-xs font-mono text-mute">
+      <a href="/" class="hover:text-ink transition">Dashboard</a>
+      <span>/</span>
+      <span class="text-ink font-semibold">Margin Policy</span>
+    </nav>
+
+    <div class="border-b border-hairline pb-6">
+      <div class="font-mono text-xs uppercase text-mute tracking-wider mb-2 flex items-center space-x-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+        <span>Commercial Governance · Profitability Defense & Discount Caps</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-semibold text-ink tracking-tight">Profit Margin Safeguard Policy</h1>
+      <p class="text-body text-xs sm:text-sm mt-2 max-w-3xl leading-relaxed">
+        The strict mathematical rules and algorithmic boundaries that guarantee automated upsell and cross-sell promotions never erode merchant gross margins.
+      </p>
+      <div class="flex items-center space-x-4 text-xs font-mono text-mute mt-4">
+        <span>Policy Cap: ≤ 15.00%</span>
+        <span>·</span>
+        <span>Enforcement: Pure TypeScript Gate Service</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Container -->
+  <div class="max-w-4xl space-y-10 text-xs sm:text-sm text-body leading-relaxed font-sans">
+
+    <!-- Section 1: The Rationale -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">1. Objective & Commercial Rationale</div>
+      <p>
+        Autonomous growth agents must expand merchant revenue without cannibalizing base profitability. Small to medium e-commerce merchants operate on average net margins between 18% and 30%. An unconstrained AI marketing bot offering 25% or 40% discounts turns profitable transactions into net operating losses.
+      </p>
+      <p>
+        RazorPulse AI guarantees that <strong>no promotion can ever be issued that violates the merchant's predefined unit-economic margin floor</strong>.
+      </p>
+    </section>
+
+    <!-- Section 2: The 15% Hard Discount Ceiling -->
+    <section class="space-y-3 p-5 rounded-md bg-canvas-elevated border border-hairline shadow-whisper">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider flex items-center space-x-2">
+        <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+        <span>2. The 15% Hard Discount Ceiling</span>
+      </div>
+      <div class="text-xs space-y-2 text-body">
+        <p>
+          Every AI proposal is passed through a deterministic code gate in <code class="font-mono text-ink">backend/src/services/gate.service.ts</code>:
+        </p>
+        <div class="bg-canvas p-3 rounded-[6px] border border-hairline font-mono text-xs text-ink">
+          <code>if (decision.discount_pct &gt; 15) return &#123; allowed: false, reason: "Discount exceeds 15% cap" &#125;;</code>
+        </div>
+        <p class="text-mute text-xs">
+          If an LLM hallucinates or suggests an aggressive 25% promotion (as demonstrated in order <code class="font-mono text-ink">ord_demo_07_reject_discount</code>), the Gate Shield intercepts the request immediately. The payment link is never created, and the merchant margin remains 100% protected.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 3: SKU Inventory & Price Verification -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">3. Live Catalog & Inventory Verification</div>
+      <p>
+        To prevent merchants from accidentally selling ghost items or out-of-stock SKUs at discounted rates:
+      </p>
+      <ul class="list-disc list-inside space-y-1.5 pl-2 text-mute text-xs">
+        <li>The recommended SKU must match an existing record in the merchant's active catalog table.</li>
+        <li>The base price is retrieved directly from the verified catalog store, not from the LLM prompt.</li>
+        <li>Paise calculation is strictly verified: <code class="font-mono text-ink">Math.round(sku.price * (1 - discount_pct / 100) * 100)</code>.</li>
+      </ul>
+    </section>
+
+    <!-- Section 4: Single Offer Idempotency -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">4. Single Offer Idempotency Guarantee</div>
+      <p>
+        Customers must never receive multiple, overlapping discount offers for the same checkout event. The Gate Service performs an immediate database index lookup on prior accepted decisions for the order. If an offer has already been accepted or executed, all subsequent attempts are deterministically rejected with <code class="font-mono text-ink">ruleViolated: "one_offer_per_order"</code>.
+      </p>
+    </section>
+
+    <!-- Section 5: Exclusion of Disputed & Refunded Orders -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">5. Ineligible Order Status Exclusions</div>
+      <p>
+        Orders marked as <code class="font-mono text-ink">refunded</code>, <code class="font-mono text-ink">disputed</code>, or <code class="font-mono text-ink">failed</code> represent negative customer experiences or fraud flags. Attempting an automated upsell on a disputed order causes severe brand damage and chargeback risks. RazorPulse AI permanently halts pipeline execution on any non-paid, non-created order state.
+      </p>
+    </section>
+
+    <!-- Section 6: Summary Table -->
+    <section class="space-y-3 pt-6 border-t border-hairline">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">6. Gate Rule Matrix</div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border border-hairline rounded-md bg-canvas-elevated">
+          <thead class="bg-canvas border-b border-hairline font-mono text-[11px] uppercase text-mute">
+            <tr>
+              <th class="p-3">Rule</th>
+              <th class="p-3">Threshold</th>
+              <th class="p-3">Action on Violation</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-hairline font-mono text-xs text-body">
+            <tr>
+              <td class="p-3 text-ink font-semibold">Max Discount Cap</td>
+              <td class="p-3">≤ 15%</td>
+              <td class="p-3 text-amber-700">Immediate Rejection & Margin Defense</td>
+            </tr>
+            <tr>
+              <td class="p-3 text-ink font-semibold">Offer Idempotency</td>
+              <td class="p-3">1 Offer / Order</td>
+              <td class="p-3 text-amber-700">Duplicate Blocked</td>
+            </tr>
+            <tr>
+              <td class="p-3 text-ink font-semibold">Status Eligibility</td>
+              <td class="p-3">paid / created</td>
+              <td class="p-3 text-amber-700">Disputed & Refunded Halted</td>
+            </tr>
+            <tr>
+              <td class="p-3 text-ink font-semibold">Confidence Metric</td>
+              <td class="p-3">≥ 0.60 (60%)</td>
+              <td class="p-3 text-amber-700">Low-Confidence Guesses Discarded</td>
+            </tr>
+            <tr>
+              <td class="p-3 text-ink font-semibold">Active SKU Check</td>
+              <td class="p-3">Catalog Match</td>
+              <td class="p-3 text-amber-700">Ghost SKUs Prevented</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+</Layout>

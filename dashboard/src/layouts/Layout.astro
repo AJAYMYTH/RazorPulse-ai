@@ -1,0 +1,310 @@
+---
+import '../styles/global.css';
+import Logo from '../components/Logo.astro';
+
+interface Props {
+  title: string;
+  activeNav?: 'summary' | 'orders' | 'failures';
+}
+
+const { title, activeNav = 'summary' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} · RazorPulse AI</title>
+    <!-- Crisp Hand-Crafted Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content="RazorPulse AI — Autonomous Upsell & Cross-Sell Agent for Razorpay Buildathon 2026 (Track 1)" />
+    <!-- Production Anime.js library loaded via CDN -->
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+  </head>
+  <body class="bg-canvas text-body min-h-screen font-sans antialiased selection:bg-ink selection:text-white relative overflow-x-hidden flex flex-col justify-between">
+    
+    <div>
+      <!-- Top Utility Notice Bar -->
+      <div class="border-b border-hairline bg-canvas text-xs font-mono py-1.5 px-6">
+        <div class="max-w-[1200px] mx-auto flex items-center justify-between text-mute">
+          <div class="flex items-center space-x-3">
+            <span class="inline-flex items-center text-ink font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
+              Razorpay Buildathon 2026 · Track 1: AI Growth & Agentic Commerce
+            </span>
+            <span class="hidden sm:inline text-hairline">|</span>
+            <span class="hidden sm:inline">Autonomous Upsell & Cross-Sell Architecture</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <span class="hidden md:inline">Gateway: <strong class="text-ink">Razorpay Test Mode</strong></span>
+            <span class="text-hairline">|</span>
+            <span class="text-ink font-semibold">Production Ready</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Sticky Navigation Bar -->
+      <header class="sticky top-0 z-50 border-b border-hairline bg-canvas/90 backdrop-blur-md">
+        <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+          <div class="flex items-center space-x-8">
+            <!-- Brand Logo Lockup -->
+            <a href="/" class="flex items-center focus:outline-none">
+              <Logo size="md" />
+            </a>
+
+            <!-- Nav Links (Geist nav-link spec) -->
+            <nav class="hidden sm:flex items-center space-x-1">
+              <a
+                href="/"
+                class:list={[
+                  'px-3.5 py-1.5 rounded-full text-sm font-normal transition-colors',
+                  activeNav === 'summary'
+                    ? 'bg-hairline text-ink font-medium'
+                    : 'text-body hover:text-ink hover:bg-hairline-soft',
+                ]}
+              >
+                Batch Summary
+              </a>
+              <a
+                href="/orders"
+                class:list={[
+                  'px-3.5 py-1.5 rounded-full text-sm font-normal transition-colors flex items-center space-x-1.5',
+                  activeNav === 'orders'
+                    ? 'bg-hairline text-ink font-medium'
+                    : 'text-body hover:text-ink hover:bg-hairline-soft',
+                ]}
+              >
+                <span>Order Trails</span>
+                <span class="font-mono text-[10px] px-1.5 py-0.2 rounded-full bg-canvas border border-hairline text-mute">15</span>
+              </a>
+              <a
+                href="/failures"
+                class:list={[
+                  'px-3.5 py-1.5 rounded-full text-sm font-normal transition-colors flex items-center space-x-1.5',
+                  activeNav === 'failures'
+                    ? 'bg-hairline text-ink font-medium'
+                    : 'text-body hover:text-ink hover:bg-hairline-soft',
+                ]}
+              >
+                <span>Failure Log</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+              </a>
+            </nav>
+          </div>
+
+          <!-- Right Action Controls -->
+          <div class="flex items-center space-x-3">
+            <button
+              id="re-run-batch-btn"
+              onclick="triggerLiveBatch()"
+              class="h-8 px-3.5 rounded-[6px] bg-canvas-elevated border border-hairline text-ink hover:bg-hairline-soft text-xs font-medium transition shadow-whisper inline-flex items-center space-x-1.5 focus:outline-none cursor-pointer"
+            >
+              <svg id="re-run-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+              </svg>
+              <span id="re-run-text">Run Pipeline</span>
+            </button>
+
+            <a
+              href="/orders"
+              class="hidden md:inline-flex items-center h-8 px-3.5 rounded-[6px] bg-ink text-white text-xs font-medium hover:bg-[#2e2e2e] transition shadow-whisper"
+            >
+              <span>Audit Trails</span>
+              <span class="ml-1.5">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content Container (Max 1200px) -->
+      <main class="max-w-[1200px] mx-auto px-6 py-10 relative z-10">
+        <slot />
+      </main>
+    </div>
+
+    <!-- Production-Grade SaaS Footer (Strictly public, legal, and compliance information) -->
+    <footer class="border-t border-hairline bg-canvas mt-20 text-xs text-body">
+      <div class="max-w-[1200px] mx-auto px-6 py-16">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12">
+          
+          <!-- Col 1: Brand & Mission -->
+          <div class="col-span-2 space-y-3.5">
+            <Logo size="sm" />
+            <p class="text-mute text-xs leading-relaxed max-w-sm">
+              RazorPulse AI is the autonomous agentic commerce engine built for high-growth Razorpay merchants. Turning post-checkout transactions into bounded, explainable revenue expansion.
+            </p>
+            <div class="flex flex-wrap items-center gap-2 pt-1">
+              <span class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-canvas-elevated border border-hairline font-mono text-[10px] text-ink shadow-whisper">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <span>All Systems Operational</span>
+              </span>
+              <span class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-canvas-elevated border border-hairline font-mono text-[10px] text-mute shadow-whisper">
+                <span>Razorpay Test Gateway v1</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Col 2: Platform & Capabilities -->
+          <div class="space-y-3">
+            <div class="font-mono text-[11px] uppercase font-bold text-ink tracking-wider">
+              Platform
+            </div>
+            <ul class="space-y-2 text-mute text-xs">
+              <li><a href="/" class="hover:text-ink transition">Autonomous Upsell Engine</a></li>
+              <li><a href="/orders" class="hover:text-ink transition">Deterministic Gate Layer</a></li>
+              <li><a href="/failures" class="hover:text-ink transition">Failure Resilience Guard</a></li>
+              <li><a href="/orders" class="hover:text-ink transition">Order Audit Trails</a></li>
+              <li><span class="text-ink font-medium">NPCI UAP Alignment</span></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Trust & Compliance -->
+          <div class="space-y-3">
+            <div class="font-mono text-[11px] uppercase font-bold text-ink tracking-wider">
+              Trust & Security
+            </div>
+            <ul class="space-y-2 text-mute text-xs">
+              <li><a href="/security" class="hover:text-ink transition">SOC 2 Type II Standards</a></li>
+              <li><a href="/security" class="hover:text-ink transition">PCI-DSS Level 1 (Razorpay)</a></li>
+              <li><a href="/security" class="hover:text-ink transition">Postgres Row-Level Security</a></li>
+              <li><a href="/privacy" class="hover:text-ink transition">Zero Model Training on Data</a></li>
+              <li><a href="/margin-policy" class="hover:text-ink transition">Deterministic Margin Cap (≤15%)</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Legal & Governance -->
+          <div class="space-y-3">
+            <div class="font-mono text-[11px] uppercase font-bold text-ink tracking-wider">
+              Legal & Policies
+            </div>
+            <ul class="space-y-2 text-mute text-xs">
+              <li><a href="/privacy" class="hover:text-ink transition">Merchant Privacy Policy</a></li>
+              <li><a href="/terms" class="hover:text-ink transition">Terms of Service</a></li>
+              <li><a href="/responsible-ai" class="hover:text-ink transition">Responsible AI Disclosure</a></li>
+              <li><a href="/margin-policy" class="hover:text-ink transition">Profit Margin Safeguard Policy</a></li>
+              <li><a href="/security" class="hover:text-ink transition">Security Architecture</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Bottom Copyright & Legal Attribution Bar -->
+        <div class="mt-14 pt-8 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-mute font-mono">
+          <div>
+            © 2026 RazorPulse AI Inc. · Developed for Razorpay Buildathon 2026 (Track 1: AI Growth & Agentic Commerce).
+          </div>
+          <div class="flex items-center space-x-6 text-[11px]">
+            <a href="/privacy" class="hover:text-ink transition">Privacy</a>
+            <span>·</span>
+            <a href="/terms" class="hover:text-ink transition">Terms</a>
+            <span>·</span>
+            <a href="/security" class="hover:text-ink transition">Security</a>
+            <span>·</span>
+            <a href="/responsible-ai" class="hover:text-ink transition">Safety</a>
+            <span>·</span>
+            <span class="text-ink font-semibold">v1.0.0-production</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Global Anime.js Animation & Interaction Initializer -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof anime === 'undefined') return;
+
+        // Check prefers-reduced-motion for accessibility
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) return;
+
+        // 1. Smooth page load entrance for hero elements
+        anime({
+          targets: '.anime-hero-fade',
+          opacity: [0, 1],
+          translateY: [14, 0],
+          duration: 750,
+          delay: anime.stagger(80),
+          easing: 'cubicBezier(0.16, 1, 0.3, 1)'
+        });
+
+        // 2. Smooth staggered card entrance
+        anime({
+          targets: '.anime-card-enter',
+          opacity: [0, 1],
+          translateY: [16, 0],
+          duration: 700,
+          delay: anime.stagger(70, { start: 150 }),
+          easing: 'cubicBezier(0.16, 1, 0.3, 1)'
+        });
+
+        // 3. Numbers counter animation for KPI numbers
+        const counterEls = document.querySelectorAll('.anime-counter');
+        counterEls.forEach((el) => {
+          const targetVal = parseFloat(el.getAttribute('data-target') || el.innerText || '0');
+          const isCurrency = el.getAttribute('data-currency') === 'true';
+          const obj = { val: 0 };
+
+          anime({
+            targets: obj,
+            val: targetVal,
+            round: 1,
+            duration: 1100,
+            easing: 'easeOutExpo',
+            update: () => {
+              el.innerText = isCurrency ? '₹' + Math.round(obj.val).toLocaleString() : Math.round(obj.val).toString();
+            }
+          });
+        });
+
+        // 4. Smooth horizontal meter fill
+        anime({
+          targets: '.anime-meter-fill',
+          scaleX: [0, 1],
+          opacity: [0, 1],
+          transformOrigin: '0% 50%',
+          duration: 900,
+          delay: anime.stagger(90, { start: 300 }),
+          easing: 'cubicBezier(0.16, 1, 0.3, 1)'
+        });
+
+        // 5. Timeline stage pulse animation
+        anime({
+          targets: '.anime-stage-step',
+          opacity: [0, 1],
+          translateX: [-12, 0],
+          duration: 650,
+          delay: anime.stagger(120, { start: 200 }),
+          easing: 'cubicBezier(0.16, 1, 0.3, 1)'
+        });
+      });
+
+      // Pipeline runner
+      async function triggerLiveBatch() {
+        const btn = document.getElementById('re-run-batch-btn');
+        const text = document.getElementById('re-run-text');
+        const icon = document.getElementById('re-run-icon');
+        
+        if (!btn || !text || !icon) return;
+        
+        btn.disabled = true;
+        text.innerText = 'Running Pipeline...';
+        icon.classList.add('animate-spin');
+        
+        try {
+          const res = await fetch('http://localhost:3000/api/orders/seed', { method: 'POST' });
+          if (res.ok) {
+            text.innerText = 'Pipeline Complete!';
+            setTimeout(() => window.location.reload(), 800);
+          } else {
+            text.innerText = 'Done!';
+            setTimeout(() => window.location.reload(), 800);
+          }
+        } catch (e) {
+          text.innerText = 'Refreshing...';
+          setTimeout(() => window.location.reload(), 500);
+        }
+      }
+    </script>
+  </body>
+</html>

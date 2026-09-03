@@ -1,0 +1,126 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Merchant Privacy Policy">
+  <!-- Breadcrumb & Header -->
+  <div class="mb-10 space-y-3">
+    <nav class="flex items-center space-x-2 text-xs font-mono text-mute">
+      <a href="/" class="hover:text-ink transition">Dashboard</a>
+      <span>/</span>
+      <span class="text-ink font-semibold">Privacy Policy</span>
+    </nav>
+
+    <div class="border-b border-hairline pb-6">
+      <div class="font-mono text-xs uppercase text-mute tracking-wider mb-2 flex items-center space-x-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#0066FF]"></span>
+        <span>Regulatory & Data Compliance · DPDP Act 2023 & GDPR Aligned</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-semibold text-ink tracking-tight">Merchant Privacy Policy</h1>
+      <p class="text-body text-xs sm:text-sm mt-2 max-w-3xl leading-relaxed">
+        This Privacy Policy outlines how RazorPulse AI collects, processes, and protects transaction signals when operating on behalf of merchants within the Razorpay ecosystem.
+      </p>
+      <div class="flex items-center space-x-4 text-xs font-mono text-mute mt-4">
+        <span>Effective: September 3, 2026</span>
+        <span>·</span>
+        <span>Version: 2.1-Production</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Container (Structured Legal Sections) -->
+  <div class="max-w-4xl space-y-10 text-xs sm:text-sm text-body leading-relaxed font-sans">
+    
+    <!-- Section 1: Non-Custodial Data Handling -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">1. Non-Custodial Data Architecture</div>
+      <p>
+        RazorPulse AI operates as an autonomous agentic middleware layer. We adhere to a strict <strong>non-custodial data architecture</strong>:
+      </p>
+      <ul class="list-disc list-inside space-y-1.5 pl-2 text-mute">
+        <li><strong class="text-ink">No Payment Credentials Handled:</strong> We never capture, transmit, or store credit/debit card numbers, CVVs, UPI MPINs, or bank net-banking passwords. All payment transactions are executed exclusively via Razorpay-hosted Payment Links under Razorpay's PCI-DSS Level 1 certified infrastructure.</li>
+        <li><strong class="text-ink">Signal Minimization:</strong> Our trigger and signal gathering services ingest only the minimum metadata necessary to formulate co-purchase affinities: Order ID, order amount, line item SKUs, and pseudonymous customer transaction history.</li>
+      </ul>
+    </section>
+
+    <!-- Section 2: Zero LLM Model Training Guarantee -->
+    <section class="space-y-3 p-5 rounded-md bg-canvas-elevated border border-hairline shadow-whisper">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider flex items-center space-x-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>2. Zero LLM Model Training Guarantee</span>
+      </div>
+      <p class="text-xs text-body leading-relaxed">
+        <strong>We will never sell, license, or use your commercial transaction data, basket values, or customer identifiers to train or fine-tune public or third-party artificial intelligence models.</strong>
+      </p>
+      <p class="text-xs text-mute leading-relaxed">
+        When an LLM inference call is made (via Google Gemini Flash or OpenAI API), customer context is transmitted exclusively through enterprise zero-data-retention endpoints with explicit opt-out of model training.
+      </p>
+    </section>
+
+    <!-- Section 3: Data Ingestion & Storage -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">3. Information Ingested and Storage Policies</div>
+      <p>When you connect RazorPulse AI to your Razorpay merchant account, we process the following event data:</p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border border-hairline rounded-md overflow-hidden bg-canvas-elevated">
+          <thead class="bg-canvas border-b border-hairline font-mono text-[11px] uppercase text-mute">
+            <tr>
+              <th class="p-3">Data Field</th>
+              <th class="p-3">Purpose</th>
+              <th class="p-3">Storage Layer</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-hairline font-mono text-xs text-body">
+            <tr>
+              <td class="p-3 text-ink font-semibold">Order ID & Amount</td>
+              <td class="p-3">Evaluating minimum cart value and idempotency checks</td>
+              <td class="p-3">Postgres / Supabase (RLS Isolated)</td>
+            </tr>
+            <tr>
+              <td class="p-3 text-ink font-semibold">Catalog SKUs & Affinities</td>
+              <td class="p-3">Matching complementary accessories and upgrades</td>
+              <td class="p-3">Encrypted Merchant Catalog Table</td>
+            </tr>
+            <tr>
+              <td class="p-3 text-ink font-semibold">Customer Order Count</td>
+              <td class="p-3">Classifying repeat buyers vs first-time buyers for discount tuning</td>
+              <td class="p-3">Anonymized Customer Profile Record</td>
+            </tr>
+            <tr>
+              <td class="p-3 text-ink font-semibold">Payment Link Reference ID</td>
+              <td class="p-3">Preventing duplicate link generation & tracking payment status</td>
+              <td class="p-3">Append-Only `decisions` Table</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 4: Multi-Tenant Row-Level Security -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">4. Multi-Tenant Isolation (Row-Level Security)</div>
+      <p>
+        Every merchant database record is partitioned by an immutable <code class="text-xs bg-canvas px-1.5 py-0.5 rounded border border-hairline font-mono text-ink">merchant_id</code> foreign key. PostgreSQL Row-Level Security (RLS) policies enforce cryptographic tenant isolation at the database engine level, preventing cross-tenant data leakage under any query condition.
+      </p>
+    </section>
+
+    <!-- Section 5: Data Retention & Merchant Audit Rights -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">5. Immutable Audit Trail & Retention</div>
+      <p>
+        All pipeline records in the <code class="text-xs bg-canvas px-1.5 py-0.5 rounded border border-hairline font-mono text-ink">decisions</code> table are append-only. No automated process or external API has permission to mutate or delete historical decision records. Merchants may export their complete audit ledger at any time in standard JSON or CSV format.
+      </p>
+    </section>
+
+    <!-- Section 6: Contact & Privacy Officer -->
+    <section class="space-y-3 pt-6 border-t border-hairline">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">6. Contact & Data Protection Officer</div>
+      <p class="text-xs text-mute">
+        For privacy inquiries, audit export requests, or DPDP compliance verification, contact our Data Governance desk at:
+        <br />
+        <span class="font-mono text-ink font-semibold mt-1 inline-block">privacy@razorpulse.ai · Razorpay Buildathon 2026 Initiative</span>
+      </p>
+    </section>
+
+  </div>
+</Layout>

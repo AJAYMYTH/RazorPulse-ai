@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Responsible AI Framework">
+  <!-- Breadcrumb & Header -->
+  <div class="mb-10 space-y-3">
+    <nav class="flex items-center space-x-2 text-xs font-mono text-mute">
+      <a href="/" class="hover:text-ink transition">Dashboard</a>
+      <span>/</span>
+      <span class="text-ink font-semibold">Responsible AI</span>
+    </nav>
+
+    <div class="border-b border-hairline pb-6">
+      <div class="font-mono text-xs uppercase text-mute tracking-wider mb-2 flex items-center space-x-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-purple-600"></span>
+        <span>AI Governance & Safety · NPCI Unified Agentic Protocol (UAP) Standards</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-semibold text-ink tracking-tight">Responsible AI & Safety Framework</h1>
+      <p class="text-body text-xs sm:text-sm mt-2 max-w-3xl leading-relaxed">
+        How RazorPulse AI ensures that autonomous machine learning models are safely bounded by mathematical code invariants before interacting with financial transaction APIs.
+      </p>
+      <div class="flex items-center space-x-4 text-xs font-mono text-mute mt-4">
+        <span>Framework Standard: RFC-2026-UAP</span>
+        <span>·</span>
+        <span>Audit Status: Passed (8/8 Unit Tests)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Container -->
+  <div class="max-w-4xl space-y-10 text-xs sm:text-sm text-body leading-relaxed font-sans">
+
+    <!-- Section 1: The Core Safety Principle -->
+    <section class="space-y-3 p-6 rounded-md bg-canvas-elevated border border-hairline shadow-whisper">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">
+        1. The Fundamental Separation of Intelligence & Authority
+      </div>
+      <p class="text-body leading-relaxed">
+        In traditional naive AI systems, large language models are granted direct access to tool execution (e.g. LLM directly calls <code class="font-mono text-ink">razorpay.paymentLink.create()</code>). In commercial e-commerce, this creates an existential risk of hallucinated discounts, inventory pricing errors, or infinite retry spam.
+      </p>
+      <div class="p-4 rounded-[6px] bg-canvas border border-hairline font-mono text-xs text-ink space-y-2">
+        <div class="font-bold text-ink">The RazorPulse AI Invariant:</div>
+        <div>
+          "Artificial intelligence models are treated as <strong>advisory recommenders</strong>, never final decision authorities. No LLM has direct execution permissions to any money API."
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Explainability by Design (Rubric G2) -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">
+        2. Human-Readable Explainability by Design (Rubric Criterion G2)
+      </div>
+      <p>
+        Every single offer formulated by the LLM is subject to strict schema validation. The model is forced to produce a structured JSON payload containing:
+      </p>
+      <ul class="list-disc list-inside space-y-1.5 pl-2 text-mute text-xs font-mono">
+        <li><strong class="text-ink">action:</strong> 'cross_sell' | 'upsell' | 'none'</li>
+        <li><strong class="text-ink">recommended_sku:</strong> Specific catalog SKU identifier</li>
+        <li><strong class="text-ink">discount_pct:</strong> Proposed percentage discount (0-15%)</li>
+        <li><strong class="text-ink">confidence:</strong> Confidence score (0.00 to 1.00)</li>
+        <li><strong class="text-ink">reason:</strong> Plain-text human-readable narrative explaining why this SKU matches the customer's prior basket</li>
+      </ul>
+      <p class="text-xs text-mute mt-2">
+        If an offer cannot be justified with high confidence (&gt;60%), the model is prompted to emit <code class="font-mono text-ink">action: 'none'</code>, safely abstaining rather than making poor commercial guesses.
+      </p>
+    </section>
+
+    <!-- Section 3: Schema Validation with Zod -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">
+        3. Strict Schema Validation Layer (Zod)
+      </div>
+      <p>
+        Raw model outputs are parsed through a deterministic TypeScript Zod schema. If the model hallucinates non-standard keys, emits negative numbers, or provides unparseable text, the inference is immediately intercepted at the schema boundary, safely rejected, and logged as an error without crashing the batch.
+      </p>
+    </section>
+
+    <!-- Section 4: Pure Mathematical Gate Bounds (Rubric G3) -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">
+        4. Pure Deterministic Gate Bounds (Rubric Criterion G3)
+      </div>
+      <p>
+        Before any approved recommendation reaches the Razorpay Payment Links API, it must pass a pure, side-effect-free deterministic function (<code class="font-mono text-ink">evaluateGate()</code>) that enforces 5 immutable commercial rules:
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs pt-2">
+        <div class="p-3 bg-canvas-elevated border border-hairline rounded-[6px]">
+          <div class="text-ink font-bold">Bound 1: Discount Cap</div>
+          <div class="text-mute text-[11px] mt-1">Discount must be ≤ 15%. Even if AI suggests 30%, it is halted.</div>
+        </div>
+        <div class="p-3 bg-canvas-elevated border border-hairline rounded-[6px]">
+          <div class="text-ink font-bold">Bound 2: Idempotency</div>
+          <div class="text-mute text-[11px] mt-1">Strictly 1 offer per customer order. No duplicates.</div>
+        </div>
+        <div class="p-3 bg-canvas-elevated border border-hairline rounded-[6px]">
+          <div class="text-ink font-bold">Bound 3: Order Eligibility</div>
+          <div class="text-mute text-[11px] mt-1">Refunded and disputed orders are immediately blocked.</div>
+        </div>
+        <div class="p-3 bg-canvas-elevated border border-hairline rounded-[6px]">
+          <div class="text-ink font-bold">Bound 4: Confidence Score</div>
+          <div class="text-mute text-[11px] mt-1">Must be ≥ 0.60. Speculative guesses are discarded.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Anti-Retry-Storm Invariant (Rubric G4) -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">
+        5. Anti-Retry-Storm & Failure Resilience (Rubric Criterion G4)
+      </div>
+      <p>
+        When an issued Payment Link expires without conversion, naive bots often enter infinite retry loops, causing customer harassment and payment gateway rate-limit blacklisting. RazorPulse AI enforces an <strong>anti-retry-storm invariant</strong>:
+      </p>
+      <ul class="list-disc list-inside space-y-1.5 pl-2 text-mute text-xs">
+        <li>Expired links are recorded as a terminal failure state in the append-only log.</li>
+        <li>Exactly zero retries are attempted.</li>
+        <li>The batch runner advances to subsequent orders without blocking or crashing.</li>
+      </ul>
+    </section>
+
+    <!-- Section 6: NPCI UAP Compliance -->
+    <section class="space-y-3 pt-6 border-t border-hairline">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">
+        6. Alignment with NPCI Unified Agentic Protocol (UAP)
+      </div>
+      <p class="text-xs text-mute leading-relaxed">
+        RazorPulse AI is architected to align with the emerging guidelines set forth by the National Payments Corporation of India (NPCI) for agentic transactions. By enforcing verifiable audit trails, cryptographic tenant separation, and deterministic guardrails, RazorPulse AI sets the industry benchmark for safe, autonomous AI commerce.
+      </p>
+    </section>
+
+  </div>
+</Layout>

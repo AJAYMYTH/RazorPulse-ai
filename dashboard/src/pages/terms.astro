@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Terms of Service">
+  <!-- Breadcrumb & Header -->
+  <div class="mb-10 space-y-3">
+    <nav class="flex items-center space-x-2 text-xs font-mono text-mute">
+      <a href="/" class="hover:text-ink transition">Dashboard</a>
+      <span>/</span>
+      <span class="text-ink font-semibold">Terms of Service</span>
+    </nav>
+
+    <div class="border-b border-hairline pb-6">
+      <div class="font-mono text-xs uppercase text-mute tracking-wider mb-2 flex items-center space-x-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#0066FF]"></span>
+        <span>Merchant Agreement · B2B Agentic Commerce Terms</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-semibold text-ink tracking-tight">Merchant Terms of Service</h1>
+      <p class="text-body text-xs sm:text-sm mt-2 max-w-3xl leading-relaxed">
+        These Terms of Service govern the deployment and operation of the RazorPulse AI Autonomous Upsell & Cross-Sell Engine on merchant sales channels.
+      </p>
+      <div class="flex items-center space-x-4 text-xs font-mono text-mute mt-4">
+        <span>Effective Date: September 3, 2026</span>
+        <span>·</span>
+        <span>Contract Version: 1.4-Production</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Container -->
+  <div class="max-w-4xl space-y-10 text-xs sm:text-sm text-body leading-relaxed font-sans">
+
+    <!-- Section 1: Scope of Service -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">1. Scope of Autonomous Service</div>
+      <p>
+        RazorPulse AI provides an autonomous growth middleware that connects to your Razorpay merchant account via official test and live APIs. The service listens to payment completion events, computes co-purchase affinity scores, passes candidate offers through a deterministic profit margin gate, and programmatically issues single-use Razorpay Payment Links.
+      </p>
+    </section>
+
+    <!-- Section 2: Bring-Your-Own-Key (BYOK) & Compute Costs -->
+    <section class="space-y-3 p-5 rounded-md bg-canvas-elevated border border-hairline shadow-whisper">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider flex items-center space-x-2">
+        <span class="w-2 h-2 rounded-full bg-[#0066FF]"></span>
+        <span>2. Bring-Your-Own-Key (BYOK) Model & Billing</span>
+      </div>
+      <p class="text-xs text-body leading-relaxed">
+        RazorPulse AI is deployed under a <strong>Bring-Your-Own-Key (BYOK) architecture</strong>:
+      </p>
+      <ul class="list-disc list-inside space-y-1.5 pl-2 text-xs text-mute">
+        <li><strong>Merchant Credentials:</strong> The merchant supplies their own Razorpay Key ID and Secret (<code class="font-mono text-ink">RAZORPAY_KEY_ID</code>) and optional LLM API credentials (<code class="font-mono text-ink">GEMINI_API_KEY</code> or <code class="font-mono text-ink">OPENAI_API_KEY</code>).</li>
+        <li><strong>Zero Middleman Markups:</strong> All payment fees are billed directly through your Razorpay merchant settlement schedule according to your standard contractual rates. RazorPulse AI charges zero surcharge or hidden revenue cuts on upsell transactions.</li>
+        <li><strong>Heuristic Fallback:</strong> In the event of an external LLM quota exhaustion or network timeout, the platform automatically switches to local heuristic affinity matching with zero downtime and ₹0 incremental API costs.</li>
+      </ul>
+    </section>
+
+    <!-- Section 3: Deterministic Gate Primacy -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">3. Deterministic Gate Primacy Clause</div>
+      <p>
+        By deploying RazorPulse AI, the merchant acknowledges and agrees that <strong>code-enforced deterministic bounds supersede any AI recommendation</strong>:
+      </p>
+      <div class="p-4 rounded-[6px] bg-canvas border border-hairline font-mono text-xs space-y-1.5 text-body">
+        <div>• <strong>Discount Ceiling:</strong> Under no circumstances will the system generate an offer exceeding the hard 15% discount threshold.</div>
+        <div>• <strong>Single Offer Limit:</strong> Only one upsell link may be generated per customer order ID to prevent spam.</div>
+        <div>• <strong>Ineligible Orders:</strong> Disputed, refunded, or chargeback orders are permanently excluded from automated offer generation.</div>
+      </div>
+    </section>
+
+    <!-- Section 4: Settlement and Money Movement -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">4. Settlement and Direct Fund Flow</div>
+      <p>
+        RazorPulse AI is non-custodial and never holds merchant or buyer funds. 100% of customer payments made via generated links flow directly from the buyer to your Razorpay merchant balance, subject to standard Razorpay T+2 or instant settlement terms.
+      </p>
+    </section>
+
+    <!-- Section 5: Limitation of Liability -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">5. Limitation of Liability</div>
+      <p>
+        RazorPulse AI is provided on an "as-is" and "as-available" basis for the Razorpay Buildathon 2026. While the platform incorporates pure unit-tested deterministic gates and anti-retry-storm invariants, merchants are responsible for monitoring their live catalog pricing and inventory availability.
+      </p>
+    </section>
+
+    <!-- Section 6: Termination & Disconnection -->
+    <section class="space-y-3 pt-6 border-t border-hairline">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">6. Disconnection & Access Revocation</div>
+      <p class="text-xs text-mute">
+        Merchants may instantly disconnect RazorPulse AI at any time by rotating their Razorpay API Secret in the Razorpay Merchant Dashboard, instantly revoking all automated payment link creation privileges.
+      </p>
+    </section>
+
+  </div>
+</Layout>

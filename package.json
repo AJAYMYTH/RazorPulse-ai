@@ -1,0 +1,24 @@
+{
+  "name": "razorpay-buildathon-upsell-agent",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "dashboard"
+  ],
+  "scripts": {
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:dashboard": "npm --prefix dashboard run dev",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:dashboard\"",
+    "test": "npm --prefix backend run test",
+    "seed": "npm --prefix backend run seed",
+    "phase1": "npm --prefix backend run phase1",
+    "phase2": "npm --prefix backend run phase2",
+    "phase3": "npm --prefix backend run phase3",
+    "batch": "npm --prefix backend run batch",
+    "build": "npm --prefix backend run build && npm --prefix dashboard run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

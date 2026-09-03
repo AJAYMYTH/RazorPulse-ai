@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #fafafa;
+    color: #4d4d4d;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #fafafa;
+    color: #4d4d4d;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #171717;
+    font-weight: 600;
+  }
+
+  code, pre {
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+}
+
+/* Vercel Geist Hero Mesh Gradient (Confined strictly to hero backdrop per DESIGN.md) */
+.hero-mesh-gradient {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 450px;
+  background: radial-gradient(circle at 20% 30%, rgba(80, 227, 194, 0.18) 0%, transparent 40%),
+              radial-gradient(circle at 50% 20%, rgba(0, 112, 243, 0.15) 0%, transparent 45%),
+              radial-gradient(circle at 80% 35%, rgba(121, 40, 202, 0.16) 0%, transparent 40%),
+              radial-gradient(circle at 35% 65%, rgba(255, 0, 128, 0.12) 0%, transparent 45%),
+              radial-gradient(circle at 65% 70%, rgba(245, 166, 35, 0.14) 0%, transparent 40%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}

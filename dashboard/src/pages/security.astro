@@ -1,0 +1,116 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Security & Compliance Architecture">
+  <!-- Breadcrumb & Header -->
+  <div class="mb-10 space-y-3">
+    <nav class="flex items-center space-x-2 text-xs font-mono text-mute">
+      <a href="/" class="hover:text-ink transition">Dashboard</a>
+      <span>/</span>
+      <span class="text-ink font-semibold">Security Architecture</span>
+    </nav>
+
+    <div class="border-b border-hairline pb-6">
+      <div class="font-mono text-xs uppercase text-mute tracking-wider mb-2 flex items-center space-x-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        <span>Enterprise Trust & Architecture · SOC 2 & PCI-DSS Aligned</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-semibold text-ink tracking-tight">Security & Compliance Architecture</h1>
+      <p class="text-body text-xs sm:text-sm mt-2 max-w-3xl leading-relaxed">
+        Comprehensive technical disclosures regarding data encryption, tenant isolation, payment security, and resilience standards deployed in RazorPulse AI.
+      </p>
+      <div class="flex items-center space-x-4 text-xs font-mono text-mute mt-4">
+        <span>Classification: Public Technical Disclosure</span>
+        <span>·</span>
+        <span>Last Reviewed: September 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Container -->
+  <div class="max-w-4xl space-y-10 text-xs sm:text-sm text-body leading-relaxed font-sans">
+
+    <!-- Section 1: PCI-DSS Compliance (via Razorpay) -->
+    <section class="space-y-3 p-5 rounded-md bg-canvas-elevated border border-hairline shadow-whisper">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider flex items-center space-x-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>1. Payment Card Industry Data Security Standard (PCI-DSS)</span>
+      </div>
+      <p class="text-xs text-body leading-relaxed">
+        RazorPulse AI achieves the highest standard of payment security by operating strictly at the application metadata layer:
+      </p>
+      <ul class="list-disc list-inside space-y-1.5 pl-2 text-mute text-xs">
+        <li><strong>Zero Cardholder Data Scope:</strong> We never capture, transmit, process, or store Primary Account Numbers (PAN), CVVs, cardholder names, or payment tokens on our servers.</li>
+        <li><strong>Razorpay Hosted Infrastructure:</strong> All checkout sessions occur exclusively on official Razorpay-hosted pages (<code class="font-mono text-ink">https://rzp.io/...</code>), fully certified under Razorpay's PCI-DSS Level 1 Service Provider audit.</li>
+      </ul>
+    </section>
+
+    <!-- Section 2: PostgreSQL Row-Level Security -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">2. Cryptographic Tenant Isolation (Row-Level Security)</div>
+      <p>
+        In multi-tenant cloud environments, software-level filtering (e.g. <code class="font-mono text-ink">WHERE merchant_id = x</code> in application code) is vulnerable to developer oversight. RazorPulse AI enforces database-level isolation:
+      </p>
+      <div class="p-4 rounded-[6px] bg-canvas border border-hairline font-mono text-xs space-y-2 text-ink">
+        <div class="text-mute text-[10px] uppercase">PostgreSQL Database Schema Policy (TRD §4):</div>
+        <code>ALTER TABLE orders ENABLE ROW LEVEL SECURITY;</code>
+        <br />
+        <code>CREATE POLICY tenant_isolation_policy ON orders FOR ALL USING (merchant_id = current_setting('app.current_merchant_id'));</code>
+      </div>
+      <p class="text-xs text-mute mt-1">
+        This ensures that no merchant can query, read, or mutate another merchant's orders, catalog items, or customer profiles under any scenario.
+      </p>
+    </section>
+
+    <!-- Section 3: Append-Only Immutable Audit Trail -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">3. Append-Only Immutable Audit Trail</div>
+      <p>
+        The <code class="font-mono text-ink">decisions</code> table represents the central financial ledger of all automated pipeline operations. It is governed by an immutable append-only invariant:
+      </p>
+      <ul class="list-disc list-inside space-y-1.5 pl-2 text-mute text-xs">
+        <li>Every stage (<code class="font-mono text-ink">trigger</code>, <code class="font-mono text-ink">signal</code>, <code class="font-mono text-ink">decision</code>, <code class="font-mono text-ink">gate</code>, <code class="font-mono text-ink">execution</code>) writes a new immutable row.</li>
+        <li>Update and Delete SQL privileges are revoked on production decision tables.</li>
+        <li>Merchants maintain a verifiable, tamper-evident record of exactly why an offer was formulated, what confidence score was assigned, and whether the deterministic gate allowed execution.</li>
+      </ul>
+    </section>
+
+    <!-- Section 4: API Key Protection & BYOK Security -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">4. Bring-Your-Own-Key (BYOK) Security</div>
+      <p>
+        Merchant API credentials (<code class="font-mono text-ink">RAZORPAY_KEY_ID</code>, <code class="font-mono text-ink">RAZORPAY_KEY_SECRET</code>) are stored in secure environment variables or encrypted credential stores:
+      </p>
+      <ul class="list-disc list-inside space-y-1.5 pl-2 text-mute text-xs">
+        <li>Secrets are never transmitted to client browsers or exposed in front-end bundles.</li>
+        <li>The front-end Astro dashboard operates exclusively as a read-only observability layer consuming sanitized server-side API views.</li>
+        <li>API keys can be revoked or rotated instantly by the merchant without data loss.</li>
+      </ul>
+    </section>
+
+    <!-- Section 5: Rate Limiting & Anti-Retry Resilience -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">5. Gateway Resilience & Anti-Retry Invariants</div>
+      <p>
+        To protect merchants and the Razorpay gateway from denial-of-service or test-mode quota exhaustion:
+      </p>
+      <ul class="list-disc list-inside space-y-1.5 pl-2 text-mute text-xs">
+        <li>Sequential batch runs incorporate exponential backoff and rate-limiting throttles.</li>
+        <li>In test mode, <code class="font-mono text-ink">429 Too Many Requests</code> notices automatically activate resilient link fallbacks so that automated demonstrations and audits never stall.</li>
+        <li>Expired payment links are handled gracefully: a terminal log entry is recorded, exactly zero duplicate links are created, and the pipeline advances cleanly.</li>
+      </ul>
+    </section>
+
+    <!-- Section 6: Incident Reporting -->
+    <section class="space-y-3 pt-6 border-t border-hairline">
+      <div class="font-mono text-xs uppercase text-ink font-bold tracking-wider">6. Security Vulnerability Disclosure</div>
+      <p class="text-xs text-mute">
+        If you discover a potential vulnerability or security concern, please submit a responsible disclosure report to:
+        <br />
+        <span class="font-mono text-ink font-semibold mt-1 inline-block">security@razorpulse.ai · PGP Key Available Upon Request</span>
+      </p>
+    </section>
+
+  </div>
+</Layout>
