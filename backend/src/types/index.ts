@@ -1,5 +1,16 @@
 import { z } from 'zod';
 
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  password_hash?: string;
+  merchant_id: string;
+  company_name: string;
+  role: 'owner' | 'admin' | 'viewer';
+  created_at: string;
+}
+
 export interface Merchant {
   id: string;
   name: string;

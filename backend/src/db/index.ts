@@ -10,6 +10,7 @@ import {
   Customer,
   Order,
   DecisionRecord,
+  User,
 } from '../types/index.js';
 
 // Ensure environment variables are loaded
@@ -27,6 +28,7 @@ interface InMemoryStore {
   customers: Customer[];
   orders: Order[];
   decisions: DecisionRecord[];
+  users: User[];
 }
 
 class DatabaseService {
@@ -37,6 +39,7 @@ class DatabaseService {
     customers: [],
     orders: [],
     decisions: [],
+    users: [],
   };
   public isSupabaseActive: boolean = false;
 
@@ -69,7 +72,35 @@ class DatabaseService {
       if (fs.existsSync(STORE_FILE)) {
         const raw = fs.readFileSync(STORE_FILE, 'utf-8');
         this.localStore = JSON.parse(raw);
+        if (!this.localStore.users) {
+          this.localStore.users = [];
+        }
+        if (this.localStore.users.length === 0) {
+          this.localStore.users.push({
+            id: 'usr_demo_apex_01',
+            name: 'Ajay Kumar',
+            email: 'demo@razorpulse.ai',
+            password_hash: 'buildathon2026',
+            merchant_id: 'mch_apex_gear_001',
+            company_name: 'Apex Electronics & Tech Gear',
+            role: 'owner',
+            created_at: '2026-01-01T00:00:00Z',
+          });
+          this.persistLocalStore();
+        }
       } else {
+        this.localStore.users = [
+          {
+            id: 'usr_demo_apex_01',
+            name: 'Ajay Kumar',
+            email: 'demo@razorpulse.ai',
+            password_hash: 'buildathon2026',
+            merchant_id: 'mch_apex_gear_001',
+            company_name: 'Apex Electronics & Tech Gear',
+            role: 'owner',
+            created_at: '2026-01-01T00:00:00Z',
+          },
+        ];
         this.persistLocalStore();
       }
     } catch (err) {
@@ -86,6 +117,42 @@ class DatabaseService {
     } catch (err) {
       console.error('Error persisting local store:', err);
     }
+  }
+
+  // --- USERS & AUTH ---
+  async getUsers(): Promise<User[]> {
+    if (this.isSupabaseActive && this.supabase) {
+      const { data } = await this.supabase.from('users').select('*');
+      return data || [];
+    }
+    return this.localStore.users || [];
+  }
+
+  async getUserByEmail(email: string): Promise<User | null> {
+    const normalizedEmail = email.trim().toLowerCase();
+    if (this.isSupabaseActive && this.supabase) {
+      const { data } = await this.supabase.from('users').select('*').ilike('email', normalizedEmail).single();
+      return data || null;
+    }
+    return (this.localStore.users || []).find((u) => u.email.toLowerCase() === normalizedEmail) || null;
+  }
+
+  async saveUser(user: User): Promise<User> {
+    if (this.isSupabaseActive && this.supabase) {
+      await this.supabase.from('users').upsert(user);
+      return user;
+    }
+    if (!this.localStore.users) {
+      this.localStore.users = [];
+    }
+    const idx = this.localStore.users.findIndex((u) => u.id === user.id || u.email.toLowerCase() === user.email.toLowerCase());
+    if (idx >= 0) {
+      this.localStore.users[idx] = user;
+    } else {
+      this.localStore.users.push(user);
+    }
+    this.persistLocalStore();
+    return user;
   }
 
   // --- MERCHANTS ---

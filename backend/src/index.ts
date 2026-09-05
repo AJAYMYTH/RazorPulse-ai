@@ -27,6 +27,133 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// --- AUTHENTICATION ENDPOINTS ---
+
+// Login
+app.post('/api/auth/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ success: false, error: 'Email and password are required' });
+    }
+
+    const normalizedEmail = email.trim().toLowerCase();
+
+    // Check registered users
+    let user = await db.getUserByEmail(normalizedEmail);
+
+    // Fallback: If demo user credentials used
+    if (!user && (normalizedEmail === 'demo@razorpulse.ai' || normalizedEmail === 'admin@apextech.in')) {
+      user = {
+        id: 'usr_demo_apex_01',
+        name: 'Ajay Kumar',
+        email: normalizedEmail,
+        password_hash: 'buildathon2026',
+        merchant_id: 'mch_apex_gear_001',
+        company_name: 'Apex Electronics & Tech Gear',
+        role: 'owner',
+        created_at: new Date().toISOString(),
+      };
+      await db.saveUser(user);
+    }
+
+    if (!user || user.password_hash !== password) {
+      return res.status(401).json({ success: false, error: 'Invalid email or password' });
+    }
+
+    // Generate lightweight bearer token
+    const token = `rzp_token_${user.id}_${Buffer.from(user.email).toString('base64')}`;
+
+    // Return sanitized user object (omit password_hash)
+    const { password_hash, ...sanitizedUser } = user;
+
+    res.json({
+      success: true,
+      token,
+      user: sanitizedUser,
+      message: 'Authentication successful',
+    });
+  } catch (err: any) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// Signup / Merchant Onboarding
+app.post('/api/auth/signup', async (req, res) => {
+  try {
+    const { name, email, password, company_name } = req.body;
+    if (!name || !email || !password) {
+      return res.status(400).json({ success: false, error: 'Name, email, and password are required' });
+    }
+
+    const normalizedEmail = email.trim().toLowerCase();
+    const existing = await db.getUserByEmail(normalizedEmail);
+    if (existing) {
+      return res.status(409).json({ success: false, error: 'An account with this email already exists' });
+    }
+
+    const merchantId = `mch_${Date.now()}`;
+    const newUser = {
+      id: `usr_${Date.now()}`,
+      name: name.trim(),
+      email: normalizedEmail,
+      password_hash: password,
+      merchant_id: merchantId,
+      company_name: company_name?.trim() || `${name}'s Store`,
+      role: 'owner' as const,
+      created_at: new Date().toISOString(),
+    };
+
+    await db.saveUser(newUser);
+
+    const token = `rzp_token_${newUser.id}_${Buffer.from(newUser.email).toString('base64')}`;
+    const { password_hash, ...sanitizedUser } = newUser;
+
+    res.status(201).json({
+      success: true,
+      token,
+      user: sanitizedUser,
+      message: 'Account created successfully',
+    });
+  } catch (err: any) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// Current User Info
+app.get('/api/auth/me', async (req, res) => {
+  try {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ success: false, error: 'Authorization header missing' });
+    }
+
+    const token = authHeader.split(' ')[1];
+    const parts = token.split('_');
+    if (parts.length < 4) {
+      return res.status(401).json({ success: false, error: 'Malformed authentication token' });
+    }
+
+    const emailBase64 = parts[parts.length - 1];
+    const email = Buffer.from(emailBase64, 'base64').toString('utf-8');
+
+    const user = await db.getUserByEmail(email);
+    if (!user) {
+      return res.status(401).json({ success: false, error: 'User session expired or not found' });
+    }
+
+    const { password_hash, ...sanitizedUser } = user;
+    res.json({ success: true, user: sanitizedUser });
+  } catch (err: any) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// Logout
+app.post('/api/auth/logout', (req, res) => {
+  res.json({ success: true, message: 'Logged out successfully' });
+});
+
 // TRD Section 7: Batch Summary
 app.get('/api/batch/summary', async (req, res) => {
   try {

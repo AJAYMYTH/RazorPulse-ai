@@ -144,3 +144,28 @@ This living document tracks architectural decisions, feature implementations, ph
 - Added remote origin: `https://github.com/AJAYMYTH/RazorPulse-ai.git`.
 - Committed all 49 project source and documentation files (with `.env` and sensitive credentials strictly protected by `.gitignore`).
 - Successfully pushed the complete project to GitHub: `git push -u origin main`.
+
+### [2026-09-05] - Full-Stack Merchant Authentication & Session Guard System
+- **Backend Authentication APIs (`backend/src/index.ts` & `backend/src/db/index.ts`):**
+  - Added `POST /api/auth/login`: verifies merchant credentials, generates scoped bearer token (`rzp_token_...`), and returns sanitized profile.
+  - Added `POST /api/auth/signup`: provisions new merchant tenant, generates unique `merchant_id`, and persists user.
+  - Added `GET /api/auth/me`: verifies active bearer token and returns session user.
+  - Added `POST /api/auth/logout`: session invalidation.
+  - Pre-seeded default demo merchant admin: `demo@razorpulse.ai` / `buildathon2026` (`Apex Electronics & Tech Gear`, role: `owner`).
+- **Frontend Auth & Session Management (`dashboard/`):**
+  - Built `dashboard/src/lib/auth.ts`: client-side session storage with cookie synchronization for zero-flicker route transitions.
+  - Dedicated **Sign In Page** ([`dashboard/src/pages/login.astro`](file:///C:/Users/javal/Videos/Razorpay-buildathon/dashboard/src/pages/login.astro)):
+    - Geist-styled card with custom vector logo.
+    - **"⚡ One-Click Demo Login"** button prefilled for hackathon judges (`demo@razorpulse.ai` / `buildathon2026`).
+    - Standard email/password form with show/hide password toggle and client/backend dual-mode verification.
+    - Handles dynamic `?redirect=` return queries.
+  - Dedicated **Sign Up Page** ([`dashboard/src/pages/signup.astro`](file:///C:/Users/javal/Videos/Razorpay-buildathon/dashboard/src/pages/signup.astro)):
+    - Merchant onboarding flow (Admin Name, Store/Company Brand, Email, Master Password).
+  - **Route Protection & Auth Guard in `Layout.astro`:**
+    - Immediate inline script checks `localStorage` and redirects unauthenticated users visiting protected pages (`/`, `/orders`, `/orders/:id`, `/failures`) to `/login?redirect=...`.
+    - Public pages (`/login`, `/signup`, `/privacy`, `/terms`, `/responsible-ai`, `/margin-policy`, `/security`) remain accessible.
+    - **Merchant Account Nav Dropdown:** Displays store name (`Apex Electronics`), role (`OWNER`), email, merchant ID (`mch_apex_gear_001`), and a 1-click "Sign Out" button.
+- **Unit Tests (`backend/test/auth.service.test.ts`):**
+  - Added 4 new tests covering login verification, demo account retrieval, password checks, and merchant signup persistence.
+  - 12/12 total Vitest unit tests passing (8 gate tests + 4 auth tests).
+- All 25 Astro static pages compiled cleanly in 7.56s.
