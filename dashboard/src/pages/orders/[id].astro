@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
 import { fetchOrders, fetchOrderTrail } from '../../lib/api';
 
 export async function getStaticPaths() {
@@ -74,7 +75,14 @@ const rule4Pass = confVal >= 0.60;
           )}
         </div>
         <p class="text-body text-xs sm:text-sm mt-1.5">
-          Customer: <strong class="text-ink">{customer?.name || 'Guest'}</strong> ({customer?.order_count > 2 ? '⭐ Repeat Buyer' : 'New Customer'}) · Cart Total: <strong class="text-ink font-mono">₹{order.total_amount.toLocaleString()}</strong>
+          Customer: <strong class="text-ink">{customer?.name || 'Guest'}</strong> ({customer?.order_count > 2 ? (
+            <span class="inline-flex items-center space-x-1 text-amber-600 font-medium">
+              <Icon name="star" class="w-3 h-3 fill-amber-500 stroke-amber-500" />
+              <span>Repeat Buyer</span>
+            </span>
+          ) : (
+            'New Customer'
+          )}) · Cart Total: <strong class="text-ink font-mono">₹{order.total_amount.toLocaleString()}</strong>
         </p>
       </div>
 
@@ -342,7 +350,10 @@ const rule4Pass = confVal >= 0.60;
 
           {isRejected && (
             <div class="mt-3.5 p-3 rounded-[6px] bg-canvas border border-hairline text-xs text-body flex items-center space-x-2">
-              <span class="text-ink font-bold">🛡️ Safety Invariant:</span>
+              <span class="text-ink font-bold inline-flex items-center space-x-1.5">
+                <Icon name="shield-alert" class="w-4 h-4 text-amber-600 flex-shrink-0" />
+                <span>Safety Invariant:</span>
+              </span>
               <span>Money operations halted safely before Razorpay API was reached. Margin preserved.</span>
             </div>
           )}

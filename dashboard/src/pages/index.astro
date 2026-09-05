@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
 import { fetchBatchSummary, fetchOrders } from '../lib/api';
 
 const summary = await fetchBatchSummary();
@@ -53,7 +54,8 @@ const rejectionPct = 100 - acceptancePct;
         onclick="triggerLiveBatch()"
         class="h-9 px-4 rounded-pill bg-canvas-elevated text-body border border-hairline hover:text-ink text-xs font-medium transition shadow-whisper inline-flex items-center space-x-1.5 cursor-pointer"
       >
-        <span>⚡ Re-Run Pipeline</span>
+        <Icon name="zap" class="w-3.5 h-3.5" />
+        <span>Re-Run Pipeline</span>
       </button>
     </div>
   </div>
@@ -257,7 +259,14 @@ const rejectionPct = 100 - acceptancePct;
               <td class="px-6 py-3.5">
                 <span class="text-ink font-medium block">{o.customer_name}</span>
                 <span class="text-[10px] font-mono text-mute">
-                  {o.customer_order_count > 2 ? '⭐ Repeat Buyer' : 'First-time Customer'}
+                  {o.customer_order_count > 2 ? (
+                    <span class="inline-flex items-center space-x-1 text-amber-600 font-medium">
+                      <Icon name="star" class="w-2.5 h-2.5 fill-amber-500 stroke-amber-500" />
+                      <span>Repeat Buyer</span>
+                    </span>
+                  ) : (
+                    <span>First-time Customer</span>
+                  )}
                 </span>
               </td>
               <td class="px-6 py-3.5 font-mono text-ink font-semibold">
