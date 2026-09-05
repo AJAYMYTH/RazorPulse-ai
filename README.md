@@ -171,6 +171,9 @@ npm run dev
 
 ---
 
-## 7. License
+## 7. Governance, Security & Community
 
-Distributed under the MIT License. See `LICENSE` for details.
+- **License:** Distributed under the MIT License. See [LICENSE](LICENSE) for details.
+- **Security Policy:** Comprehensive threat model, vulnerability reporting SLA, and safe harbor disclosures are available in [SECURITY.md](SECURITY.md).
+- **Code of Conduct:** Community pledge and standards adapted from Contributor Covenant v2.1 in [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+- **Contributing Guide:** Architecture invariants and pull request workflow detailed in [CONTRIBUTING.md](CONTRIBUTING.md).

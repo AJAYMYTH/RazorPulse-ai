@@ -196,3 +196,10 @@ This living document tracks architectural decisions, feature implementations, ph
   5. **Static Site Build Verification:** Astro production build validating all 26 static HTML pages.
   6. **Artifact Integrity Check:** Asserts that all core bundles and static routes exist in `dist/`.
 - Added dynamic GitHub Actions CI/CD workflow status badge to `README.md`.
+
+### [2026-09-05] - Open Source Governance & Security Policy Documents
+- **`LICENSE`:** Standard MIT License granted to Ajay Kumar (AJAYMYTH) / RazorPulse AI.
+- **`SECURITY.md`:** Production-grade vulnerability disclosure policy with 24-48h SLA, safe harbor guidelines, non-custodial scope, and PCI-DSS Level 1 / DPDP Act 2023 threat model.
+- **`CODE_OF_CONDUCT.md`:** Contributor Covenant Code of Conduct v2.1.
+- **`CONTRIBUTING.md`:** Development setup, testing requirements (`npm test`, `npm run batch`, `npm run build`), architectural invariants, and Conventional Commits format.
+- Updated `README.md` with links to all governance documents.
