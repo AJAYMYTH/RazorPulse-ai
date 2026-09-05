@@ -24,17 +24,43 @@ const { title, activeNav = 'summary', isProtected = true } = Astro.props;
     <!-- Production Anime.js library loaded via CDN -->
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
 
-    <!-- Immediate Client-Side Auth Guard to Prevent Protected Route Flashing -->
+    <!-- Immediate Zero-Flash Auth Guard (Strict Protection) -->
+    {isProtected && (
+      <style id="auth-guard-hide">
+        html { visibility: hidden !important; opacity: 0 !important; }
+      </style>
+      <noscript>
+        <meta http-equiv="refresh" content="0;url=/login" />
+        <style>html { display: none !important; }</style>
+      </noscript>
+    )}
     <script is:inline define:vars={{ isProtected }}>
       (function() {
-        const token = localStorage.getItem('upsellx_auth_token') || localStorage.getItem('razorpulse_auth_token');
-        const userStr = localStorage.getItem('upsellx_auth_user') || localStorage.getItem('razorpulse_auth_user');
-        const hasAuth = !!(token && userStr);
+        if (!isProtected) return;
 
-        if (isProtected && !hasAuth) {
-          const currentPath = window.location.pathname;
-          window.location.replace(`/login?redirect=${encodeURIComponent(currentPath)}`);
-        }
+        try {
+          var token = localStorage.getItem('upsellx_auth_token') || localStorage.getItem('razorpulse_auth_token');
+          var userStr = localStorage.getItem('upsellx_auth_user') || localStorage.getItem('razorpulse_auth_user');
+
+          // Fallback cookie check
+          if (!token && document.cookie) {
+            var match = document.cookie.match(/(?:upsellx_auth_token|razorpulse_auth_token)=([^;]+)/);
+            if (match) token = decodeURIComponent(match[1]);
+          }
+
+          if (token && userStr) {
+            // Authenticated: reveal DOM immediately
+            var hideStyle = document.getElementById('auth-guard-hide');
+            if (hideStyle) hideStyle.remove();
+            document.documentElement.style.visibility = 'visible';
+            document.documentElement.style.opacity = '1';
+            return;
+          }
+        } catch (e) {}
+
+        // Unauthenticated: redirect immediately to login with return path
+        var currentPath = window.location.pathname + window.location.search;
+        window.location.replace('/login?redirect=' + encodeURIComponent(currentPath));
       })();
     </script>
   </head>
@@ -70,80 +96,91 @@ const { title, activeNav = 'summary', isProtected = true } = Astro.props;
             </a>
 
             <!-- Nav Links (Geist nav-link spec) -->
-            <nav class="hidden md:flex items-center space-x-1 flex-shrink-0">
-              <a
-                href="/"
-                class:list={[
-                  'px-3 py-1.5 rounded-full text-xs font-medium transition-colors whitespace-nowrap flex-shrink-0',
-                  activeNav === 'summary'
-                    ? 'bg-[#171717]/10 text-ink font-semibold'
-                    : 'text-body hover:text-ink hover:bg-hairline-soft',
-                ]}
-              >
-                Batch Summary
-              </a>
-              <a
-                href="/orders"
-                class:list={[
-                  'px-3 py-1.5 rounded-full text-xs font-medium transition-colors inline-flex items-center space-x-1.5 whitespace-nowrap flex-shrink-0',
-                  activeNav === 'orders'
-                    ? 'bg-[#171717]/10 text-ink font-semibold'
-                    : 'text-body hover:text-ink hover:bg-hairline-soft',
-                ]}
-              >
-                <span>Order Trails</span>
-                <span class="font-mono text-[10px] px-1.5 py-0.2 rounded-full bg-canvas border border-hairline text-mute">15</span>
-              </a>
-              <a
-                href="/failures"
-                class:list={[
-                  'px-3 py-1.5 rounded-full text-xs font-medium transition-colors inline-flex items-center space-x-1.5 whitespace-nowrap flex-shrink-0',
-                  activeNav === 'failures'
-                    ? 'bg-[#171717]/10 text-ink font-semibold'
-                    : 'text-body hover:text-ink hover:bg-hairline-soft',
-                ]}
-              >
-                <span>Failure Log</span>
-                <span class="w-1.5 h-1.5 rounded-full bg-error flex-shrink-0"></span>
-              </a>
-              <a
-                href="/settings"
-                class:list={[
-                  'px-3 py-1.5 rounded-full text-xs font-medium transition-colors hidden lg:inline-flex items-center space-x-1.5 whitespace-nowrap flex-shrink-0',
-                  activeNav === 'settings'
-                    ? 'bg-[#171717]/10 text-ink font-semibold'
-                    : 'text-body hover:text-ink hover:bg-hairline-soft',
-                ]}
-              >
-                <span>AI Keys & Settings</span>
-              </a>
-            </nav>
+            {isProtected && (
+              <nav class="hidden md:flex items-center space-x-1 flex-shrink-0">
+                <a
+                  href="/"
+                  class:list={[
+                    'px-3 py-1.5 rounded-full text-xs font-medium transition-colors whitespace-nowrap flex-shrink-0',
+                    activeNav === 'summary'
+                      ? 'bg-[#171717]/10 text-ink font-semibold'
+                      : 'text-body hover:text-ink hover:bg-hairline-soft',
+                  ]}
+                >
+                  Batch Summary
+                </a>
+                <a
+                  href="/orders"
+                  class:list={[
+                    'px-3 py-1.5 rounded-full text-xs font-medium transition-colors inline-flex items-center space-x-1.5 whitespace-nowrap flex-shrink-0',
+                    activeNav === 'orders'
+                      ? 'bg-[#171717]/10 text-ink font-semibold'
+                      : 'text-body hover:text-ink hover:bg-hairline-soft',
+                  ]}
+                >
+                  <span>Order Trails</span>
+                  <span class="font-mono text-[10px] px-1.5 py-0.2 rounded-full bg-canvas border border-hairline text-mute">15</span>
+                </a>
+                <a
+                  href="/failures"
+                  class:list={[
+                    'px-3 py-1.5 rounded-full text-xs font-medium transition-colors inline-flex items-center space-x-1.5 whitespace-nowrap flex-shrink-0',
+                    activeNav === 'failures'
+                      ? 'bg-[#171717]/10 text-ink font-semibold'
+                      : 'text-body hover:text-ink hover:bg-hairline-soft',
+                  ]}
+                >
+                  <span>Failure Log</span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-error flex-shrink-0"></span>
+                </a>
+                <a
+                  href="/settings"
+                  class:list={[
+                    'px-3 py-1.5 rounded-full text-xs font-medium transition-colors hidden lg:inline-flex items-center space-x-1.5 whitespace-nowrap flex-shrink-0',
+                    activeNav === 'settings'
+                      ? 'bg-[#171717]/10 text-ink font-semibold'
+                      : 'text-body hover:text-ink hover:bg-hairline-soft',
+                  ]}
+                >
+                  <span>AI Keys & Settings</span>
+                </a>
+              </nav>
+            )}
           </div>
 
           <!-- Right Action Controls -->
           <div class="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
-            <button
-              id="re-run-batch-btn"
-              onclick="triggerLiveBatch()"
-              class="h-8 px-3.5 rounded-[6px] bg-white border border-[#d4d4d4] hover:border-ink hover:bg-[#f5f5f5] text-ink text-xs font-medium transition shadow-whisper inline-flex items-center justify-center gap-2 whitespace-nowrap focus:outline-none cursor-pointer flex-shrink-0"
-              title="Re-run batch orders pipeline"
-            >
-              <svg id="re-run-icon" class="w-3.5 h-3.5 flex-shrink-0 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 2v6h-6"></path>
-                <path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path>
-                <path d="M3 22v-6h6"></path>
-                <path d="M21 12a9 9 0 0 1-15 6.7L3 16"></path>
-              </svg>
-              <span id="re-run-text" class="whitespace-nowrap font-medium text-xs leading-none">Run Pipeline</span>
-            </button>
+            {isProtected ? (
+              <>
+                <button
+                  id="re-run-batch-btn"
+                  onclick="triggerLiveBatch()"
+                  class="h-8 px-3.5 rounded-[6px] bg-white border border-[#d4d4d4] hover:border-ink hover:bg-[#f5f5f5] text-ink text-xs font-medium transition shadow-whisper inline-flex items-center justify-center gap-2 whitespace-nowrap focus:outline-none cursor-pointer flex-shrink-0"
+                  title="Re-run batch orders pipeline"
+                >
+                  <svg id="re-run-icon" class="w-3.5 h-3.5 flex-shrink-0 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 2v6h-6"></path>
+                    <path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path>
+                    <path d="M3 22v-6h6"></path>
+                    <path d="M21 12a9 9 0 0 1-15 6.7L3 16"></path>
+                  </svg>
+                  <span id="re-run-text" class="whitespace-nowrap font-medium text-xs leading-none">Run Pipeline</span>
+                </button>
 
-            <a
-              href="/orders"
-              class="hidden lg:inline-flex items-center justify-center h-8 px-3.5 rounded-[6px] bg-ink hover:bg-[#2e2e2e] text-white text-xs font-medium transition shadow-whisper whitespace-nowrap flex-shrink-0 gap-1.5"
-            >
-              <span>Audit Trails</span>
-              <span>&rarr;</span>
-            </a>
+                <a
+                  href="/orders"
+                  class="hidden lg:inline-flex items-center justify-center h-8 px-3.5 rounded-[6px] bg-ink hover:bg-[#2e2e2e] text-white text-xs font-medium transition shadow-whisper whitespace-nowrap flex-shrink-0 gap-1.5"
+                >
+                  <span>Audit Trails</span>
+                  <span>&rarr;</span>
+                </a>
+              </>
+            ) : (
+              <div class="flex items-center space-x-2 text-xs font-mono text-mute">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#0066FF] animate-pulse"></span>
+                <span class="hidden sm:inline">UpsellX AI Auth Portal</span>
+              </div>
+            )}
 
             <!-- Merchant User Authentication Pill / Menu -->
             <div id="nav-auth-container" class="relative flex-shrink-0">
