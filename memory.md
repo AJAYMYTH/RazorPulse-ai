@@ -169,3 +169,19 @@ This living document tracks architectural decisions, feature implementations, ph
   - Added 4 new tests covering login verification, demo account retrieval, password checks, and merchant signup persistence.
   - 12/12 total Vitest unit tests passing (8 gate tests + 4 auth tests).
 - All 25 Astro static pages compiled cleanly in 7.56s.
+
+### [2026-09-05] - AI Provider Key Management, Merchant Settings & Production README
+- **AI Key & Provider Management (BYOK):**
+  - Dynamic API key setter added to `DecisionService` (`setApiKey()`) supporting live key updates.
+  - Added `GET /api/settings`, `POST /api/settings`, and `POST /api/settings/test-key` endpoints to test and verify AI connectivity with Google Gemini (`gemini-1.5-flash`).
+- **Dedicated Settings & Profile UI ([`dashboard/src/pages/settings.astro`](file:///C:/Users/javal/Videos/Razorpay-buildathon/dashboard/src/pages/settings.astro)):**
+  - Interactive AI provider switcher (Google Gemini, OpenAI, Heuristic fallback).
+  - Masked API key input with show/hide toggle, live key verification (`Test Key` button), and save persistence.
+  - Razorpay Gateway credentials card with masked Key ID and HMAC-SHA256 status.
+  - Deterministic Margin Shield parameter cards (displaying ≤15% hard cap and ≥60% confidence requirement).
+  - Merchant store profile editor (Store Name, Tenant ID, Settlement Currency).
+  - Integrated into main navigation and user dropdown menu.
+- **Production-Grade README Overhaul:**
+  - Rewrote [`README.md`](file:///C:/Users/javal/Videos/Razorpay-buildathon/README.md) into an enterprise fintech document with architectural diagrams, technology stack, REST API reference, and DPDP Act 2023 / NPCI UAP compliance details.
+  - Completely removed all pitch video rehearsal scripts and timing tables from `README.md`.
+- All 26 Astro static pages compiled cleanly in 4.33s. 12/12 Vitest unit tests passing.

@@ -297,6 +297,29 @@ ${JSON.stringify(
       confidence: 0.9,
     };
   }
+
+  public setApiKey(key: string): void {
+    if (!key) {
+      this.geminiClient = null;
+      return;
+    }
+    process.env.GEMINI_API_KEY = key.trim();
+    try {
+      this.geminiClient = new GoogleGenerativeAI(key.trim());
+      console.log('🤖 Updated Gemini LLM client dynamically with new API key');
+    } catch (e) {
+      console.warn('⚠️ Failed to reinitialize Gemini client:', e);
+    }
+  }
+
+  public getStatus(): { hasKey: boolean; provider: string; model: string } {
+    const hasKey = !!(this.geminiClient || process.env.GEMINI_API_KEY);
+    return {
+      hasKey,
+      provider: hasKey ? 'Google Gemini' : 'Intelligent Heuristic Engine',
+      model: hasKey ? 'gemini-1.5-flash' : 'rule-based-v1',
+    };
+  }
 }
 
 export const decisionService = new DecisionService();

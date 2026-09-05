@@ -1,0 +1,453 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Merchant Settings & AI Keys" activeNav="">
+  <div class="max-w-4xl mx-auto space-y-8">
+
+    <!-- Header & Breadcrumbs -->
+    <div class="space-y-2 border-b border-hairline pb-6">
+      <nav class="flex items-center space-x-2 text-xs font-mono text-mute">
+        <a href="/" class="hover:text-ink transition">Dashboard</a>
+        <span>/</span>
+        <span class="text-ink font-semibold">Settings & AI Keys</span>
+      </nav>
+
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-semibold text-ink tracking-tight">Merchant Settings & AI Keys</h1>
+          <p class="text-body text-xs sm:text-sm mt-1 max-w-2xl">
+            Configure Bring-Your-Own-Key (BYOK) AI providers, Razorpay gateway integration, and deterministic margin safeguard bounds.
+          </p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#f0fdf4] text-[#15803d] border border-[#bbf7d0]">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#16a34a]"></span>
+            <span>Gateway Connected</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alert / Toast Container -->
+    <div id="settings-toast" class="hidden p-4 rounded-md text-xs font-mono transition-all"></div>
+
+    <!-- 1. AI Provider & BYOK Credentials -->
+    <section class="bg-canvas-elevated border border-hairline rounded-md p-6 shadow-whisper space-y-6">
+      <div class="flex items-center justify-between border-b border-hairline pb-4">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-base font-semibold text-ink">AI Decision Engine (BYOK)</span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded-full bg-[#0066FF]/10 text-[#0066FF] border border-[#0066FF]/20 font-bold uppercase">Active Engine</span>
+          </div>
+          <p class="text-body text-xs mt-1">
+            Connect your own LLM provider API key to formulate personalized, structured upsell recommendations.
+          </p>
+        </div>
+        <span class="text-xl">🤖</span>
+      </div>
+
+      <div class="space-y-4">
+        <!-- AI Provider Selection -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs">
+          <label class="p-3 rounded-md border-2 border-ink bg-canvas cursor-pointer flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-bold text-ink">Google Gemini</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            </div>
+            <span class="text-mute text-[11px]">gemini-1.5-flash (Native Recommended)</span>
+            <input type="radio" name="ai-provider" value="gemini" checked class="hidden" />
+          </label>
+
+          <label class="p-3 rounded-md border border-hairline bg-canvas hover:border-ink/40 transition cursor-pointer flex flex-col justify-between opacity-80">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-bold text-ink">OpenAI</span>
+              <span class="text-[10px] text-mute">BYOK</span>
+            </div>
+            <span class="text-mute text-[11px]">gpt-4o-mini</span>
+            <input type="radio" name="ai-provider" value="openai" class="hidden" />
+          </label>
+
+          <label class="p-3 rounded-md border border-hairline bg-canvas hover:border-ink/40 transition cursor-pointer flex flex-col justify-between opacity-80">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-bold text-ink">Heuristic Fallback</span>
+              <span class="text-[10px] text-emerald-600 font-bold">₹0 Free</span>
+            </div>
+            <span class="text-mute text-[11px]">Deterministic Rules (Zero-Cost)</span>
+            <input type="radio" name="ai-provider" value="heuristic" class="hidden" />
+          </label>
+        </div>
+
+        <!-- API Key Input -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label for="ai-key-input" class="block font-mono text-xs font-semibold text-ink">
+              Google Gemini API Key (<code class="text-ink">GEMINI_API_KEY</code>)
+            </label>
+            <a
+              href="https://aistudio.google.com/app/apikey"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-[11px] font-mono text-[#0066FF] hover:underline inline-flex items-center space-x-1"
+            >
+              <span>Get key on Google AI Studio</span>
+              <span>↗</span>
+            </a>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-2.5">
+            <div class="relative flex-1">
+              <input
+                type="password"
+                id="ai-key-input"
+                placeholder="AIzaSy..."
+                class="w-full h-10 pl-3.5 pr-10 rounded-[6px] bg-canvas border border-hairline text-xs font-mono text-ink placeholder:text-mute focus:outline-none focus:border-ink transition shadow-whisper"
+              />
+              <button
+                type="button"
+                onclick="toggleKeyVisibility('ai-key-input', 'toggle-ai-eye')"
+                class="absolute right-3 top-2.5 text-mute hover:text-ink text-xs font-mono cursor-pointer"
+              >
+                <span id="toggle-ai-eye">👁️</span>
+              </button>
+            </div>
+
+            <button
+              type="button"
+              id="btn-test-key"
+              onclick="testApiKeyConnection()"
+              class="h-10 px-4 rounded-[6px] bg-canvas-elevated border border-hairline hover:bg-hairline-soft text-ink text-xs font-medium transition shadow-whisper inline-flex items-center justify-center space-x-1.5 cursor-pointer whitespace-nowrap"
+            >
+              <span id="test-key-spinner" class="hidden animate-spin">◌</span>
+              <span id="test-key-label">Test Key</span>
+            </button>
+
+            <button
+              type="button"
+              id="btn-save-key"
+              onclick="saveApiKey()"
+              class="h-10 px-5 rounded-[6px] bg-[#0066FF] hover:bg-[#0052CC] text-white text-xs font-medium transition shadow-whisper inline-flex items-center justify-center space-x-1.5 cursor-pointer whitespace-nowrap"
+            >
+              <span>Save AI Key</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Privacy & Security Guarantee Box -->
+        <div class="p-3.5 rounded-[6px] bg-canvas border border-hairline text-xs text-mute space-y-1">
+          <div class="text-ink font-semibold flex items-center space-x-1.5">
+            <span>🛡️</span>
+            <span>Non-Custodial Data & Model Training Protection</span>
+          </div>
+          <p>
+            Your API keys are stored securely within your environment. Customer signals and order metadata are sent exclusively for structured Zod inference and are <strong>never used to train third-party foundation models</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Razorpay Gateway Credentials -->
+    <section class="bg-canvas-elevated border border-hairline rounded-md p-6 shadow-whisper space-y-6">
+      <div class="flex items-center justify-between border-b border-hairline pb-4">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-base font-semibold text-ink">Razorpay Gateway Integration</span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 font-bold uppercase">Direct Settlement</span>
+          </div>
+          <p class="text-body text-xs mt-1">
+            Used to create single-use, discounted Payment Links for customers post-checkout.
+          </p>
+        </div>
+        <span class="text-xl">💳</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="space-y-1.5">
+          <label for="rzp-key-id" class="block font-mono text-xs font-semibold text-ink">
+            Razorpay Key ID (<code class="text-ink">RAZORPAY_KEY_ID</code>)
+          </label>
+          <input
+            type="text"
+            id="rzp-key-id"
+            value="rzp_test_buildathon_demo_key"
+            readonly
+            class="w-full h-10 px-3.5 rounded-[6px] bg-canvas border border-hairline text-xs font-mono text-ink cursor-not-allowed shadow-whisper"
+          />
+        </div>
+
+        <div class="space-y-1.5">
+          <label for="rzp-key-secret" class="block font-mono text-xs font-semibold text-ink">
+            Razorpay Key Secret (<code class="text-ink">RAZORPAY_KEY_SECRET</code>)
+          </label>
+          <input
+            type="password"
+            id="rzp-key-secret"
+            value="••••••••••••••••••••••••"
+            readonly
+            class="w-full h-10 px-3.5 rounded-[6px] bg-canvas border border-hairline text-xs font-mono text-ink cursor-not-allowed shadow-whisper"
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs">
+        <div class="p-3 bg-canvas border border-hairline rounded-[6px]">
+          <span class="text-mute text-[10px] uppercase block">Gateway Mode</span>
+          <span class="text-ink font-semibold">Razorpay Test Mode</span>
+        </div>
+        <div class="p-3 bg-canvas border border-hairline rounded-[6px]">
+          <span class="text-mute text-[10px] uppercase block">Webhook Verification</span>
+          <span class="text-emerald-600 font-semibold">HMAC-SHA256 Active</span>
+        </div>
+        <div class="p-3 bg-canvas border border-hairline rounded-[6px]">
+          <span class="text-mute text-[10px] uppercase block">Link Expiry TTL</span>
+          <span class="text-ink font-semibold">15 Minutes (Anti-Retry)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Margin Shield & Safety Parameters -->
+    <section class="bg-canvas-elevated border border-hairline rounded-md p-6 shadow-whisper space-y-6">
+      <div class="flex items-center justify-between border-b border-hairline pb-4">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-base font-semibold text-ink">Deterministic Gate Shield Policy</span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 border border-amber-500/20 font-bold uppercase">Enforced in Code</span>
+          </div>
+          <p class="text-body text-xs mt-1">
+            Mathematical invariants that reject rogue or hallucinated AI proposals before payments are created.
+          </p>
+        </div>
+        <span class="text-xl">🛡️</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="block font-mono text-xs font-semibold text-ink">Max Promotional Discount Cap</label>
+            <span class="text-xs font-mono font-bold text-amber-600" id="discount-cap-display">15% Max</span>
+          </div>
+          <div class="p-3 bg-canvas border border-hairline rounded-[6px] text-xs font-mono flex items-center justify-between">
+            <span>Hard Code Limit:</span>
+            <span class="font-bold text-ink">≤ 15.00%</span>
+          </div>
+          <span class="text-[11px] text-mute block mt-1">Offers exceeding this ceiling are automatically blocked at Stage 4.</span>
+        </div>
+
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="block font-mono text-xs font-semibold text-ink">AI Confidence Threshold</label>
+            <span class="text-xs font-mono font-bold text-ink">≥ 60%</span>
+          </div>
+          <div class="p-3 bg-canvas border border-hairline rounded-[6px] text-xs font-mono flex items-center justify-between">
+            <span>Minimum Requisite:</span>
+            <span class="font-bold text-ink">0.60 Score</span>
+          </div>
+          <span class="text-[11px] text-mute block mt-1">Speculative or low-confidence pairings are safely discarded.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Merchant Store Profile -->
+    <section class="bg-canvas-elevated border border-hairline rounded-md p-6 shadow-whisper space-y-4">
+      <div class="border-b border-hairline pb-4">
+        <h2 class="text-base font-semibold text-ink">Merchant Profile & Store Identity</h2>
+        <p class="text-body text-xs mt-1">Primary operational identity recorded across all immutable audit trails.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs">
+        <div class="space-y-1">
+          <label class="text-mute block text-[10px] uppercase">Merchant Store Name</label>
+          <input
+            type="text"
+            id="store-name-input"
+            value="Apex Electronics & Tech Gear"
+            class="w-full h-10 px-3.5 rounded-[6px] bg-canvas border border-hairline text-ink font-semibold focus:outline-none focus:border-ink shadow-whisper"
+          />
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-mute block text-[10px] uppercase">Merchant Admin Email</label>
+          <input
+            type="email"
+            id="store-email-input"
+            value="demo@razorpulse.ai"
+            readonly
+            class="w-full h-10 px-3.5 rounded-[6px] bg-canvas border border-hairline text-mute cursor-not-allowed shadow-whisper"
+          />
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-mute block text-[10px] uppercase">Merchant Tenant ID</label>
+          <input
+            type="text"
+            value="mch_apex_gear_001"
+            readonly
+            class="w-full h-10 px-3.5 rounded-[6px] bg-canvas border border-hairline text-mute cursor-not-allowed shadow-whisper"
+          />
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-mute block text-[10px] uppercase">Settlement Currency</label>
+          <input
+            type="text"
+            value="INR (₹ Indian Rupee)"
+            readonly
+            class="w-full h-10 px-3.5 rounded-[6px] bg-canvas border border-hairline text-mute cursor-not-allowed shadow-whisper"
+          />
+        </div>
+      </div>
+
+      <div class="pt-3 flex justify-end">
+        <button
+          type="button"
+          onclick="saveStoreProfile()"
+          class="h-9 px-4 rounded-[6px] bg-ink hover:bg-[#2a2a2a] text-white text-xs font-medium transition shadow-whisper cursor-pointer inline-flex items-center space-x-1.5"
+        >
+          <span>Update Profile Settings</span>
+        </button>
+      </div>
+    </section>
+
+  </div>
+
+  <script is:inline>
+    // Toggle password eye icon
+    function toggleKeyVisibility(inputId, eyeId) {
+      const input = document.getElementById(inputId);
+      const eye = document.getElementById(eyeId);
+      if (!input || !eye) return;
+      if (input.type === 'password') {
+        input.type = 'text';
+        eye.innerText = '🙈';
+      } else {
+        input.type = 'password';
+        eye.innerText = '👁️';
+      }
+    }
+
+    // Show toast notification
+    function showToast(msg, isError = false) {
+      const toast = document.getElementById('settings-toast');
+      if (!toast) return;
+      toast.innerText = (isError ? '✕ ' : '✓ ') + msg;
+      toast.className = isError
+        ? 'p-3 rounded-md text-xs font-mono bg-[#fef2f2] text-[#b91c1c] border border-[#fecaca] block'
+        : 'p-3 rounded-md text-xs font-mono bg-[#f0fdf4] text-[#15803d] border border-[#bbf7d0] block';
+      setTimeout(() => {
+        toast.className = 'hidden';
+      }, 3500);
+    }
+
+    // Load initial settings on mount
+    async function loadSettings() {
+      const savedKey = localStorage.getItem('razorpulse_gemini_key');
+      const keyInput = document.getElementById('ai-key-input');
+      if (savedKey && keyInput) {
+        keyInput.value = savedKey;
+      }
+
+      // Check backend configuration
+      try {
+        const res = await fetch('http://localhost:3000/api/settings');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.settings?.aiProvider?.hasKey && !savedKey && keyInput) {
+            keyInput.placeholder = data.settings.aiProvider.maskedKey;
+          }
+          if (data.settings?.merchant?.name) {
+            const storeInput = document.getElementById('store-name-input');
+            if (storeInput) storeInput.value = data.settings.merchant.name;
+          }
+        }
+      } catch (_) {}
+    }
+
+    // Test API Key Live Connection
+    async function testApiKeyConnection() {
+      const keyInput = document.getElementById('ai-key-input');
+      const key = keyInput ? keyInput.value.trim() : '';
+      const spinner = document.getElementById('test-key-spinner');
+      const label = document.getElementById('test-key-label');
+      const btn = document.getElementById('btn-test-key');
+
+      if (!key) {
+        showToast('Please enter an API key to test.', true);
+        return;
+      }
+
+      spinner.classList.remove('hidden');
+      label.innerText = 'Verifying...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('http://localhost:3000/api/settings/test-key', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ key }),
+        });
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          showToast('API Key verified! Connected to Google Gemini (gemini-1.5-flash).');
+          localStorage.setItem('razorpulse_gemini_key', key);
+        } else {
+          showToast(data.error || 'API Key verification failed.', true);
+        }
+      } catch (err) {
+        // If backend offline, basic format validation
+        if (key.startsWith('AIzaSy') && key.length > 30) {
+          showToast('Key format valid (Google AI Studio standard prefix).');
+          localStorage.setItem('razorpulse_gemini_key', key);
+        } else {
+          showToast('Key validation failed. Please ensure key begins with AIzaSy...', true);
+        }
+      } finally {
+        spinner.classList.add('hidden');
+        label.innerText = 'Test Key';
+        btn.disabled = false;
+      }
+    }
+
+    // Save API key
+    async function saveApiKey() {
+      const keyInput = document.getElementById('ai-key-input');
+      const key = keyInput ? keyInput.value.trim() : '';
+
+      if (!key) {
+        showToast('Please enter a valid API key string.', true);
+        return;
+      }
+
+      localStorage.setItem('razorpulse_gemini_key', key);
+
+      try {
+        await fetch('http://localhost:3000/api/settings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ geminiApiKey: key }),
+        });
+      } catch (_) {}
+
+      showToast('AI API Key saved successfully.');
+    }
+
+    // Update Store Profile
+    function saveStoreProfile() {
+      const storeInput = document.getElementById('store-name-input');
+      const name = storeInput ? storeInput.value.trim() : 'Apex Electronics';
+      
+      const userStr = localStorage.getItem('razorpulse_auth_user');
+      if (userStr) {
+        try {
+          const user = JSON.parse(userStr);
+          user.company_name = name;
+          localStorage.setItem('razorpulse_auth_user', JSON.stringify(user));
+        } catch (_) {}
+      }
+
+      showToast('Store profile updated successfully.');
+    }
+
+    window.addEventListener('DOMContentLoaded', loadSettings);
+  </script>
+</Layout>

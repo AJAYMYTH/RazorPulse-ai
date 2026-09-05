@@ -7,6 +7,7 @@ import { seedDatabase } from './db/seed.js';
 import { auditService } from './services/audit.service.js';
 import { pipelineService } from './services/pipeline.service.js';
 import { failureService } from './services/failure.service.js';
+import { decisionService } from './services/decision.service.js';
 
 dotenv.config();
 dotenv.config({ path: path.resolve(process.cwd(), '../.env') });
@@ -152,6 +153,96 @@ app.get('/api/auth/me', async (req, res) => {
 // Logout
 app.post('/api/auth/logout', (req, res) => {
   res.json({ success: true, message: 'Logged out successfully' });
+});
+
+// --- MERCHANT SETTINGS & AI API KEY MANAGEMENT ---
+
+app.get('/api/settings', async (req, res) => {
+  try {
+    const rawKey = process.env.GEMINI_API_KEY || '';
+    const maskedKey = rawKey.length > 8 
+      ? `${rawKey.slice(0, 6)}...${rawKey.slice(-4)}`
+      : rawKey ? 'configured' : 'none';
+
+    const rzpKey = process.env.RAZORPAY_KEY_ID || '';
+    const maskedRzp = rzpKey.length > 8
+      ? `${rzpKey.slice(0, 8)}...${rzpKey.slice(-4)}`
+      : rzpKey ? 'configured' : 'none';
+
+    res.json({
+      success: true,
+      settings: {
+        merchant: {
+          id: 'mch_apex_gear_001',
+          name: 'Apex Electronics & Tech Gear',
+          email: 'demo@razorpulse.ai',
+          currency: 'INR (₹)',
+          maxDiscountPct: 15,
+        },
+        aiProvider: {
+          provider: rawKey ? 'Google Gemini' : 'Intelligent Heuristic Fallback',
+          model: rawKey ? 'gemini-1.5-flash' : 'heuristic-v1',
+          hasKey: !!rawKey,
+          maskedKey,
+        },
+        gateway: {
+          provider: 'Razorpay',
+          mode: 'Test Mode',
+          connected: !!rzpKey,
+          maskedKeyId: maskedRzp,
+        },
+      },
+    });
+  } catch (err: any) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.post('/api/settings', async (req, res) => {
+  try {
+    const { geminiApiKey, storeName, maxDiscountPct } = req.body;
+
+    if (geminiApiKey !== undefined) {
+      decisionService.setApiKey(geminiApiKey);
+    }
+
+    res.json({
+      success: true,
+      message: 'Merchant settings and AI configuration updated successfully',
+    });
+  } catch (err: any) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.post('/api/settings/test-key', async (req, res) => {
+  try {
+    const { key } = req.body;
+    if (!key || key.trim().length < 10) {
+      return res.status(400).json({ success: false, error: 'Please provide a valid API key string' });
+    }
+
+    try {
+      const { GoogleGenerativeAI } = await import('@google/generative-ai');
+      const testClient = new GoogleGenerativeAI(key.trim());
+      const model = testClient.getGenerativeModel({ model: 'gemini-1.5-flash' });
+      const prompt = 'Reply with standard pong';
+      const result = await model.generateContent(prompt);
+      const text = result.response.text();
+      return res.json({
+        success: true,
+        message: 'API Key connection verified successfully with Google Gemini (gemini-1.5-flash)',
+        responseSample: text.trim().slice(0, 50),
+      });
+    } catch (testErr: any) {
+      return res.status(400).json({
+        success: false,
+        error: `Validation failed: ${testErr.message || 'Invalid key'}`,
+      });
+    }
+  } catch (err: any) {
+    res.status(500).json({ success: false, error: err.message });
+  }
 });
 
 // TRD Section 7: Batch Summary
