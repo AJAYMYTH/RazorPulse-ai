@@ -1,8 +1,8 @@
 # Security Policy & Vulnerability Disclosure
 
-**Project:** RazorPulse AI — Autonomous Upsell & Cross-Sell Engine for Razorpay  
+**Project:** UpsellX AI — Autonomous Upsell & Cross-Sell Engine for Razorpay  
 **Effective Date:** September 2026  
-**Security Desk:** [security@razorpulse.ai](mailto:security@razorpulse.ai)  
+**Security Desk:** [security@upsellx.ai](mailto:security@upsellx.ai)  
 
 ---
 
@@ -23,7 +23,7 @@ We take the security of automated financial agents, merchant funds, and customer
 
 ### How to Report
 - **Do NOT create public GitHub issues** for security vulnerabilities or suspected exploits.
-- Send an encrypted email to **`security@razorpulse.ai`** or reach out via private repository vulnerability reporting on GitHub.
+- Send an encrypted email to **`security@upsellx.ai`** or reach out via private repository vulnerability reporting on GitHub.
 - If necessary, request our PGP public key for encrypting sensitive exploit payloads or proof-of-concept scripts.
 
 ### What to Include
@@ -42,10 +42,10 @@ To help us triage and resolve the issue quickly, please provide:
 
 ## 3. Core Security & Threat Model Invariants
 
-RazorPulse AI is architected with defense-in-depth principles specifically designed for agentic commerce:
+UpsellX AI is architected with defense-in-depth principles specifically designed for agentic commerce:
 
 ### A. Non-Custodial Direct Settlement
-- RazorPulse AI **never handles, captures, transmits, or stores card numbers, CVVs, UPI MPINs, or bank net-banking passwords**.
+- UpsellX AI **never handles, captures, transmits, or stores card numbers, CVVs, UPI MPINs, or bank net-banking passwords**.
 - All checkout operations occur exclusively on official Razorpay-hosted payment pages (`https://rzp.io/...`), certified under Razorpay's **PCI-DSS Level 1 Service Provider** infrastructure.
 - 100% of customer funds settle directly into the merchant's official Razorpay account with zero intermediary escrow or custody.
 
@@ -75,4 +75,4 @@ We consider ethical security research conducted in good faith to be authorized a
 - Give us reasonable time to remediate the vulnerability before public disclosure.
 - Do not access, modify, or retain customer or merchant production transaction records.
 
-Thank you for helping keep RazorPulse AI safe and reliable!
+Thank you for helping keep UpsellX AI safe and reliable!

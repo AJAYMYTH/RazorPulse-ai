@@ -279,7 +279,7 @@ import Icon from '../components/Icon.astro';
           <input
             type="email"
             id="store-email-input"
-            value="demo@razorpulse.ai"
+            value="demo@upsellx.ai"
             readonly
             class="w-full h-10 px-3.5 rounded-[6px] bg-canvas border border-hairline text-mute cursor-not-allowed shadow-whisper"
           />
@@ -356,6 +356,7 @@ import Icon from '../components/Icon.astro';
     // Load initial settings on mount
     async function loadSettings() {
       // Security Enforcement: Clean up any legacy API keys from localStorage
+      localStorage.removeItem('upsellx_gemini_key');
       localStorage.removeItem('razorpulse_gemini_key');
       const keyInput = document.getElementById('ai-key-input');
 
@@ -437,6 +438,7 @@ import Icon from '../components/Icon.astro';
       }
 
       // Security Enforcement: Ensure API keys are NEVER written to localStorage
+      localStorage.removeItem('upsellx_gemini_key');
       localStorage.removeItem('razorpulse_gemini_key');
 
       let savedOnBackend = false;
@@ -470,11 +472,12 @@ import Icon from '../components/Icon.astro';
       const storeInput = document.getElementById('store-name-input');
       const name = storeInput ? storeInput.value.trim() : 'Apex Electronics';
       
-      const userStr = localStorage.getItem('razorpulse_auth_user');
+      const userStr = localStorage.getItem('upsellx_auth_user') || localStorage.getItem('razorpulse_auth_user');
       if (userStr) {
         try {
           const user = JSON.parse(userStr);
           user.company_name = name;
+          localStorage.setItem('upsellx_auth_user', JSON.stringify(user));
           localStorage.setItem('razorpulse_auth_user', JSON.stringify(user));
         } catch (_) {}
       }

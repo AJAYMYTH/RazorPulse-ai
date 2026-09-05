@@ -79,7 +79,7 @@ class DatabaseService {
           this.localStore.users.push({
             id: 'usr_demo_apex_01',
             name: 'Ajay Kumar',
-            email: 'demo@razorpulse.ai',
+            email: 'demo@upsellx.ai',
             password_hash: 'buildathon2026',
             merchant_id: 'mch_apex_gear_001',
             company_name: 'Apex Electronics & Tech Gear',
@@ -93,7 +93,7 @@ class DatabaseService {
           {
             id: 'usr_demo_apex_01',
             name: 'Ajay Kumar',
-            email: 'demo@razorpulse.ai',
+            email: 'demo@upsellx.ai',
             password_hash: 'buildathon2026',
             merchant_id: 'mch_apex_gear_001',
             company_name: 'Apex Electronics & Tech Gear',
@@ -134,7 +134,11 @@ class DatabaseService {
       const { data } = await this.supabase.from('users').select('*').ilike('email', normalizedEmail).single();
       return data || null;
     }
-    return (this.localStore.users || []).find((u) => u.email.toLowerCase() === normalizedEmail) || null;
+    const found = (this.localStore.users || []).find((u) => u.email.toLowerCase() === normalizedEmail);
+    if (!found && (normalizedEmail === 'demo@upsellx.ai' || normalizedEmail === 'demo@razorpulse.ai')) {
+      return (this.localStore.users || []).find((u) => u.id === 'usr_demo_apex_01') || null;
+    }
+    return found || null;
   }
 
   async saveUser(user: User): Promise<User> {

@@ -1,6 +1,6 @@
-# Contributing to RazorPulse AI
+# Contributing to UpsellX AI
 
-Thank you for your interest in contributing to **RazorPulse AI**! We welcome contributions that improve agentic stability, expand deterministic gate bounds, or enhance developer observability.
+Thank you for your interest in contributing to **UpsellX AI**! We welcome contributions that improve agentic stability, expand deterministic gate bounds, or enhance developer observability.
 
 ---
 

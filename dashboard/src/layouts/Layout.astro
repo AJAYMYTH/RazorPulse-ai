@@ -17,18 +17,18 @@ const { title, activeNav = 'summary', isProtected = true } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title} · RazorPulse AI</title>
+    <title>{title} · UpsellX AI</title>
     <!-- Crisp Hand-Crafted Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="description" content="RazorPulse AI — Autonomous Upsell & Cross-Sell Agent for Razorpay Buildathon 2026 (Track 1)" />
+    <meta name="description" content="UpsellX AI — Autonomous Upsell & Cross-Sell Agent for Razorpay Buildathon 2026 (Track 1)" />
     <!-- Production Anime.js library loaded via CDN -->
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
 
     <!-- Immediate Client-Side Auth Guard to Prevent Protected Route Flashing -->
     <script is:inline define:vars={{ isProtected }}>
       (function() {
-        const token = localStorage.getItem('razorpulse_auth_token');
-        const userStr = localStorage.getItem('razorpulse_auth_user');
+        const token = localStorage.getItem('upsellx_auth_token') || localStorage.getItem('razorpulse_auth_token');
+        const userStr = localStorage.getItem('upsellx_auth_user') || localStorage.getItem('razorpulse_auth_user');
         const hasAuth = !!(token && userStr);
 
         if (isProtected && !hasAuth) {
@@ -174,7 +174,7 @@ const { title, activeNav = 'summary', isProtected = true } = Astro.props;
                 >
                   <div class="pb-2.5 border-b border-hairline space-y-0.5">
                     <div class="font-semibold text-xs text-ink truncate" id="dropdown-user-name">Ajay Kumar</div>
-                    <div class="text-[11px] font-mono text-mute truncate" id="dropdown-user-email">demo@razorpulse.ai</div>
+                    <div class="text-[11px] font-mono text-mute truncate" id="dropdown-user-email">demo@upsellx.ai</div>
                     <div class="flex items-center space-x-1.5 pt-1">
                       <span class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded bg-hairline text-ink font-bold" id="dropdown-user-role">OWNER</span>
                       <span class="text-[10px] font-mono text-mute truncate" id="dropdown-merchant-id">mch_apex_gear_001</span>
@@ -244,7 +244,7 @@ const { title, activeNav = 'summary', isProtected = true } = Astro.props;
           <div class="col-span-2 space-y-3.5">
             <Logo size="sm" />
             <p class="text-mute text-xs leading-relaxed max-w-sm">
-              RazorPulse AI is the autonomous agentic commerce engine built for high-growth Razorpay merchants. Turning post-checkout transactions into bounded, explainable revenue expansion.
+              UpsellX AI is the autonomous agentic commerce engine built for high-growth Razorpay merchants. Turning post-checkout transactions into bounded, explainable revenue expansion.
             </p>
             <div class="flex flex-wrap items-center gap-2 pt-1">
               <span class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-canvas-elevated border border-hairline font-mono text-[10px] text-ink shadow-whisper">
@@ -304,7 +304,7 @@ const { title, activeNav = 'summary', isProtected = true } = Astro.props;
         <!-- Bottom Copyright & Legal Attribution Bar -->
         <div class="mt-14 pt-8 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-mute font-mono">
           <div>
-            © 2026 RazorPulse AI Inc. · Developed for Razorpay Buildathon 2026 (Track 1: AI Growth & Agentic Commerce).
+            © 2026 UpsellX AI Inc. · Developed for Razorpay Buildathon 2026 (Track 1: AI Growth & Agentic Commerce).
           </div>
           <div class="flex items-center space-x-6 text-[11px]">
             <a href="/privacy" class="hover:text-ink transition">Privacy</a>
@@ -325,8 +325,8 @@ const { title, activeNav = 'summary', isProtected = true } = Astro.props;
     <script is:inline>
       // Auth State Manager for Navigation
       function updateNavAuth() {
-        const token = localStorage.getItem('razorpulse_auth_token');
-        const userStr = localStorage.getItem('razorpulse_auth_user');
+        const token = localStorage.getItem('upsellx_auth_token') || localStorage.getItem('razorpulse_auth_token');
+        const userStr = localStorage.getItem('upsellx_auth_user') || localStorage.getItem('razorpulse_auth_user');
         let user = null;
         if (userStr) {
           try { user = JSON.parse(userStr); } catch (_) {}
@@ -352,7 +352,7 @@ const { title, activeNav = 'summary', isProtected = true } = Astro.props;
           const name = user.company_name || user.name || 'Apex Electronics';
           if (displayNameEl) displayNameEl.innerText = name;
           if (dropNameEl) dropNameEl.innerText = user.name || 'Merchant Admin';
-          if (dropEmailEl) dropEmailEl.innerText = user.email || 'demo@razorpulse.ai';
+          if (dropEmailEl) dropEmailEl.innerText = user.email || 'demo@upsellx.ai';
           if (dropRoleEl) dropRoleEl.innerText = (user.role || 'OWNER').toUpperCase();
           if (dropMerchEl) dropMerchEl.innerText = user.merchant_id || 'mch_apex_gear_001';
 
@@ -379,8 +379,12 @@ const { title, activeNav = 'summary', isProtected = true } = Astro.props;
       }
 
       function handleSignOut() {
+        localStorage.removeItem('upsellx_auth_token');
+        localStorage.removeItem('upsellx_auth_user');
         localStorage.removeItem('razorpulse_auth_token');
         localStorage.removeItem('razorpulse_auth_user');
+        document.cookie = 'upsellx_auth_token=; path=/; max-age=0; SameSite=Lax';
+        document.cookie = 'upsellx_auth_user=; path=/; max-age=0; SameSite=Lax';
         document.cookie = 'razorpulse_auth_token=; path=/; max-age=0; SameSite=Lax';
         document.cookie = 'razorpulse_auth_user=; path=/; max-age=0; SameSite=Lax';
         window.location.href = '/login';

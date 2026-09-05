@@ -1,4 +1,4 @@
-# RazorPulse AI — Autonomous Upsell & Cross-Sell Engine
+# UpsellX AI — Autonomous Upsell & Cross-Sell Engine
 
 [![CI/CD Pipeline](https://github.com/AJAYMYTH/RazorPulse-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/AJAYMYTH/RazorPulse-ai/actions/workflows/ci.yml)
 [![Node Version](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg)](https://nodejs.org/)
@@ -8,7 +8,7 @@
 [![License](https://img.shields.io/badge/License-MIT-black.svg)](LICENSE)
 [![Compliance](https://img.shields.io/badge/Compliance-DPDP%20Act%202023%20%7C%20NPCI%20UAP-purple.svg)]()
 
-> **RazorPulse AI** is an enterprise-grade autonomous commerce agent designed for high-growth Razorpay merchants. It ingests post-checkout transaction events, formulates explainable co-purchase recommendations, enforces deterministic profit margin gates in code, executes real Razorpay Payment Links, and maintains an immutable audit ledger visualized on a Vercel Geist-styled dashboard.
+> **UpsellX AI** is an enterprise-grade autonomous commerce agent designed for high-growth Razorpay merchants. It ingests post-checkout transaction events, formulates explainable co-purchase recommendations, enforces deterministic profit margin gates in code, executes real Razorpay Payment Links, and maintains an immutable audit ledger visualized on a Vercel Geist-styled dashboard.
 
 ---
 
@@ -67,7 +67,7 @@ Every offer is validated against a strict TypeScript Zod schema requiring:
 - `reason`: Plain-language explanation linking the customer's prior basket to the complementary recommendation
 
 ### D. Anti-Retry-Storm Resilience
-When payment links expire without customer conversion, naive bots enter infinite retry loops, risking customer harassment and gateway rate-limiting. RazorPulse AI enforces an **anti-retry-storm invariant**: exactly zero retries are attempted, the terminal state is logged, and the pipeline continues smoothly.
+When payment links expire without customer conversion, naive bots enter infinite retry loops, risking customer harassment and gateway rate-limiting. UpsellX AI enforces an **anti-retry-storm invariant**: exactly zero retries are attempted, the terminal state is logged, and the pipeline continues smoothly.
 
 ### E. Non-Custodial Bring-Your-Own-Key (BYOK) Security
 - **Zero Intermediary Custody:** 100% of customer funds flow directly from the buyer to the merchant's Razorpay balance.

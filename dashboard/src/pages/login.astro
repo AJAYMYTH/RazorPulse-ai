@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 ---
 
-<Layout title="Sign In · RazorPulse AI" isProtected={false} activeNav="">
+<Layout title="Sign In · UpsellX AI" isProtected={false} activeNav="">
   <div class="min-h-[75vh] flex items-center justify-center py-10 px-4">
     <div class="w-full max-w-md space-y-6">
 
@@ -13,13 +13,13 @@ import Icon from '../components/Icon.astro';
           <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center">
             <svg viewBox="0 0 36 36" fill="none" class="w-full h-full">
               <rect width="36" height="36" rx="8" fill="#0C1527" stroke="#1E293B" stroke-width="1"></rect>
-              <path d="M9 25L17 7H24L16 25H9Z" fill="#0066FF"></path>
-              <path d="M17 29L22 17H28L23 29H17Z" fill="#38BDF8"></path>
-              <circle cx="26" cy="10" r="2.5" fill="#38BDF8"></circle>
+              <path d="M10 26L26 10" stroke="#0066FF" stroke-width="4" stroke-linecap="round"></path>
+              <path d="M10 10L26 26" stroke="#38BDF8" stroke-width="4" stroke-linecap="round"></path>
+              <circle cx="26" cy="10" r="2" fill="#FFFFFF"></circle>
             </svg>
           </div>
           <span class="text-2xl font-bold text-ink tracking-tight">
-            Razor<span class="text-[#0066FF]">Pulse</span> <span class="text-xs font-mono font-semibold px-1.5 py-0.5 rounded bg-[#0066FF]/10 text-[#0066FF] border border-[#0066FF]/20 align-middle">AI</span>
+            Upsell<span class="text-[#0066FF]">X</span> <span class="text-xs font-mono font-semibold px-1.5 py-0.5 rounded bg-[#0066FF]/10 text-[#0066FF] border border-[#0066FF]/20 align-middle">AI</span>
           </span>
         </div>
         <h1 class="text-2xl font-semibold text-ink tracking-tight">Welcome back</h1>
@@ -38,7 +38,7 @@ import Icon from '../components/Icon.astro';
           <span class="text-[10px] font-mono text-mute">1-Click</span>
         </div>
         <p class="text-xs text-body">
-          Pre-authenticated session for <strong>Apex Electronics & Tech Gear</strong> (<code class="font-mono text-ink">demo@razorpulse.ai</code>).
+          Pre-authenticated session for <strong>Apex Electronics & Tech Gear</strong> (<code class="font-mono text-ink">demo@upsellx.ai</code>).
         </p>
         <button
           type="button"
@@ -74,7 +74,7 @@ import Icon from '../components/Icon.astro';
               type="email"
               id="email"
               name="email"
-              value="demo@razorpulse.ai"
+              value="demo@upsellx.ai"
               required
               class="w-full h-10 px-3.5 rounded-[6px] bg-canvas border border-hairline text-xs font-mono text-ink placeholder:text-mute focus:outline-none focus:border-ink transition shadow-whisper"
               placeholder="name@store.com"
@@ -173,8 +173,12 @@ import Icon from '../components/Icon.astro';
 
     // Set user session in localStorage and cookie
     function saveSession(token, user) {
+      localStorage.setItem('upsellx_auth_token', token);
+      localStorage.setItem('upsellx_auth_user', JSON.stringify(user));
       localStorage.setItem('razorpulse_auth_token', token);
       localStorage.setItem('razorpulse_auth_user', JSON.stringify(user));
+      document.cookie = `upsellx_auth_token=${encodeURIComponent(token)}; path=/; max-age=604800; SameSite=Lax`;
+      document.cookie = `upsellx_auth_user=${encodeURIComponent(JSON.stringify(user))}; path=/; max-age=604800; SameSite=Lax`;
       document.cookie = `razorpulse_auth_token=${encodeURIComponent(token)}; path=/; max-age=604800; SameSite=Lax`;
       document.cookie = `razorpulse_auth_user=${encodeURIComponent(JSON.stringify(user))}; path=/; max-age=604800; SameSite=Lax`;
     }
@@ -184,12 +188,12 @@ import Icon from '../components/Icon.astro';
       const demoUser = {
         id: 'usr_demo_apex_01',
         name: 'Ajay Kumar',
-        email: 'demo@razorpulse.ai',
+        email: 'demo@upsellx.ai',
         merchant_id: 'mch_apex_gear_001',
         company_name: 'Apex Electronics & Tech Gear',
         role: 'owner'
       };
-      const token = 'rzp_token_usr_demo_apex_01_ZGVtb0ByYXpvcnB1bHNlLmFp';
+      const token = 'rzp_token_usr_demo_apex_01_ZGVtb0B1cHNlbGx4LmFp';
       saveSession(token, demoUser);
 
       // Smooth transition to destination
@@ -210,11 +214,11 @@ import Icon from '../components/Icon.astro';
       e.preventDefault();
       const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value;
-      const errorBox = document.getElementById('auth-error-box');
-      const errorMsg = document.getElementById('auth-error-msg');
       const submitBtn = document.getElementById('btn-submit');
-      const submitText = document.getElementById('submit-text');
-      const submitSpinner = document.getElementById('submit-spinner');
+      const submitText = document.getElementById('btn-submit-text');
+      const submitSpinner = document.getElementById('btn-submit-spinner');
+      const errorBox = document.getElementById('auth-error');
+      const errorMsg = document.getElementById('auth-error-msg');
 
       errorBox.classList.add('hidden');
       submitBtn.disabled = true;
@@ -227,8 +231,7 @@ import Icon from '../components/Icon.astro';
         let user = null;
 
         // Try backend API only if on localhost
-        const isLocalhost = window.location.hostname === 'localhost';
-        if (isLocalhost) {
+        if (window.location.hostname === 'localhost') {
           try {
             const res = await fetch('http://localhost:3000/api/auth/login', {
               method: 'POST',
@@ -252,7 +255,7 @@ import Icon from '../components/Icon.astro';
         // Demo fallback check (runs instantly on Vercel standalone deployment)
         if (!authSuccess) {
           if (
-            (email.toLowerCase() === 'demo@razorpulse.ai' || email.toLowerCase() === 'admin@apextech.in' || email.length > 3) &&
+            (email.toLowerCase() === 'demo@upsellx.ai' || email.toLowerCase() === 'demo@razorpulse.ai' || email.toLowerCase() === 'admin@apextech.in' || email.length > 3) &&
             (password === 'buildathon2026' || password === 'admin123' || password.length >= 6)
           ) {
             authSuccess = true;
@@ -291,8 +294,8 @@ import Icon from '../components/Icon.astro';
 
     // If already logged in, redirect immediately
     window.addEventListener('DOMContentLoaded', () => {
-      const token = localStorage.getItem('razorpulse_auth_token');
-      const user = localStorage.getItem('razorpulse_auth_user');
+      const token = localStorage.getItem('upsellx_auth_token') || localStorage.getItem('razorpulse_auth_token');
+      const user = localStorage.getItem('upsellx_auth_user') || localStorage.getItem('razorpulse_auth_user');
       if (token && user) {
         const redirect = getRedirectUrl();
         if (redirect && redirect !== '/login') {

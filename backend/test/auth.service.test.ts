@@ -4,16 +4,20 @@ import { User } from '../src/types/index.js';
 
 describe('Merchant Authentication & User Session Services', () => {
   it('Retrieves default demo merchant admin user', async () => {
-    const user = await db.getUserByEmail('demo@razorpulse.ai');
+    const user = await db.getUserByEmail('demo@upsellx.ai');
     expect(user).not.toBeNull();
-    expect(user?.email).toBe('demo@razorpulse.ai');
+    expect(user?.email).toBe('demo@upsellx.ai');
     expect(user?.role).toBe('owner');
     expect(user?.merchant_id).toBe('mch_apex_gear_001');
     expect(user?.company_name).toBe('Apex Electronics & Tech Gear');
+
+    // Backward compatibility check
+    const legacyUser = await db.getUserByEmail('demo@razorpulse.ai');
+    expect(legacyUser).not.toBeNull();
   });
 
   it('Verifies correct password authentication', async () => {
-    const user = await db.getUserByEmail('demo@razorpulse.ai');
+    const user = await db.getUserByEmail('demo@upsellx.ai');
     expect(user?.password_hash).toBe('buildathon2026');
   });
 

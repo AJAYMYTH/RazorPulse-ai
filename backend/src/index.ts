@@ -44,7 +44,7 @@ app.post('/api/auth/login', async (req, res) => {
     let user = await db.getUserByEmail(normalizedEmail);
 
     // Fallback: If demo user credentials used
-    if (!user && (normalizedEmail === 'demo@razorpulse.ai' || normalizedEmail === 'admin@apextech.in')) {
+    if (!user && (normalizedEmail === 'demo@upsellx.ai' || normalizedEmail === 'demo@razorpulse.ai' || normalizedEmail === 'admin@apextech.in')) {
       user = {
         id: 'usr_demo_apex_01',
         name: 'Ajay Kumar',
@@ -175,7 +175,7 @@ app.get('/api/settings', async (req, res) => {
         merchant: {
           id: 'mch_apex_gear_001',
           name: 'Apex Electronics & Tech Gear',
-          email: 'demo@razorpulse.ai',
+          email: 'demo@upsellx.ai',
           currency: 'INR (₹)',
           maxDiscountPct: 15,
         },
