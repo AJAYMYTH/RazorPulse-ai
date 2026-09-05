@@ -1,26 +1,19 @@
-import fs from 'fs';
-import path from 'path';
+import demoStore from '../data/demo-store.json';
 
-const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:3000';
-const STORE_PATH = path.resolve(process.cwd(), '../backend/data/store.json');
+const BACKEND_URL = process.env.BACKEND_URL || '';
 
 function getLocalStoreFallback() {
-  try {
-    if (fs.existsSync(STORE_PATH)) {
-      return JSON.parse(fs.readFileSync(STORE_PATH, 'utf-8'));
-    }
-  } catch (e) {
-    console.error('Failed to read local store.json:', e);
-  }
-  return { merchants: [], catalog: [], customers: [], orders: [], decisions: [] };
+  return demoStore as any;
 }
 
 export async function fetchBatchSummary() {
-  try {
-    const res = await fetch(`${BACKEND_URL}/api/batch/summary`, { signal: AbortSignal.timeout(1500) });
-    if (res.ok) return await res.json();
-  } catch (_) {
-    // fallback to local compute
+  if (BACKEND_URL) {
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/batch/summary`, { signal: AbortSignal.timeout(1500) });
+      if (res.ok) return await res.json();
+    } catch (_) {
+      // fallback to local compute
+    }
   }
 
   const store = getLocalStoreFallback();
@@ -53,11 +46,13 @@ export async function fetchBatchSummary() {
 }
 
 export async function fetchOrders() {
-  try {
-    const res = await fetch(`${BACKEND_URL}/api/orders`, { signal: AbortSignal.timeout(1500) });
-    if (res.ok) return await res.json();
-  } catch (_) {
-    // fallback
+  if (BACKEND_URL) {
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/orders`, { signal: AbortSignal.timeout(1500) });
+      if (res.ok) return await res.json();
+    } catch (_) {
+      // fallback
+    }
   }
 
   const store = getLocalStoreFallback();
@@ -92,11 +87,13 @@ export async function fetchOrders() {
 }
 
 export async function fetchOrderTrail(orderId: string) {
-  try {
-    const res = await fetch(`${BACKEND_URL}/api/orders/${orderId}/trail`, { signal: AbortSignal.timeout(1500) });
-    if (res.ok) return await res.json();
-  } catch (_) {
-    // fallback
+  if (BACKEND_URL) {
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/orders/${orderId}/trail`, { signal: AbortSignal.timeout(1500) });
+      if (res.ok) return await res.json();
+    } catch (_) {
+      // fallback
+    }
   }
 
   const store = getLocalStoreFallback();
@@ -112,11 +109,13 @@ export async function fetchOrderTrail(orderId: string) {
 }
 
 export async function fetchFailures() {
-  try {
-    const res = await fetch(`${BACKEND_URL}/api/failures`, { signal: AbortSignal.timeout(1500) });
-    if (res.ok) return await res.json();
-  } catch (_) {
-    // fallback
+  if (BACKEND_URL) {
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/failures`, { signal: AbortSignal.timeout(1500) });
+      if (res.ok) return await res.json();
+    } catch (_) {
+      // fallback
+    }
   }
 
   const store = getLocalStoreFallback();

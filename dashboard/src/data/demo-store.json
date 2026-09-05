@@ -1,0 +1,1711 @@
+{
+  "merchants": [
+    {
+      "id": "mch_apex_gear_001",
+      "name": "Apex Electronics & Tech Gear",
+      "created_at": "2026-01-01T00:00:00.000Z"
+    }
+  ],
+  "catalog": [
+    {
+      "id": "cat_kb_01",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-KB-PRO",
+      "name": "Apex Pro Mechanical Keyboard (RGB, Hot-Swap)",
+      "price": 8499,
+      "category": "Peripherals",
+      "co_purchase_tags": [
+        "wrist-rest",
+        "keycaps",
+        "mousepad",
+        "desk-mat"
+      ]
+    },
+    {
+      "id": "cat_wr_01",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-WR-WOOD",
+      "name": "Walnut Wood Ergonomic Wrist Rest",
+      "price": 1499,
+      "category": "Accessories",
+      "co_purchase_tags": [
+        "keyboard",
+        "ergonomic"
+      ]
+    },
+    {
+      "id": "cat_kc_01",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-KC-PBT",
+      "name": "PBT Double-Shot Custom Keycap Set",
+      "price": 2299,
+      "category": "Accessories",
+      "co_purchase_tags": [
+        "keyboard"
+      ]
+    },
+    {
+      "id": "cat_ms_01",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-MS-WIRELESS",
+      "name": "Apex Ultralight Wireless Gaming Mouse",
+      "price": 4999,
+      "category": "Peripherals",
+      "co_purchase_tags": [
+        "mousepad",
+        "cable-bungee",
+        "grip-tape"
+      ]
+    },
+    {
+      "id": "cat_mp_01",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-MP-XL",
+      "name": "Cordura Extended Speed Mousepad (900x400mm)",
+      "price": 1299,
+      "category": "Accessories",
+      "co_purchase_tags": [
+        "mouse",
+        "keyboard",
+        "desk-setup"
+      ]
+    },
+    {
+      "id": "cat_lp_01",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-LP-15",
+      "name": "TitanBook 15 Pro Ultrabook (16GB, 1TB SSD)",
+      "price": 89999,
+      "category": "Computers",
+      "co_purchase_tags": [
+        "usbc-hub",
+        "laptop-sleeve",
+        "stand",
+        "gan-charger"
+      ]
+    },
+    {
+      "id": "cat_hb_01",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-HUB-8IN1",
+      "name": "Apex 8-in-1 Aluminum USB-C 100W Hub",
+      "price": 3499,
+      "category": "Accessories",
+      "co_purchase_tags": [
+        "laptop",
+        "macbook",
+        "ultrabook"
+      ]
+    },
+    {
+      "id": "cat_sl_01",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-SLEEVE-15",
+      "name": "Water-Resistant Shockproof 15\" Laptop Sleeve",
+      "price": 1899,
+      "category": "Accessories",
+      "co_purchase_tags": [
+        "laptop"
+      ]
+    },
+    {
+      "id": "cat_chg_65",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-GAN-65W",
+      "name": "Apex Nano 65W GaN Fast Dual-Port Charger",
+      "price": 2499,
+      "category": "Power",
+      "co_purchase_tags": [
+        "charger",
+        "cable",
+        "phone"
+      ]
+    },
+    {
+      "id": "cat_chg_100",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-GAN-100W",
+      "name": "Apex Ultra 100W GaN Quad-Port Desktop Charger",
+      "price": 4299,
+      "category": "Power",
+      "co_purchase_tags": [
+        "charger",
+        "power",
+        "laptop"
+      ]
+    },
+    {
+      "id": "cat_hp_01",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-ANC-HEADPHONE",
+      "name": "Apex SoundWave Pro Active Noise Cancelling Headphones",
+      "price": 12999,
+      "category": "Audio",
+      "co_purchase_tags": [
+        "headphone-stand",
+        "audio-cable",
+        "case"
+      ]
+    },
+    {
+      "id": "cat_hs_01",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-HP-STAND",
+      "name": "Minimalist Matte Aluminum Headphone Stand",
+      "price": 1699,
+      "category": "Accessories",
+      "co_purchase_tags": [
+        "headphones",
+        "desk-setup"
+      ]
+    },
+    {
+      "id": "cat_mon_01",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-MON-4K",
+      "name": "Apex 27\" 4K IPS HDR Color-Accurate Creator Monitor",
+      "price": 29999,
+      "category": "Displays",
+      "co_purchase_tags": [
+        "monitor-light",
+        "displayport-cable",
+        "arm"
+      ]
+    },
+    {
+      "id": "cat_ml_01",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-MON-LIGHT",
+      "name": "ScreenBar Eye-Care Smart Monitor Light Bar",
+      "price": 2999,
+      "category": "Lighting",
+      "co_purchase_tags": [
+        "monitor",
+        "desk-setup"
+      ]
+    },
+    {
+      "id": "cat_chr_01",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-CHAIR-ERGO",
+      "name": "Apex AirMesh Ergonomic Executive Chair",
+      "price": 18499,
+      "category": "Furniture",
+      "co_purchase_tags": [
+        "lumbar-pillow",
+        "footrest",
+        "floor-mat"
+      ]
+    },
+    {
+      "id": "cat_lb_01",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-LUMBAR-PILLOW",
+      "name": "Memory Foam Breathable Lumbar Support Cushion",
+      "price": 1599,
+      "category": "Accessories",
+      "co_purchase_tags": [
+        "chair",
+        "ergonomic"
+      ]
+    },
+    {
+      "id": "cat_cb_01",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-CABLE-USBC",
+      "name": "Braided 240W 2-Meter USB-C to USB-C Fast Cable",
+      "price": 899,
+      "category": "Cables",
+      "co_purchase_tags": [
+        "charger",
+        "cable"
+      ]
+    },
+    {
+      "id": "cat_cb_bungee",
+      "merchant_id": "mch_apex_gear_001",
+      "sku": "SKU-BUNGEE-PRO",
+      "name": "Zero-Drag Magnetic Mouse Cable Bungee",
+      "price": 799,
+      "category": "Accessories",
+      "co_purchase_tags": [
+        "mouse"
+      ]
+    }
+  ],
+  "customers": [
+    {
+      "id": "cust_01",
+      "merchant_id": "mch_apex_gear_001",
+      "name": "Aarav Mehta",
+      "order_count": 3
+    },
+    {
+      "id": "cust_02",
+      "merchant_id": "mch_apex_gear_001",
+      "name": "Priya Sharma",
+      "order_count": 1
+    },
+    {
+      "id": "cust_03",
+      "merchant_id": "mch_apex_gear_001",
+      "name": "Rohan Gupta",
+      "order_count": 5
+    },
+    {
+      "id": "cust_04",
+      "merchant_id": "mch_apex_gear_001",
+      "name": "Ananya Iyer",
+      "order_count": 2
+    },
+    {
+      "id": "cust_05",
+      "merchant_id": "mch_apex_gear_001",
+      "name": "Vikram Verma",
+      "order_count": 1
+    },
+    {
+      "id": "cust_06",
+      "merchant_id": "mch_apex_gear_001",
+      "name": "Neha Reddy",
+      "order_count": 4
+    },
+    {
+      "id": "cust_07",
+      "merchant_id": "mch_apex_gear_001",
+      "name": "Kabir Das",
+      "order_count": 1
+    },
+    {
+      "id": "cust_08",
+      "merchant_id": "mch_apex_gear_001",
+      "name": "Sneha Patel",
+      "order_count": 2
+    }
+  ],
+  "orders": [
+    {
+      "id": "ord_demo_01_kb_accept",
+      "merchant_id": "mch_apex_gear_001",
+      "customer_id": "cust_01",
+      "items": [
+        {
+          "sku": "SKU-KB-PRO",
+          "name": "Apex Pro Mechanical Keyboard",
+          "quantity": 1,
+          "price": 8499
+        }
+      ],
+      "total_amount": 8499,
+      "status": "paid",
+      "created_at": "2026-03-01T10:15:00.000Z"
+    },
+    {
+      "id": "ord_demo_02_lp_accept",
+      "merchant_id": "mch_apex_gear_001",
+      "customer_id": "cust_02",
+      "items": [
+        {
+          "sku": "SKU-LP-15",
+          "name": "TitanBook 15 Pro Ultrabook",
+          "quantity": 1,
+          "price": 89999
+        }
+      ],
+      "total_amount": 89999,
+      "status": "paid",
+      "created_at": "2026-03-01T11:00:00.000Z"
+    },
+    {
+      "id": "ord_demo_03_chg_accept",
+      "merchant_id": "mch_apex_gear_001",
+      "customer_id": "cust_03",
+      "items": [
+        {
+          "sku": "SKU-GAN-65W",
+          "name": "Apex Nano 65W GaN Charger",
+          "quantity": 1,
+          "price": 2499
+        }
+      ],
+      "total_amount": 2499,
+      "status": "paid",
+      "created_at": "2026-03-01T11:45:00.000Z"
+    },
+    {
+      "id": "ord_demo_04_hp_accept",
+      "merchant_id": "mch_apex_gear_001",
+      "customer_id": "cust_04",
+      "items": [
+        {
+          "sku": "SKU-ANC-HEADPHONE",
+          "name": "Apex SoundWave Pro Headphones",
+          "quantity": 1,
+          "price": 12999
+        }
+      ],
+      "total_amount": 12999,
+      "status": "paid",
+      "created_at": "2026-03-01T12:30:00.000Z"
+    },
+    {
+      "id": "ord_demo_05_chair_accept",
+      "merchant_id": "mch_apex_gear_001",
+      "customer_id": "cust_05",
+      "items": [
+        {
+          "sku": "SKU-CHAIR-ERGO",
+          "name": "Apex AirMesh Ergonomic Executive Chair",
+          "quantity": 1,
+          "price": 18499
+        }
+      ],
+      "total_amount": 18499,
+      "status": "paid",
+      "created_at": "2026-03-01T13:10:00.000Z"
+    },
+    {
+      "id": "ord_demo_06_mouse_accept",
+      "merchant_id": "mch_apex_gear_001",
+      "customer_id": "cust_06",
+      "items": [
+        {
+          "sku": "SKU-MS-WIRELESS",
+          "name": "Apex Ultralight Wireless Gaming Mouse",
+          "quantity": 1,
+          "price": 4999
+        }
+      ],
+      "total_amount": 4999,
+      "status": "paid",
+      "created_at": "2026-03-01T13:55:00.000Z"
+    },
+    {
+      "id": "ord_demo_07_reject_discount",
+      "merchant_id": "mch_apex_gear_001",
+      "customer_id": "cust_07",
+      "items": [
+        {
+          "sku": "SKU-KB-PRO",
+          "name": "Apex Pro Mechanical Keyboard",
+          "quantity": 1,
+          "price": 8499
+        }
+      ],
+      "total_amount": 8499,
+      "status": "paid",
+      "created_at": "2026-03-01T14:20:00.000Z"
+    },
+    {
+      "id": "ord_demo_08_reject_conf",
+      "merchant_id": "mch_apex_gear_001",
+      "customer_id": "cust_08",
+      "items": [
+        {
+          "sku": "SKU-CABLE-USBC",
+          "name": "Braided 240W 2-Meter USB-C Fast Cable",
+          "quantity": 1,
+          "price": 899
+        }
+      ],
+      "total_amount": 899,
+      "status": "paid",
+      "created_at": "2026-03-01T15:00:00.000Z"
+    },
+    {
+      "id": "ord_demo_09_reject_refunded",
+      "merchant_id": "mch_apex_gear_001",
+      "customer_id": "cust_01",
+      "items": [
+        {
+          "sku": "SKU-LP-15",
+          "name": "TitanBook 15 Pro Ultrabook",
+          "quantity": 1,
+          "price": 89999
+        }
+      ],
+      "total_amount": 89999,
+      "status": "refunded",
+      "created_at": "2026-03-01T15:30:00.000Z"
+    },
+    {
+      "id": "ord_demo_10_reject_disputed",
+      "merchant_id": "mch_apex_gear_001",
+      "customer_id": "cust_02",
+      "items": [
+        {
+          "sku": "SKU-ANC-HEADPHONE",
+          "name": "Apex SoundWave Pro Headphones",
+          "quantity": 1,
+          "price": 12999
+        }
+      ],
+      "total_amount": 12999,
+      "status": "disputed",
+      "created_at": "2026-03-01T16:00:00.000Z"
+    },
+    {
+      "id": "ord_demo_11_reject_duplicate",
+      "merchant_id": "mch_apex_gear_001",
+      "customer_id": "cust_03",
+      "items": [
+        {
+          "sku": "SKU-MS-WIRELESS",
+          "name": "Apex Ultralight Wireless Gaming Mouse",
+          "quantity": 1,
+          "price": 4999
+        }
+      ],
+      "total_amount": 4999,
+      "status": "paid",
+      "created_at": "2026-03-01T16:25:00.000Z"
+    },
+    {
+      "id": "ord_demo_12_reject_invalid_sku",
+      "merchant_id": "mch_apex_gear_001",
+      "customer_id": "cust_04",
+      "items": [
+        {
+          "sku": "SKU-CHAIR-ERGO",
+          "name": "Apex AirMesh Ergonomic Executive Chair",
+          "quantity": 1,
+          "price": 18499
+        }
+      ],
+      "total_amount": 18499,
+      "status": "paid",
+      "created_at": "2026-03-01T17:00:00.000Z"
+    },
+    {
+      "id": "ord_demo_13_fail_expired",
+      "merchant_id": "mch_apex_gear_001",
+      "customer_id": "cust_05",
+      "items": [
+        {
+          "sku": "SKU-LP-15",
+          "name": "TitanBook 15 Pro Ultrabook",
+          "quantity": 1,
+          "price": 89999
+        }
+      ],
+      "total_amount": 89999,
+      "status": "paid",
+      "created_at": "2026-03-01T17:40:00.000Z"
+    },
+    {
+      "id": "ord_demo_14_action_none",
+      "merchant_id": "mch_apex_gear_001",
+      "customer_id": "cust_06",
+      "items": [
+        {
+          "sku": "SKU-KB-PRO",
+          "name": "Apex Pro Mechanical Keyboard",
+          "quantity": 1,
+          "price": 8499
+        },
+        {
+          "sku": "SKU-WR-WOOD",
+          "name": "Walnut Wood Wrist Rest",
+          "quantity": 1,
+          "price": 1499
+        },
+        {
+          "sku": "SKU-KC-PBT",
+          "name": "PBT Custom Keycap Set",
+          "quantity": 1,
+          "price": 2299
+        }
+      ],
+      "total_amount": 12297,
+      "status": "paid",
+      "created_at": "2026-03-01T18:15:00.000Z"
+    },
+    {
+      "id": "ord_demo_15_mon_accept",
+      "merchant_id": "mch_apex_gear_001",
+      "customer_id": "cust_07",
+      "items": [
+        {
+          "sku": "SKU-MON-4K",
+          "name": "Apex 27\" 4K Creator Monitor",
+          "quantity": 1,
+          "price": 29999
+        }
+      ],
+      "total_amount": 29999,
+      "status": "paid",
+      "created_at": "2026-03-01T19:00:00.000Z"
+    }
+  ],
+  "decisions": [
+    {
+      "order_id": "ord_demo_15_mon_accept",
+      "stage": "trigger",
+      "payload": {
+        "order_id": "ord_demo_15_mon_accept",
+        "amount": 29999,
+        "items_count": 1,
+        "status": "paid"
+      },
+      "result": "success",
+      "reason": "Order triggered pipeline: ₹29999 with 1 item(s)",
+      "id": "18f98435-5259-4825-824b-bc5aa3eb6552",
+      "created_at": "2026-09-05T16:06:06.423Z"
+    },
+    {
+      "order_id": "ord_demo_15_mon_accept",
+      "stage": "signal",
+      "payload": {
+        "order_id": "ord_demo_15_mon_accept",
+        "customer_tier": "new",
+        "customer_orders_count": 1,
+        "purchased_skus": [
+          "SKU-MON-4K"
+        ],
+        "candidate_count": 17,
+        "affinity_matches": []
+      },
+      "result": "success",
+      "reason": "Gathered signals: Kabir Das (new), 0 catalog affinity match(es)",
+      "id": "4e2f20f9-fa0e-4520-ac75-a9cca33c8f6a",
+      "created_at": "2026-09-05T16:06:06.425Z"
+    },
+    {
+      "order_id": "ord_demo_15_mon_accept",
+      "stage": "decision",
+      "payload": {
+        "action": "cross_sell",
+        "recommended_sku": "SKU-MON-LIGHT",
+        "reason": "Creator 4K monitor setup matched with eye-care ScreenBar monitor light.",
+        "discount_pct": 10,
+        "confidence": 0.87
+      },
+      "result": "success",
+      "reason": "Creator 4K monitor setup matched with eye-care ScreenBar monitor light.",
+      "id": "2d1242f7-1319-4a92-933d-aa36cb54623d",
+      "created_at": "2026-09-05T16:06:06.427Z"
+    },
+    {
+      "order_id": "ord_demo_15_mon_accept",
+      "stage": "gate",
+      "payload": {
+        "decision": {
+          "action": "cross_sell",
+          "recommended_sku": "SKU-MON-LIGHT",
+          "reason": "Creator 4K monitor setup matched with eye-care ScreenBar monitor light.",
+          "discount_pct": 10,
+          "confidence": 0.87
+        },
+        "accepted": true,
+        "ruleViolated": null
+      },
+      "result": "accepted",
+      "reason": "All deterministic bounds satisfied (discount <= 15%, conf >= 0.60, valid SKU, eligible order)",
+      "id": "68816f35-f050-4726-b15e-f9cf2d7973e3",
+      "created_at": "2026-09-05T16:06:06.429Z"
+    },
+    {
+      "order_id": "ord_demo_15_mon_accept",
+      "stage": "execution",
+      "payload": {
+        "payment_link_id": "plink_TYPo6OpGLLW08Y",
+        "short_url": "https://rzp.io/rzp/POKKZC7",
+        "amount": 2699,
+        "currency": "INR",
+        "status": "created",
+        "reference_id": "ref__15_mon_accept_SKU-MON-LIGHT_wfe6"
+      },
+      "result": "success",
+      "reason": "Payment Link generated (https://rzp.io/rzp/POKKZC7) for ₹2699 (10% OFF on SKU-MON-LIGHT)",
+      "id": "6ef517f4-5c0b-4cc8-adee-b8d4c289a10f",
+      "created_at": "2026-09-05T16:06:07.244Z"
+    },
+    {
+      "order_id": "ord_demo_14_action_none",
+      "stage": "trigger",
+      "payload": {
+        "order_id": "ord_demo_14_action_none",
+        "amount": 12297,
+        "items_count": 3,
+        "status": "paid"
+      },
+      "result": "success",
+      "reason": "Order triggered pipeline: ₹12297 with 3 item(s)",
+      "id": "300e0571-cac2-4020-a963-288a7dc27491",
+      "created_at": "2026-09-05T16:06:07.551Z"
+    },
+    {
+      "order_id": "ord_demo_14_action_none",
+      "stage": "signal",
+      "payload": {
+        "order_id": "ord_demo_14_action_none",
+        "customer_tier": "repeat",
+        "customer_orders_count": 4,
+        "purchased_skus": [
+          "SKU-KB-PRO",
+          "SKU-WR-WOOD",
+          "SKU-KC-PBT"
+        ],
+        "candidate_count": 15,
+        "affinity_matches": [
+          "SKU-MS-WIRELESS",
+          "SKU-MP-XL",
+          "SKU-LUMBAR-PILLOW"
+        ]
+      },
+      "result": "success",
+      "reason": "Gathered signals: Neha Reddy (repeat), 3 catalog affinity match(es)",
+      "id": "18c81fa2-a41a-4b20-845d-e8bbbdd20076",
+      "created_at": "2026-09-05T16:06:07.552Z"
+    },
+    {
+      "order_id": "ord_demo_14_action_none",
+      "stage": "decision",
+      "payload": {
+        "action": "none",
+        "recommended_sku": null,
+        "reason": "Customer has already acquired full peripheral and accessory suite; avoiding irrelevant offers.",
+        "discount_pct": 0,
+        "confidence": 0.95
+      },
+      "result": "success",
+      "reason": "Customer has already acquired full peripheral and accessory suite; avoiding irrelevant offers.",
+      "id": "a2c30336-7123-4878-ab0b-1704a138bcb7",
+      "created_at": "2026-09-05T16:06:07.554Z"
+    },
+    {
+      "order_id": "ord_demo_14_action_none",
+      "stage": "gate",
+      "payload": {
+        "decision": {
+          "action": "none",
+          "recommended_sku": null,
+          "reason": "Customer has already acquired full peripheral and accessory suite; avoiding irrelevant offers.",
+          "discount_pct": 0,
+          "confidence": 0.95
+        },
+        "accepted": false,
+        "ruleViolated": "action_none"
+      },
+      "result": "rejected",
+      "reason": "Decision action is 'none' — model concluded no high-confidence offer warranted",
+      "id": "be50ef22-f530-4205-8b20-8ecd622a6121",
+      "created_at": "2026-09-05T16:06:07.555Z"
+    },
+    {
+      "order_id": "ord_demo_13_fail_expired",
+      "stage": "trigger",
+      "payload": {
+        "order_id": "ord_demo_13_fail_expired",
+        "amount": 89999,
+        "items_count": 1,
+        "status": "paid"
+      },
+      "result": "success",
+      "reason": "Order triggered pipeline: ₹89999 with 1 item(s)",
+      "id": "86d824ea-87f8-4f98-b160-194a9f8669a6",
+      "created_at": "2026-09-05T16:06:07.867Z"
+    },
+    {
+      "order_id": "ord_demo_13_fail_expired",
+      "stage": "signal",
+      "payload": {
+        "order_id": "ord_demo_13_fail_expired",
+        "customer_tier": "new",
+        "customer_orders_count": 1,
+        "purchased_skus": [
+          "SKU-LP-15"
+        ],
+        "candidate_count": 17,
+        "affinity_matches": []
+      },
+      "result": "success",
+      "reason": "Gathered signals: Vikram Verma (new), 0 catalog affinity match(es)",
+      "id": "c76ed037-1b18-403a-bb9b-8832edc4fd96",
+      "created_at": "2026-09-05T16:06:07.868Z"
+    },
+    {
+      "order_id": "ord_demo_13_fail_expired",
+      "stage": "decision",
+      "payload": {
+        "action": "cross_sell",
+        "recommended_sku": "SKU-HUB-8IN1",
+        "reason": "Ultrabook users frequently require multiport expansion; offering complementary aluminum hub.",
+        "discount_pct": 12,
+        "confidence": 0.92
+      },
+      "result": "success",
+      "reason": "Ultrabook users frequently require multiport expansion; offering complementary aluminum hub.",
+      "id": "8f0a3353-45c8-4203-b69e-27264599cb00",
+      "created_at": "2026-09-05T16:06:07.869Z"
+    },
+    {
+      "order_id": "ord_demo_13_fail_expired",
+      "stage": "gate",
+      "payload": {
+        "decision": {
+          "action": "cross_sell",
+          "recommended_sku": "SKU-HUB-8IN1",
+          "reason": "Ultrabook users frequently require multiport expansion; offering complementary aluminum hub.",
+          "discount_pct": 12,
+          "confidence": 0.92
+        },
+        "accepted": true,
+        "ruleViolated": null
+      },
+      "result": "accepted",
+      "reason": "All deterministic bounds satisfied (discount <= 15%, conf >= 0.60, valid SKU, eligible order)",
+      "id": "c4d31aca-5b4a-43ce-8421-cfdf094054b5",
+      "created_at": "2026-09-05T16:06:07.870Z"
+    },
+    {
+      "order_id": "ord_demo_13_fail_expired",
+      "stage": "execution",
+      "payload": {
+        "payment_link_id": "plink_TYPo7eaiPjBP8O",
+        "short_url": "https://rzp.io/rzp/3zQq1iHh",
+        "amount": 3079,
+        "currency": "INR",
+        "status": "created",
+        "reference_id": "ref_3_fail_expired_SKU-HUB-8IN1_wfe7"
+      },
+      "result": "success",
+      "reason": "Payment Link generated (https://rzp.io/rzp/3zQq1iHh) for ₹3079 (12% OFF on SKU-HUB-8IN1)",
+      "id": "21c09ac1-21aa-437d-9de5-82cee6a40d46",
+      "created_at": "2026-09-05T16:06:08.371Z"
+    },
+    {
+      "order_id": "ord_demo_13_fail_expired",
+      "stage": "execution",
+      "payload": {
+        "payment_link_id": "plink_TYPo7eaiPjBP8O",
+        "status": "expired",
+        "recovery_action": "logged_and_stopped",
+        "retry_count": 0
+      },
+      "result": "error",
+      "reason": "Payment link (plink_TYPo7eaiPjBP8O) expired unconverted. Action halted safely without retry storm.",
+      "id": "fa4800ce-24e0-4276-aef1-162252c37e64",
+      "created_at": "2026-09-05T16:06:08.372Z"
+    },
+    {
+      "order_id": "ord_demo_12_reject_invalid_sku",
+      "stage": "trigger",
+      "payload": {
+        "order_id": "ord_demo_12_reject_invalid_sku",
+        "amount": 18499,
+        "items_count": 1,
+        "status": "paid"
+      },
+      "result": "success",
+      "reason": "Order triggered pipeline: ₹18499 with 1 item(s)",
+      "id": "31dd697a-4580-4554-93ee-2525eb9a96a2",
+      "created_at": "2026-09-05T16:06:08.685Z"
+    },
+    {
+      "order_id": "ord_demo_12_reject_invalid_sku",
+      "stage": "signal",
+      "payload": {
+        "order_id": "ord_demo_12_reject_invalid_sku",
+        "customer_tier": "new",
+        "customer_orders_count": 2,
+        "purchased_skus": [
+          "SKU-CHAIR-ERGO"
+        ],
+        "candidate_count": 17,
+        "affinity_matches": []
+      },
+      "result": "success",
+      "reason": "Gathered signals: Ananya Iyer (new), 0 catalog affinity match(es)",
+      "id": "4af3a08f-dee4-48ef-b30f-fdb0684d5e5c",
+      "created_at": "2026-09-05T16:06:08.687Z"
+    },
+    {
+      "order_id": "ord_demo_12_reject_invalid_sku",
+      "stage": "decision",
+      "payload": {
+        "action": "upsell",
+        "recommended_sku": "SKU-GHOST-CUSTOM-CHAIR",
+        "reason": "Attempted to upsell custom ergonomic package from legacy warehouse SKU.",
+        "discount_pct": 10,
+        "confidence": 0.78
+      },
+      "result": "success",
+      "reason": "Attempted to upsell custom ergonomic package from legacy warehouse SKU.",
+      "id": "a303261c-0bf8-4a8d-acb8-f74ca1801ddd",
+      "created_at": "2026-09-05T16:06:08.690Z"
+    },
+    {
+      "order_id": "ord_demo_12_reject_invalid_sku",
+      "stage": "gate",
+      "payload": {
+        "decision": {
+          "action": "upsell",
+          "recommended_sku": "SKU-GHOST-CUSTOM-CHAIR",
+          "reason": "Attempted to upsell custom ergonomic package from legacy warehouse SKU.",
+          "discount_pct": 10,
+          "confidence": 0.78
+        },
+        "accepted": false,
+        "ruleViolated": "invalid_sku"
+      },
+      "result": "rejected",
+      "reason": "SKU 'SKU-GHOST-CUSTOM-CHAIR' not found in merchant catalog",
+      "id": "7ad194ef-8bb0-479c-81ac-08a0147a1eb2",
+      "created_at": "2026-09-05T16:06:08.691Z"
+    },
+    {
+      "order_id": "ord_demo_11_reject_duplicate",
+      "stage": "trigger",
+      "payload": {
+        "order_id": "ord_demo_11_reject_duplicate",
+        "amount": 4999,
+        "items_count": 1,
+        "status": "paid"
+      },
+      "result": "success",
+      "reason": "Order triggered pipeline: ₹4999 with 1 item(s)",
+      "id": "eb6a0e16-2148-44bf-a8c6-1b9705e689d8",
+      "created_at": "2026-09-05T16:06:08.994Z"
+    },
+    {
+      "order_id": "ord_demo_11_reject_duplicate",
+      "stage": "signal",
+      "payload": {
+        "order_id": "ord_demo_11_reject_duplicate",
+        "customer_tier": "repeat",
+        "customer_orders_count": 5,
+        "purchased_skus": [
+          "SKU-MS-WIRELESS"
+        ],
+        "candidate_count": 17,
+        "affinity_matches": [
+          "SKU-KB-PRO"
+        ]
+      },
+      "result": "success",
+      "reason": "Gathered signals: Rohan Gupta (repeat), 1 catalog affinity match(es)",
+      "id": "d35587ab-735f-48e2-aa4b-3bf706827abe",
+      "created_at": "2026-09-05T16:06:08.995Z"
+    },
+    {
+      "order_id": "ord_demo_11_reject_duplicate",
+      "stage": "decision",
+      "payload": {
+        "action": "cross_sell",
+        "recommended_sku": "SKU-MP-XL",
+        "reason": "Ultralight gaming mouse buyer benefits from high-speed Cordura extended mousepad.",
+        "discount_pct": 10,
+        "confidence": 0.91
+      },
+      "result": "success",
+      "reason": "Ultralight gaming mouse buyer benefits from high-speed Cordura extended mousepad.",
+      "id": "8944fd66-8b91-4e75-8174-18db4270df6f",
+      "created_at": "2026-09-05T16:06:08.997Z"
+    },
+    {
+      "order_id": "ord_demo_11_reject_duplicate",
+      "stage": "gate",
+      "payload": {
+        "decision": {
+          "action": "cross_sell",
+          "recommended_sku": "SKU-MP-XL",
+          "reason": "Ultralight gaming mouse buyer benefits from high-speed Cordura extended mousepad.",
+          "discount_pct": 10,
+          "confidence": 0.91
+        },
+        "accepted": true,
+        "ruleViolated": null
+      },
+      "result": "accepted",
+      "reason": "All deterministic bounds satisfied (discount <= 15%, conf >= 0.60, valid SKU, eligible order)",
+      "id": "c91487c0-4b84-459e-8c80-572996b7ba64",
+      "created_at": "2026-09-05T16:06:08.998Z"
+    },
+    {
+      "order_id": "ord_demo_11_reject_duplicate",
+      "stage": "execution",
+      "payload": {
+        "payment_link_id": "plink_test_ewyd7jfh",
+        "short_url": "https://rzp.io/i/plink_test_ewyd7jfh",
+        "amount": 1169,
+        "currency": "INR",
+        "status": "created",
+        "reference_id": "ref_ject_duplicate_SKU-MP-XL_wfe9"
+      },
+      "result": "success",
+      "reason": "Payment Link generated (https://rzp.io/i/plink_test_ewyd7jfh) for ₹1169 (10% OFF on SKU-MP-XL)",
+      "id": "a2d5540d-1a0b-41e0-a6ba-121196704fa5",
+      "created_at": "2026-09-05T16:06:09.483Z"
+    },
+    {
+      "order_id": "ord_demo_10_reject_disputed",
+      "stage": "trigger",
+      "payload": {
+        "order_id": "ord_demo_10_reject_disputed",
+        "amount": 12999,
+        "items_count": 1,
+        "status": "disputed"
+      },
+      "result": "success",
+      "reason": "Order triggered pipeline: ₹12999 with 1 item(s)",
+      "id": "a2474712-f07d-4e23-963c-c6a94d71d45d",
+      "created_at": "2026-09-05T16:06:09.793Z"
+    },
+    {
+      "order_id": "ord_demo_10_reject_disputed",
+      "stage": "signal",
+      "payload": {
+        "order_id": "ord_demo_10_reject_disputed",
+        "customer_tier": "new",
+        "customer_orders_count": 1,
+        "purchased_skus": [
+          "SKU-ANC-HEADPHONE"
+        ],
+        "candidate_count": 17,
+        "affinity_matches": []
+      },
+      "result": "success",
+      "reason": "Gathered signals: Priya Sharma (new), 0 catalog affinity match(es)",
+      "id": "024f402d-27b7-44c4-a859-2b42567bb7f6",
+      "created_at": "2026-09-05T16:06:09.795Z"
+    },
+    {
+      "order_id": "ord_demo_10_reject_disputed",
+      "stage": "decision",
+      "payload": {
+        "action": "cross_sell",
+        "recommended_sku": "SKU-HP-STAND",
+        "reason": "Premium headphone purchase paired with protective minimalist aluminum desk stand.",
+        "discount_pct": 8,
+        "confidence": 0.79
+      },
+      "result": "success",
+      "reason": "Premium headphone purchase paired with protective minimalist aluminum desk stand.",
+      "id": "8a0142ca-5801-451a-ab41-0a4fb276c377",
+      "created_at": "2026-09-05T16:06:09.796Z"
+    },
+    {
+      "order_id": "ord_demo_10_reject_disputed",
+      "stage": "gate",
+      "payload": {
+        "decision": {
+          "action": "cross_sell",
+          "recommended_sku": "SKU-HP-STAND",
+          "reason": "Premium headphone purchase paired with protective minimalist aluminum desk stand.",
+          "discount_pct": 8,
+          "confidence": 0.79
+        },
+        "accepted": false,
+        "ruleViolated": "order_ineligible"
+      },
+      "result": "rejected",
+      "reason": "Order status ineligible: disputed",
+      "id": "88e83557-2ded-49b4-8c82-5bb0c0079953",
+      "created_at": "2026-09-05T16:06:09.797Z"
+    },
+    {
+      "order_id": "ord_demo_09_reject_refunded",
+      "stage": "trigger",
+      "payload": {
+        "order_id": "ord_demo_09_reject_refunded",
+        "amount": 89999,
+        "items_count": 1,
+        "status": "refunded"
+      },
+      "result": "success",
+      "reason": "Order triggered pipeline: ₹89999 with 1 item(s)",
+      "id": "536fdc0f-3a80-4b9b-9d19-37a1bd0be7f4",
+      "created_at": "2026-09-05T16:06:10.112Z"
+    },
+    {
+      "order_id": "ord_demo_09_reject_refunded",
+      "stage": "signal",
+      "payload": {
+        "order_id": "ord_demo_09_reject_refunded",
+        "customer_tier": "repeat",
+        "customer_orders_count": 3,
+        "purchased_skus": [
+          "SKU-LP-15"
+        ],
+        "candidate_count": 17,
+        "affinity_matches": []
+      },
+      "result": "success",
+      "reason": "Gathered signals: Aarav Mehta (repeat), 0 catalog affinity match(es)",
+      "id": "7271aa4f-2592-4136-bc8d-846d3dbfa20b",
+      "created_at": "2026-09-05T16:06:10.112Z"
+    },
+    {
+      "order_id": "ord_demo_09_reject_refunded",
+      "stage": "decision",
+      "payload": {
+        "action": "cross_sell",
+        "recommended_sku": "SKU-HUB-8IN1",
+        "reason": "Ultrabook users frequently require multiport expansion; offering complementary aluminum hub.",
+        "discount_pct": 12,
+        "confidence": 0.92
+      },
+      "result": "success",
+      "reason": "Ultrabook users frequently require multiport expansion; offering complementary aluminum hub.",
+      "id": "03052464-5c35-43e3-b0fc-3081aaf9ed02",
+      "created_at": "2026-09-05T16:06:10.113Z"
+    },
+    {
+      "order_id": "ord_demo_09_reject_refunded",
+      "stage": "gate",
+      "payload": {
+        "decision": {
+          "action": "cross_sell",
+          "recommended_sku": "SKU-HUB-8IN1",
+          "reason": "Ultrabook users frequently require multiport expansion; offering complementary aluminum hub.",
+          "discount_pct": 12,
+          "confidence": 0.92
+        },
+        "accepted": false,
+        "ruleViolated": "order_ineligible"
+      },
+      "result": "rejected",
+      "reason": "Order status ineligible: refunded",
+      "id": "acd1b941-4bcc-40d6-82dd-77aba5e8e152",
+      "created_at": "2026-09-05T16:06:10.115Z"
+    },
+    {
+      "order_id": "ord_demo_08_reject_conf",
+      "stage": "trigger",
+      "payload": {
+        "order_id": "ord_demo_08_reject_conf",
+        "amount": 899,
+        "items_count": 1,
+        "status": "paid"
+      },
+      "result": "success",
+      "reason": "Order triggered pipeline: ₹899 with 1 item(s)",
+      "id": "b90a468a-33a3-4500-b896-baae4c931d03",
+      "created_at": "2026-09-05T16:06:10.429Z"
+    },
+    {
+      "order_id": "ord_demo_08_reject_conf",
+      "stage": "signal",
+      "payload": {
+        "order_id": "ord_demo_08_reject_conf",
+        "customer_tier": "new",
+        "customer_orders_count": 2,
+        "purchased_skus": [
+          "SKU-CABLE-USBC"
+        ],
+        "candidate_count": 17,
+        "affinity_matches": [
+          "SKU-GAN-65W",
+          "SKU-GAN-100W"
+        ]
+      },
+      "result": "success",
+      "reason": "Gathered signals: Sneha Patel (new), 2 catalog affinity match(es)",
+      "id": "127b918c-834f-42ce-adc4-52fb0ec8c655",
+      "created_at": "2026-09-05T16:06:10.430Z"
+    },
+    {
+      "order_id": "ord_demo_08_reject_conf",
+      "stage": "decision",
+      "payload": {
+        "action": "cross_sell",
+        "recommended_sku": "SKU-MON-LIGHT",
+        "reason": "Weak correlation between USB-C cable purchase and premium monitor light bar.",
+        "discount_pct": 5,
+        "confidence": 0.42
+      },
+      "result": "success",
+      "reason": "Weak correlation between USB-C cable purchase and premium monitor light bar.",
+      "id": "d29d0493-e251-4573-a03f-26f51e96ab34",
+      "created_at": "2026-09-05T16:06:10.431Z"
+    },
+    {
+      "order_id": "ord_demo_08_reject_conf",
+      "stage": "gate",
+      "payload": {
+        "decision": {
+          "action": "cross_sell",
+          "recommended_sku": "SKU-MON-LIGHT",
+          "reason": "Weak correlation between USB-C cable purchase and premium monitor light bar.",
+          "discount_pct": 5,
+          "confidence": 0.42
+        },
+        "accepted": false,
+        "ruleViolated": "low_confidence"
+      },
+      "result": "rejected",
+      "reason": "Confidence below threshold (0.42 < 0.60)",
+      "id": "b8732825-7ca5-4d97-8201-8916fc575437",
+      "created_at": "2026-09-05T16:06:10.431Z"
+    },
+    {
+      "order_id": "ord_demo_07_reject_discount",
+      "stage": "trigger",
+      "payload": {
+        "order_id": "ord_demo_07_reject_discount",
+        "amount": 8499,
+        "items_count": 1,
+        "status": "paid"
+      },
+      "result": "success",
+      "reason": "Order triggered pipeline: ₹8499 with 1 item(s)",
+      "id": "ae8dd92b-140a-4910-a5cb-a8194c6c2e9a",
+      "created_at": "2026-09-05T16:06:10.737Z"
+    },
+    {
+      "order_id": "ord_demo_07_reject_discount",
+      "stage": "signal",
+      "payload": {
+        "order_id": "ord_demo_07_reject_discount",
+        "customer_tier": "new",
+        "customer_orders_count": 1,
+        "purchased_skus": [
+          "SKU-KB-PRO"
+        ],
+        "candidate_count": 17,
+        "affinity_matches": [
+          "SKU-MS-WIRELESS"
+        ]
+      },
+      "result": "success",
+      "reason": "Gathered signals: Kabir Das (new), 1 catalog affinity match(es)",
+      "id": "21db877c-6b10-4c35-95d7-694c082056b6",
+      "created_at": "2026-09-05T16:06:10.738Z"
+    },
+    {
+      "order_id": "ord_demo_07_reject_discount",
+      "stage": "decision",
+      "payload": {
+        "action": "cross_sell",
+        "recommended_sku": "SKU-WR-WOOD",
+        "reason": "Customer bought mechanical keyboard; aggressive promotional campaign recommends 25% bundle discount.",
+        "discount_pct": 25,
+        "confidence": 0.89
+      },
+      "result": "success",
+      "reason": "Customer bought mechanical keyboard; aggressive promotional campaign recommends 25% bundle discount.",
+      "id": "50886466-7b03-402c-85a7-c9c7d3a09699",
+      "created_at": "2026-09-05T16:06:10.739Z"
+    },
+    {
+      "order_id": "ord_demo_07_reject_discount",
+      "stage": "gate",
+      "payload": {
+        "decision": {
+          "action": "cross_sell",
+          "recommended_sku": "SKU-WR-WOOD",
+          "reason": "Customer bought mechanical keyboard; aggressive promotional campaign recommends 25% bundle discount.",
+          "discount_pct": 25,
+          "confidence": 0.89
+        },
+        "accepted": false,
+        "ruleViolated": "max_discount_exceeded"
+      },
+      "result": "rejected",
+      "reason": "Discount exceeds 15% cap (got 25%)",
+      "id": "c52b6950-ec2e-421d-ad65-a504b27a30bd",
+      "created_at": "2026-09-05T16:06:10.740Z"
+    },
+    {
+      "order_id": "ord_demo_06_mouse_accept",
+      "stage": "trigger",
+      "payload": {
+        "order_id": "ord_demo_06_mouse_accept",
+        "amount": 4999,
+        "items_count": 1,
+        "status": "paid"
+      },
+      "result": "success",
+      "reason": "Order triggered pipeline: ₹4999 with 1 item(s)",
+      "id": "0eb489f3-8ed4-47e4-ab6b-e9279e015fc5",
+      "created_at": "2026-09-05T16:06:11.047Z"
+    },
+    {
+      "order_id": "ord_demo_06_mouse_accept",
+      "stage": "signal",
+      "payload": {
+        "order_id": "ord_demo_06_mouse_accept",
+        "customer_tier": "repeat",
+        "customer_orders_count": 4,
+        "purchased_skus": [
+          "SKU-MS-WIRELESS"
+        ],
+        "candidate_count": 17,
+        "affinity_matches": [
+          "SKU-KB-PRO"
+        ]
+      },
+      "result": "success",
+      "reason": "Gathered signals: Neha Reddy (repeat), 1 catalog affinity match(es)",
+      "id": "ec81cb49-e76e-40ad-9b71-66e8998acb2f",
+      "created_at": "2026-09-05T16:06:11.048Z"
+    },
+    {
+      "order_id": "ord_demo_06_mouse_accept",
+      "stage": "decision",
+      "payload": {
+        "action": "cross_sell",
+        "recommended_sku": "SKU-MP-XL",
+        "reason": "Ultralight gaming mouse buyer benefits from high-speed Cordura extended mousepad.",
+        "discount_pct": 10,
+        "confidence": 0.91
+      },
+      "result": "success",
+      "reason": "Ultralight gaming mouse buyer benefits from high-speed Cordura extended mousepad.",
+      "id": "098f456e-d1c7-42a0-8d08-83bf15e72a02",
+      "created_at": "2026-09-05T16:06:11.049Z"
+    },
+    {
+      "order_id": "ord_demo_06_mouse_accept",
+      "stage": "gate",
+      "payload": {
+        "decision": {
+          "action": "cross_sell",
+          "recommended_sku": "SKU-MP-XL",
+          "reason": "Ultralight gaming mouse buyer benefits from high-speed Cordura extended mousepad.",
+          "discount_pct": 10,
+          "confidence": 0.91
+        },
+        "accepted": true,
+        "ruleViolated": null
+      },
+      "result": "accepted",
+      "reason": "All deterministic bounds satisfied (discount <= 15%, conf >= 0.60, valid SKU, eligible order)",
+      "id": "0b6db6d6-05dd-4c62-8fbb-54235725bf38",
+      "created_at": "2026-09-05T16:06:11.049Z"
+    },
+    {
+      "order_id": "ord_demo_06_mouse_accept",
+      "stage": "execution",
+      "payload": {
+        "payment_link_id": "plink_test_r1pa6jvd",
+        "short_url": "https://rzp.io/i/plink_test_r1pa6jvd",
+        "amount": 1169,
+        "currency": "INR",
+        "status": "created",
+        "reference_id": "ref_6_mouse_accept_SKU-MP-XL_wfeb"
+      },
+      "result": "success",
+      "reason": "Payment Link generated (https://rzp.io/i/plink_test_r1pa6jvd) for ₹1169 (10% OFF on SKU-MP-XL)",
+      "id": "70829637-4836-41db-9cd0-5894da91d75f",
+      "created_at": "2026-09-05T16:06:11.606Z"
+    },
+    {
+      "order_id": "ord_demo_05_chair_accept",
+      "stage": "trigger",
+      "payload": {
+        "order_id": "ord_demo_05_chair_accept",
+        "amount": 18499,
+        "items_count": 1,
+        "status": "paid"
+      },
+      "result": "success",
+      "reason": "Order triggered pipeline: ₹18499 with 1 item(s)",
+      "id": "8e6b0cf4-3638-4bce-802f-4096a4f38fd7",
+      "created_at": "2026-09-05T16:06:11.923Z"
+    },
+    {
+      "order_id": "ord_demo_05_chair_accept",
+      "stage": "signal",
+      "payload": {
+        "order_id": "ord_demo_05_chair_accept",
+        "customer_tier": "new",
+        "customer_orders_count": 1,
+        "purchased_skus": [
+          "SKU-CHAIR-ERGO"
+        ],
+        "candidate_count": 17,
+        "affinity_matches": []
+      },
+      "result": "success",
+      "reason": "Gathered signals: Vikram Verma (new), 0 catalog affinity match(es)",
+      "id": "08aac44d-0f89-4815-8e4a-ca8fd7c33023",
+      "created_at": "2026-09-05T16:06:11.924Z"
+    },
+    {
+      "order_id": "ord_demo_05_chair_accept",
+      "stage": "decision",
+      "payload": {
+        "action": "cross_sell",
+        "recommended_sku": "SKU-LUMBAR-PILLOW",
+        "reason": "Ergonomic furniture buyer; cross-selling breathable memory foam lumbar cushion.",
+        "discount_pct": 14,
+        "confidence": 0.82
+      },
+      "result": "success",
+      "reason": "Ergonomic furniture buyer; cross-selling breathable memory foam lumbar cushion.",
+      "id": "e7eed73c-2d5a-403c-8c4b-67fae3783798",
+      "created_at": "2026-09-05T16:06:11.924Z"
+    },
+    {
+      "order_id": "ord_demo_05_chair_accept",
+      "stage": "gate",
+      "payload": {
+        "decision": {
+          "action": "cross_sell",
+          "recommended_sku": "SKU-LUMBAR-PILLOW",
+          "reason": "Ergonomic furniture buyer; cross-selling breathable memory foam lumbar cushion.",
+          "discount_pct": 14,
+          "confidence": 0.82
+        },
+        "accepted": true,
+        "ruleViolated": null
+      },
+      "result": "accepted",
+      "reason": "All deterministic bounds satisfied (discount <= 15%, conf >= 0.60, valid SKU, eligible order)",
+      "id": "20afda5f-d876-499e-b230-0c0aa4c15993",
+      "created_at": "2026-09-05T16:06:11.926Z"
+    },
+    {
+      "order_id": "ord_demo_05_chair_accept",
+      "stage": "execution",
+      "payload": {
+        "payment_link_id": "plink_test_n5law9pl",
+        "short_url": "https://rzp.io/i/plink_test_n5law9pl",
+        "amount": 1375,
+        "currency": "INR",
+        "status": "created",
+        "reference_id": "ref_5_chair_accept_SKU-LUMBAR-PIL_wfeb"
+      },
+      "result": "success",
+      "reason": "Payment Link generated (https://rzp.io/i/plink_test_n5law9pl) for ₹1375 (14% OFF on SKU-LUMBAR-PILLOW)",
+      "id": "20de4cc7-bf4b-48a3-871e-94733d305498",
+      "created_at": "2026-09-05T16:06:12.363Z"
+    },
+    {
+      "order_id": "ord_demo_04_hp_accept",
+      "stage": "trigger",
+      "payload": {
+        "order_id": "ord_demo_04_hp_accept",
+        "amount": 12999,
+        "items_count": 1,
+        "status": "paid"
+      },
+      "result": "success",
+      "reason": "Order triggered pipeline: ₹12999 with 1 item(s)",
+      "id": "7573a4e8-443b-4dfb-a2a7-3cb06ce986db",
+      "created_at": "2026-09-05T16:06:12.672Z"
+    },
+    {
+      "order_id": "ord_demo_04_hp_accept",
+      "stage": "signal",
+      "payload": {
+        "order_id": "ord_demo_04_hp_accept",
+        "customer_tier": "new",
+        "customer_orders_count": 2,
+        "purchased_skus": [
+          "SKU-ANC-HEADPHONE"
+        ],
+        "candidate_count": 17,
+        "affinity_matches": []
+      },
+      "result": "success",
+      "reason": "Gathered signals: Ananya Iyer (new), 0 catalog affinity match(es)",
+      "id": "dfc48950-4cec-4f4a-8aad-ad60386cb0bd",
+      "created_at": "2026-09-05T16:06:12.673Z"
+    },
+    {
+      "order_id": "ord_demo_04_hp_accept",
+      "stage": "decision",
+      "payload": {
+        "action": "cross_sell",
+        "recommended_sku": "SKU-HP-STAND",
+        "reason": "Premium headphone purchase paired with protective minimalist aluminum desk stand.",
+        "discount_pct": 8,
+        "confidence": 0.79
+      },
+      "result": "success",
+      "reason": "Premium headphone purchase paired with protective minimalist aluminum desk stand.",
+      "id": "36d817e2-f0b1-4b7a-bcc2-7d1fd4ac2aea",
+      "created_at": "2026-09-05T16:06:12.674Z"
+    },
+    {
+      "order_id": "ord_demo_04_hp_accept",
+      "stage": "gate",
+      "payload": {
+        "decision": {
+          "action": "cross_sell",
+          "recommended_sku": "SKU-HP-STAND",
+          "reason": "Premium headphone purchase paired with protective minimalist aluminum desk stand.",
+          "discount_pct": 8,
+          "confidence": 0.79
+        },
+        "accepted": true,
+        "ruleViolated": null
+      },
+      "result": "accepted",
+      "reason": "All deterministic bounds satisfied (discount <= 15%, conf >= 0.60, valid SKU, eligible order)",
+      "id": "2b1bfa9e-daac-4ea4-a55f-6031d12ed4d7",
+      "created_at": "2026-09-05T16:06:12.675Z"
+    },
+    {
+      "order_id": "ord_demo_04_hp_accept",
+      "stage": "execution",
+      "payload": {
+        "payment_link_id": "plink_test_xavfqekj",
+        "short_url": "https://rzp.io/i/plink_test_xavfqekj",
+        "amount": 1563,
+        "currency": "INR",
+        "status": "created",
+        "reference_id": "ref_o_04_hp_accept_SKU-HP-STAND_wfec"
+      },
+      "result": "success",
+      "reason": "Payment Link generated (https://rzp.io/i/plink_test_xavfqekj) for ₹1563 (8% OFF on SKU-HP-STAND)",
+      "id": "22aa0fc9-dbd9-47b7-9c86-4238ba8db109",
+      "created_at": "2026-09-05T16:06:12.743Z"
+    },
+    {
+      "order_id": "ord_demo_03_chg_accept",
+      "stage": "trigger",
+      "payload": {
+        "order_id": "ord_demo_03_chg_accept",
+        "amount": 2499,
+        "items_count": 1,
+        "status": "paid"
+      },
+      "result": "success",
+      "reason": "Order triggered pipeline: ₹2499 with 1 item(s)",
+      "id": "c7227bce-cd96-477c-bf13-c5af977aa62c",
+      "created_at": "2026-09-05T16:06:13.049Z"
+    },
+    {
+      "order_id": "ord_demo_03_chg_accept",
+      "stage": "signal",
+      "payload": {
+        "order_id": "ord_demo_03_chg_accept",
+        "customer_tier": "repeat",
+        "customer_orders_count": 5,
+        "purchased_skus": [
+          "SKU-GAN-65W"
+        ],
+        "candidate_count": 17,
+        "affinity_matches": [
+          "SKU-GAN-100W",
+          "SKU-CABLE-USBC"
+        ]
+      },
+      "result": "success",
+      "reason": "Gathered signals: Rohan Gupta (repeat), 2 catalog affinity match(es)",
+      "id": "908b8808-1f90-4be5-9bda-d284fc303fe4",
+      "created_at": "2026-09-05T16:06:13.050Z"
+    },
+    {
+      "order_id": "ord_demo_03_chg_accept",
+      "stage": "decision",
+      "payload": {
+        "action": "upsell",
+        "recommended_sku": "SKU-GAN-100W",
+        "reason": "Customer seeking charging capacity; upsell to quad-port 100W GaN desktop charger with modest discount.",
+        "discount_pct": 10,
+        "confidence": 0.85
+      },
+      "result": "success",
+      "reason": "Customer seeking charging capacity; upsell to quad-port 100W GaN desktop charger with modest discount.",
+      "id": "f3e70640-0358-48e3-b3be-1f7c1d5bf49c",
+      "created_at": "2026-09-05T16:06:13.051Z"
+    },
+    {
+      "order_id": "ord_demo_03_chg_accept",
+      "stage": "gate",
+      "payload": {
+        "decision": {
+          "action": "upsell",
+          "recommended_sku": "SKU-GAN-100W",
+          "reason": "Customer seeking charging capacity; upsell to quad-port 100W GaN desktop charger with modest discount.",
+          "discount_pct": 10,
+          "confidence": 0.85
+        },
+        "accepted": true,
+        "ruleViolated": null
+      },
+      "result": "accepted",
+      "reason": "All deterministic bounds satisfied (discount <= 15%, conf >= 0.60, valid SKU, eligible order)",
+      "id": "8814c909-66cf-478a-b6ef-c9aa736aabd8",
+      "created_at": "2026-09-05T16:06:13.052Z"
+    },
+    {
+      "order_id": "ord_demo_03_chg_accept",
+      "stage": "execution",
+      "payload": {
+        "payment_link_id": "plink_test_0yntq6z3",
+        "short_url": "https://rzp.io/i/plink_test_0yntq6z3",
+        "amount": 3869,
+        "currency": "INR",
+        "status": "created",
+        "reference_id": "ref__03_chg_accept_SKU-GAN-100W_wfed"
+      },
+      "result": "success",
+      "reason": "Payment Link generated (https://rzp.io/i/plink_test_0yntq6z3) for ₹3869 (10% OFF on SKU-GAN-100W)",
+      "id": "7ec026fd-428a-4eb3-a8fe-cb305ffce1f1",
+      "created_at": "2026-09-05T16:06:13.111Z"
+    },
+    {
+      "order_id": "ord_demo_02_lp_accept",
+      "stage": "trigger",
+      "payload": {
+        "order_id": "ord_demo_02_lp_accept",
+        "amount": 89999,
+        "items_count": 1,
+        "status": "paid"
+      },
+      "result": "success",
+      "reason": "Order triggered pipeline: ₹89999 with 1 item(s)",
+      "id": "a6a326d4-cf44-4dc6-8efc-ca13cc1c8cd9",
+      "created_at": "2026-09-05T16:06:13.416Z"
+    },
+    {
+      "order_id": "ord_demo_02_lp_accept",
+      "stage": "signal",
+      "payload": {
+        "order_id": "ord_demo_02_lp_accept",
+        "customer_tier": "new",
+        "customer_orders_count": 1,
+        "purchased_skus": [
+          "SKU-LP-15"
+        ],
+        "candidate_count": 17,
+        "affinity_matches": []
+      },
+      "result": "success",
+      "reason": "Gathered signals: Priya Sharma (new), 0 catalog affinity match(es)",
+      "id": "1eeef784-bc9c-412c-9583-e261cfa48375",
+      "created_at": "2026-09-05T16:06:13.417Z"
+    },
+    {
+      "order_id": "ord_demo_02_lp_accept",
+      "stage": "decision",
+      "payload": {
+        "action": "cross_sell",
+        "recommended_sku": "SKU-HUB-8IN1",
+        "reason": "Ultrabook users frequently require multiport expansion; offering complementary aluminum hub.",
+        "discount_pct": 12,
+        "confidence": 0.92
+      },
+      "result": "success",
+      "reason": "Ultrabook users frequently require multiport expansion; offering complementary aluminum hub.",
+      "id": "75ed6a35-753b-4437-85ce-18e2cd34f65d",
+      "created_at": "2026-09-05T16:06:13.418Z"
+    },
+    {
+      "order_id": "ord_demo_02_lp_accept",
+      "stage": "gate",
+      "payload": {
+        "decision": {
+          "action": "cross_sell",
+          "recommended_sku": "SKU-HUB-8IN1",
+          "reason": "Ultrabook users frequently require multiport expansion; offering complementary aluminum hub.",
+          "discount_pct": 12,
+          "confidence": 0.92
+        },
+        "accepted": true,
+        "ruleViolated": null
+      },
+      "result": "accepted",
+      "reason": "All deterministic bounds satisfied (discount <= 15%, conf >= 0.60, valid SKU, eligible order)",
+      "id": "b076da0c-2d0d-417d-8414-6030baaba8cb",
+      "created_at": "2026-09-05T16:06:13.420Z"
+    },
+    {
+      "order_id": "ord_demo_02_lp_accept",
+      "stage": "execution",
+      "payload": {
+        "payment_link_id": "plink_test_r167qw6p",
+        "short_url": "https://rzp.io/i/plink_test_r167qw6p",
+        "amount": 3079,
+        "currency": "INR",
+        "status": "created",
+        "reference_id": "ref_o_02_lp_accept_SKU-HUB-8IN1_wfed"
+      },
+      "result": "success",
+      "reason": "Payment Link generated (https://rzp.io/i/plink_test_r167qw6p) for ₹3079 (12% OFF on SKU-HUB-8IN1)",
+      "id": "08b46732-2be9-4e06-b386-6aad1d409ad2",
+      "created_at": "2026-09-05T16:06:13.545Z"
+    },
+    {
+      "order_id": "ord_demo_01_kb_accept",
+      "stage": "trigger",
+      "payload": {
+        "order_id": "ord_demo_01_kb_accept",
+        "amount": 8499,
+        "items_count": 1,
+        "status": "paid"
+      },
+      "result": "success",
+      "reason": "Order triggered pipeline: ₹8499 with 1 item(s)",
+      "id": "801ad0e4-15d5-4f4a-af21-a6e63094d742",
+      "created_at": "2026-09-05T16:06:13.858Z"
+    },
+    {
+      "order_id": "ord_demo_01_kb_accept",
+      "stage": "signal",
+      "payload": {
+        "order_id": "ord_demo_01_kb_accept",
+        "customer_tier": "repeat",
+        "customer_orders_count": 3,
+        "purchased_skus": [
+          "SKU-KB-PRO"
+        ],
+        "candidate_count": 17,
+        "affinity_matches": [
+          "SKU-MS-WIRELESS"
+        ]
+      },
+      "result": "success",
+      "reason": "Gathered signals: Aarav Mehta (repeat), 1 catalog affinity match(es)",
+      "id": "2d309ceb-3d0d-4b44-9975-52644274c3e0",
+      "created_at": "2026-09-05T16:06:13.861Z"
+    },
+    {
+      "order_id": "ord_demo_01_kb_accept",
+      "stage": "decision",
+      "payload": {
+        "action": "cross_sell",
+        "recommended_sku": "SKU-WR-WOOD",
+        "reason": "Customer purchased high-end mechanical keyboard; ergonomic wrist rest is a high-affinity pairing.",
+        "discount_pct": 10,
+        "confidence": 0.88
+      },
+      "result": "success",
+      "reason": "Customer purchased high-end mechanical keyboard; ergonomic wrist rest is a high-affinity pairing.",
+      "id": "6660416f-b162-415e-9351-90aef29bba37",
+      "created_at": "2026-09-05T16:06:13.862Z"
+    },
+    {
+      "order_id": "ord_demo_01_kb_accept",
+      "stage": "gate",
+      "payload": {
+        "decision": {
+          "action": "cross_sell",
+          "recommended_sku": "SKU-WR-WOOD",
+          "reason": "Customer purchased high-end mechanical keyboard; ergonomic wrist rest is a high-affinity pairing.",
+          "discount_pct": 10,
+          "confidence": 0.88
+        },
+        "accepted": true,
+        "ruleViolated": null
+      },
+      "result": "accepted",
+      "reason": "All deterministic bounds satisfied (discount <= 15%, conf >= 0.60, valid SKU, eligible order)",
+      "id": "a656fb1f-30d4-4721-9556-e81e0534c607",
+      "created_at": "2026-09-05T16:06:13.862Z"
+    },
+    {
+      "order_id": "ord_demo_01_kb_accept",
+      "stage": "execution",
+      "payload": {
+        "payment_link_id": "plink_test_h5ga3hdt",
+        "short_url": "https://rzp.io/i/plink_test_h5ga3hdt",
+        "amount": 1349,
+        "currency": "INR",
+        "status": "created",
+        "reference_id": "ref_o_01_kb_accept_SKU-WR-WOOD_wfed"
+      },
+      "result": "success",
+      "reason": "Payment Link generated (https://rzp.io/i/plink_test_h5ga3hdt) for ₹1349 (10% OFF on SKU-WR-WOOD)",
+      "id": "d136aa11-5a31-4642-944a-813320fe8b96",
+      "created_at": "2026-09-05T16:06:13.938Z"
+    }
+  ],
+  "users": []
+}

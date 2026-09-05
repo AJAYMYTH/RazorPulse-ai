@@ -141,26 +141,30 @@ import Icon from '../components/Icon.astro';
         let token = '';
         let user = null;
 
-        // Try backend API first
-        try {
-          const res = await fetch('http://localhost:3000/api/auth/signup', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, company_name: company, email, password }),
-          });
-          const data = await res.json();
-          if (res.ok && data.success) {
-            authSuccess = true;
-            token = data.token;
-            user = data.user;
-          } else {
-            throw new Error(data.error || 'Failed to create account');
+        // Try backend API only if on localhost
+        if (window.location.hostname === 'localhost') {
+          try {
+            const res = await fetch('http://localhost:3000/api/auth/signup', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ name, company_name: company, email, password }),
+              signal: AbortSignal.timeout(1200),
+            });
+            const data = await res.json();
+            if (res.ok && data.success) {
+              authSuccess = true;
+              token = data.token;
+              user = data.user;
+            } else if (data.error?.includes('already exists')) {
+              throw new Error(data.error);
+            }
+          } catch (apiErr) {
+            if (apiErr.message?.includes('already exists')) throw apiErr;
           }
-        } catch (apiErr) {
-          // Resilient client fallback
-          if (apiErr.message.includes('already exists')) {
-            throw apiErr;
-          }
+        }
+
+        // Resilient client demo registration (runs instantly on Vercel)
+        if (!authSuccess) {
           const merchantId = 'mch_' + Date.now();
           token = 'rzp_token_new_' + btoa(email);
           user = {
