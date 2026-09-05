@@ -34,27 +34,27 @@ const rejectionPct = 100 - acceptancePct;
       Continuous agent pipeline monitoring Razorpay merchant orders. Leveraging LLMs for intelligent co-purchase recommendations, shielded by deterministic margin gates before touching any money API.
     </p>
 
-    <!-- Marketing Buttons -->
+    <!-- Quick Action Bar -->
     <div class="anime-hero-fade flex flex-wrap items-center gap-3 pt-2">
       <a
         href="/orders"
-        class="h-9 px-4 rounded-pill bg-ink text-white text-xs font-medium hover:bg-[#2e2e2e] transition shadow-whisper inline-flex items-center space-x-2 cursor-pointer"
+        class="h-9 px-4 rounded-pill bg-ink text-white text-xs font-medium hover:bg-[#2e2e2e] transition shadow-whisper inline-flex items-center space-x-2 cursor-pointer whitespace-nowrap"
       >
         <span>Explore All 15 Order Trails</span>
         <span>&rarr;</span>
       </a>
       <a
         href="/failures"
-        class="h-9 px-4 rounded-pill bg-canvas-elevated text-ink border border-hairline text-xs font-medium hover:bg-hairline-soft transition shadow-whisper inline-flex items-center space-x-2 cursor-pointer"
+        class="h-9 px-4 rounded-pill bg-white text-ink border border-[#d4d4d4] hover:border-ink/60 text-xs font-medium hover:bg-[#f5f5f5] transition shadow-whisper inline-flex items-center space-x-2 cursor-pointer whitespace-nowrap"
       >
         <span>Inspect Handled Failure Log</span>
-        <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-error flex-shrink-0"></span>
       </a>
       <button
         onclick="triggerLiveBatch()"
-        class="h-9 px-4 rounded-pill bg-canvas-elevated text-body border border-hairline hover:text-ink text-xs font-medium transition shadow-whisper inline-flex items-center space-x-1.5 cursor-pointer"
+        class="h-9 px-4 rounded-pill bg-white text-ink border border-[#d4d4d4] hover:border-ink/60 hover:bg-[#f5f5f5] text-xs font-medium transition shadow-whisper inline-flex items-center space-x-2 cursor-pointer whitespace-nowrap"
       >
-        <Icon name="zap" class="w-3.5 h-3.5" />
+        <Icon name="zap" class="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
         <span>Re-Run Pipeline</span>
       </button>
     </div>

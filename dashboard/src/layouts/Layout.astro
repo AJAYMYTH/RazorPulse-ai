@@ -42,19 +42,19 @@ const { title, activeNav = 'summary', isProtected = true } = Astro.props;
     
     <div>
       <!-- Top Utility Notice Bar -->
-      <div class="border-b border-hairline bg-canvas text-xs font-mono py-1.5 px-6">
-        <div class="max-w-[1200px] mx-auto flex items-center justify-between text-mute">
-          <div class="flex items-center space-x-3">
+      <div class="border-b border-hairline bg-canvas text-xs font-mono py-1.5 px-4 sm:px-6">
+        <div class="max-w-[1240px] mx-auto flex items-center justify-between text-mute gap-4 overflow-x-auto whitespace-nowrap">
+          <div class="flex items-center space-x-3 flex-shrink-0">
             <span class="inline-flex items-center text-ink font-medium">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse flex-shrink-0"></span>
               Razorpay Buildathon 2026 · Track 1: AI Growth & Agentic Commerce
             </span>
             <span class="hidden sm:inline text-hairline">|</span>
-            <span class="hidden sm:inline">Autonomous Upsell & Cross-Sell Architecture</span>
+            <span class="hidden md:inline">Autonomous Upsell & Cross-Sell Architecture</span>
           </div>
-          <div class="flex items-center space-x-3">
-            <span class="hidden md:inline">Gateway: <strong class="text-ink">Razorpay Test Mode</strong></span>
-            <span class="text-hairline">|</span>
+          <div class="flex items-center space-x-3 flex-shrink-0">
+            <span class="hidden sm:inline">Gateway: <strong class="text-ink">Razorpay Test Mode</strong></span>
+            <span class="hidden sm:inline text-hairline">|</span>
             <span class="text-ink font-semibold">Production Ready</span>
           </div>
         </div>
@@ -62,21 +62,21 @@ const { title, activeNav = 'summary', isProtected = true } = Astro.props;
 
       <!-- Main Sticky Navigation Bar -->
       <header class="sticky top-0 z-50 border-b border-hairline bg-canvas/90 backdrop-blur-md">
-        <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-          <div class="flex items-center space-x-8">
+        <div class="max-w-[1240px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+          <div class="flex items-center space-x-4 lg:space-x-8 min-w-0 flex-shrink-0">
             <!-- Brand Logo Lockup -->
-            <a href="/" class="flex items-center focus:outline-none">
+            <a href="/" class="flex items-center focus:outline-none flex-shrink-0">
               <Logo size="md" />
             </a>
 
             <!-- Nav Links (Geist nav-link spec) -->
-            <nav class="hidden sm:flex items-center space-x-1">
+            <nav class="hidden md:flex items-center space-x-1 flex-shrink-0">
               <a
                 href="/"
                 class:list={[
-                  'px-3.5 py-1.5 rounded-full text-sm font-normal transition-colors',
+                  'px-3 py-1.5 rounded-full text-xs font-medium transition-colors whitespace-nowrap flex-shrink-0',
                   activeNav === 'summary'
-                    ? 'bg-hairline text-ink font-medium'
+                    ? 'bg-[#171717]/10 text-ink font-semibold'
                     : 'text-body hover:text-ink hover:bg-hairline-soft',
                 ]}
               >
@@ -85,9 +85,9 @@ const { title, activeNav = 'summary', isProtected = true } = Astro.props;
               <a
                 href="/orders"
                 class:list={[
-                  'px-3.5 py-1.5 rounded-full text-sm font-normal transition-colors flex items-center space-x-1.5',
+                  'px-3 py-1.5 rounded-full text-xs font-medium transition-colors inline-flex items-center space-x-1.5 whitespace-nowrap flex-shrink-0',
                   activeNav === 'orders'
-                    ? 'bg-hairline text-ink font-medium'
+                    ? 'bg-[#171717]/10 text-ink font-semibold'
                     : 'text-body hover:text-ink hover:bg-hairline-soft',
                 ]}
               >
@@ -97,21 +97,21 @@ const { title, activeNav = 'summary', isProtected = true } = Astro.props;
               <a
                 href="/failures"
                 class:list={[
-                  'px-3.5 py-1.5 rounded-full text-sm font-normal transition-colors flex items-center space-x-1.5',
+                  'px-3 py-1.5 rounded-full text-xs font-medium transition-colors inline-flex items-center space-x-1.5 whitespace-nowrap flex-shrink-0',
                   activeNav === 'failures'
-                    ? 'bg-hairline text-ink font-medium'
+                    ? 'bg-[#171717]/10 text-ink font-semibold'
                     : 'text-body hover:text-ink hover:bg-hairline-soft',
                 ]}
               >
                 <span>Failure Log</span>
-                <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-error flex-shrink-0"></span>
               </a>
               <a
                 href="/settings"
                 class:list={[
-                  'px-3.5 py-1.5 rounded-full text-sm font-normal transition-colors hidden md:flex items-center space-x-1.5',
+                  'px-3 py-1.5 rounded-full text-xs font-medium transition-colors hidden lg:inline-flex items-center space-x-1.5 whitespace-nowrap flex-shrink-0',
                   activeNav === 'settings'
-                    ? 'bg-hairline text-ink font-medium'
+                    ? 'bg-[#171717]/10 text-ink font-semibold'
                     : 'text-body hover:text-ink hover:bg-hairline-soft',
                 ]}
               >
@@ -121,28 +121,32 @@ const { title, activeNav = 'summary', isProtected = true } = Astro.props;
           </div>
 
           <!-- Right Action Controls -->
-          <div class="flex items-center space-x-2 sm:space-x-3">
+          <div class="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
             <button
               id="re-run-batch-btn"
               onclick="triggerLiveBatch()"
-              class="h-8 px-3.5 rounded-[6px] bg-canvas-elevated border border-hairline text-ink hover:bg-hairline-soft text-xs font-medium transition shadow-whisper inline-flex items-center space-x-1.5 focus:outline-none cursor-pointer"
+              class="h-8 px-3.5 rounded-[6px] bg-white border border-[#d4d4d4] hover:border-ink hover:bg-[#f5f5f5] text-ink text-xs font-medium transition shadow-whisper inline-flex items-center justify-center gap-2 whitespace-nowrap focus:outline-none cursor-pointer flex-shrink-0"
+              title="Re-run batch orders pipeline"
             >
-              <svg id="re-run-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+              <svg id="re-run-icon" class="w-3.5 h-3.5 flex-shrink-0 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 2v6h-6"></path>
+                <path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path>
+                <path d="M3 22v-6h6"></path>
+                <path d="M21 12a9 9 0 0 1-15 6.7L3 16"></path>
               </svg>
-              <span id="re-run-text" class="hidden sm:inline">Run Pipeline</span>
+              <span id="re-run-text" class="whitespace-nowrap font-medium text-xs leading-none">Run Pipeline</span>
             </button>
 
             <a
               href="/orders"
-              class="hidden md:inline-flex items-center h-8 px-3.5 rounded-[6px] bg-ink text-white text-xs font-medium hover:bg-[#2e2e2e] transition shadow-whisper"
+              class="hidden lg:inline-flex items-center justify-center h-8 px-3.5 rounded-[6px] bg-ink hover:bg-[#2e2e2e] text-white text-xs font-medium transition shadow-whisper whitespace-nowrap flex-shrink-0 gap-1.5"
             >
               <span>Audit Trails</span>
-              <span class="ml-1.5">&rarr;</span>
+              <span>&rarr;</span>
             </a>
 
             <!-- Merchant User Authentication Pill / Menu -->
-            <div id="nav-auth-container" class="relative">
+            <div id="nav-auth-container" class="relative flex-shrink-0">
               <!-- Loading Skeleton -->
               <div id="nav-auth-loading" class="w-8 h-8 rounded-full bg-hairline-soft animate-pulse"></div>
 
@@ -152,13 +156,13 @@ const { title, activeNav = 'summary', isProtected = true } = Astro.props;
                   type="button"
                   onclick="toggleUserMenu()"
                   id="btn-user-menu"
-                  class="h-8 pl-1.5 pr-2.5 rounded-full bg-canvas-elevated border border-hairline hover:border-ink/40 text-ink text-xs font-medium transition shadow-whisper inline-flex items-center space-x-1.5 cursor-pointer focus:outline-none"
+                  class="h-8 pl-1.5 pr-2.5 rounded-full bg-white border border-[#d4d4d4] hover:border-ink/40 text-ink text-xs font-medium transition shadow-whisper inline-flex items-center space-x-1.5 cursor-pointer focus:outline-none whitespace-nowrap flex-shrink-0"
                   title="Merchant Account"
                 >
-                  <span class="w-5 h-5 rounded-full bg-ink text-white font-mono text-[10px] font-bold flex items-center justify-center shadow-whisper" id="user-avatar-initials">AK</span>
-                  <span class="max-w-[120px] truncate hidden xl:inline" id="user-display-name">Apex Electronics</span>
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                  <svg class="w-3 h-3 text-mute" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <span class="w-5 h-5 rounded-full bg-ink text-white font-mono text-[10px] font-bold flex items-center justify-center shadow-whisper flex-shrink-0" id="user-avatar-initials">AK</span>
+                  <span class="max-w-[120px] truncate hidden xl:inline font-medium" id="user-display-name">Apex Electronics</span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                  <svg class="w-3 h-3 text-mute flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </button>
