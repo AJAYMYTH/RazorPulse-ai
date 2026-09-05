@@ -23,7 +23,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Monorepo Dependencies
-        run: npm install
+        run: npm ci
 
       - name: TypeCheck & Compile Backend (tsc)
         run: npm --prefix backend run build

@@ -203,3 +203,9 @@ This living document tracks architectural decisions, feature implementations, ph
 - **`CODE_OF_CONDUCT.md`:** Contributor Covenant Code of Conduct v2.1.
 - **`CONTRIBUTING.md`:** Development setup, testing requirements (`npm test`, `npm run batch`, `npm run build`), architectural invariants, and Conventional Commits format.
 - Updated `README.md` with links to all governance documents.
+
+### [2026-09-05] - CI/CD Lockfile Resolution & npm ci Optimization
+- Removed `package-lock.json` from `.gitignore` to allow standard deterministic version locking across CI environments.
+- Regenerated fresh monorepo `package-lock.json` covering root, `backend`, and `dashboard` workspaces.
+- Updated `.github/workflows/ci.yml` to utilize `npm ci` for faster, reproducible clean builds with Node 20 caching.
+- Tested and verified local test suite (12/12 passing) and batch simulation (15 orders processed cleanly).
