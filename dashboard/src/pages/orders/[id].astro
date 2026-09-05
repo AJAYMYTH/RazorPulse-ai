@@ -390,30 +390,49 @@ const rule4Pass = confVal >= 0.60;
                 <div>
                   <div class="flex items-center space-x-2">
                     <span class="text-mute text-[10px] uppercase block">Payment Link URL:</span>
-                    {executionStage?.payload?.short_url?.includes('plink_test') && (
+                    {executionStage?.payload?.short_url?.includes('plink_test') ? (
                       <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-600 border border-amber-500/20 font-semibold">
                         Demo Sandbox Link
+                      </span>
+                    ) : (
+                      <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 font-semibold flex items-center space-x-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>Active Live Link</span>
                       </span>
                     )}
                   </div>
                   <div class="flex items-center space-x-2 mt-1">
-                    <button
-                      type="button"
-                      onclick="openCheckoutModal()"
-                      class="text-[#0066FF] hover:underline font-semibold flex items-center space-x-1 text-sm cursor-pointer text-left"
-                    >
-                      <span class="truncate max-w-[260px] sm:max-w-[340px]">{executionStage?.payload?.short_url || 'https://rzp.io/rzp/test'}</span>
-                      <span>↗</span>
-                    </button>
-                    <a
-                      href={executionStage?.payload?.short_url || '#'}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-[10px] text-mute hover:text-ink underline ml-1"
-                      title="Open external URL directly on rzp.io (Note: mock IDs return 404 on live rzp.io servers)"
-                    >
-                      (Raw rzp.io)
-                    </a>
+                    {executionStage?.payload?.short_url?.includes('plink_test') ? (
+                      <button
+                        type="button"
+                        onclick="openCheckoutModal()"
+                        class="text-[#0066FF] hover:underline font-semibold flex items-center space-x-1 text-sm cursor-pointer text-left"
+                      >
+                        <span class="truncate max-w-[260px] sm:max-w-[340px]">{executionStage?.payload?.short_url || 'https://rzp.io/rzp/test'}</span>
+                        <span>↗</span>
+                      </button>
+                    ) : (
+                      <a
+                        href={executionStage?.payload?.short_url || '#'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-emerald-700 hover:text-emerald-800 hover:underline font-semibold flex items-center space-x-1 text-sm text-left font-mono"
+                      >
+                        <span class="truncate max-w-[260px] sm:max-w-[340px]">{executionStage?.payload?.short_url}</span>
+                        <span>↗</span>
+                      </a>
+                    )}
+                    {executionStage?.payload?.short_url?.includes('plink_test') && (
+                      <a
+                        href={executionStage?.payload?.short_url || '#'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-[10px] text-mute hover:text-ink underline ml-1"
+                        title="Open external URL directly on rzp.io (Note: mock IDs return 404 on live rzp.io servers)"
+                      >
+                        (Raw rzp.io)
+                      </a>
+                    )}
                   </div>
                 </div>
                 <div class="sm:text-right">
@@ -440,14 +459,35 @@ const rule4Pass = confVal >= 0.60;
                   >
                     Copy URL
                   </button>
+
                   <button
                     type="button"
                     onclick="openCheckoutModal()"
-                    class="h-7 px-3 rounded-[6px] bg-[#0066FF] text-white hover:bg-[#0052CC] font-medium transition cursor-pointer shadow-whisper inline-flex items-center space-x-1"
+                    class="h-7 px-3 rounded-[6px] bg-canvas-elevated border border-hairline text-ink hover:bg-hairline-soft font-medium transition cursor-pointer shadow-whisper inline-flex items-center space-x-1"
                   >
-                    <span>Preview Checkout</span>
-                    <span>↗</span>
+                    <span>Sandbox Modal</span>
                   </button>
+
+                  {executionStage?.payload?.short_url?.includes('plink_test') ? (
+                    <button
+                      type="button"
+                      onclick="openCheckoutModal()"
+                      class="h-7 px-3 rounded-[6px] bg-[#0066FF] text-white hover:bg-[#0052CC] font-medium transition cursor-pointer shadow-whisper inline-flex items-center space-x-1"
+                    >
+                      <span>Preview Checkout</span>
+                      <span>↗</span>
+                    </button>
+                  ) : (
+                    <a
+                      href={executionStage?.payload?.short_url || '#'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="h-7 px-3 rounded-[6px] bg-emerald-600 text-white hover:bg-emerald-700 font-medium transition cursor-pointer shadow-whisper inline-flex items-center space-x-1"
+                    >
+                      <span>Pay on Razorpay</span>
+                      <span>↗</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

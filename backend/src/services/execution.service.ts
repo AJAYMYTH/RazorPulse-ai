@@ -15,13 +15,18 @@ export class ExecutionService {
   public isMockMode: boolean = false;
 
   constructor() {
-    const key_id = process.env.RAZORPAY_KEY_ID;
-    const key_secret = process.env.RAZORPAY_KEY_SECRET;
+    this.refreshClient();
+  }
+
+  public refreshClient(): void {
+    const key_id = process.env.RAZORPAY_KEY_ID?.trim();
+    const key_secret = process.env.RAZORPAY_KEY_SECRET?.trim();
 
     if (key_id && key_secret && key_id.startsWith('rzp_')) {
       try {
         this.razorpayClient = new Razorpay({ key_id, key_secret });
-        console.log('💳 Razorpay official SDK initialized in Test Mode');
+        this.isMockMode = false;
+        console.log(`💳 Razorpay official SDK initialized in Test Mode (${key_id.slice(0, 12)}...)`);
       } catch (e) {
         console.warn('Failed to initialize Razorpay SDK:', e);
         this.isMockMode = true;
@@ -30,6 +35,13 @@ export class ExecutionService {
       console.log('💳 Razorpay keys not detected — operating in simulated test mode');
       this.isMockMode = true;
     }
+  }
+
+  private getClient(): any {
+    if (!this.razorpayClient && process.env.RAZORPAY_KEY_ID?.startsWith('rzp_')) {
+      this.refreshClient();
+    }
+    return this.razorpayClient;
   }
 
   /**
@@ -55,10 +67,12 @@ export class ExecutionService {
 
     let executionResult: ExecutionResult;
 
-    if (!this.isMockMode && this.razorpayClient) {
+    const client = this.getClient();
+
+    if (!this.isMockMode && client) {
       try {
         const expireBy = Math.floor(Date.now() / 1000) + expireInMinutes * 60;
-        const response: any = await this.razorpayClient.paymentLink.create({
+        const response: any = await client.paymentLink.create({
           amount: amountInPaise,
           currency: 'INR',
           accept_partial: false,

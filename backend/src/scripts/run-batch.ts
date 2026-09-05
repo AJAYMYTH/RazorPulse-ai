@@ -28,7 +28,19 @@ async function main() {
   for (const [reason, count] of Object.entries(summary.rejection_reasons)) {
     console.log(`  • ${count}x: "${reason}"`);
   }
-  console.log('===============================================================\n');
+  // Automatically sync generated links & store to dashboard demo-store.json for Vercel/frontend
+  try {
+    const fs = await import('fs');
+    const path = await import('path');
+    const backendStore = path.resolve(process.cwd(), 'data/store.json');
+    const dashboardStore = path.resolve(process.cwd(), '../dashboard/src/data/demo-store.json');
+    if (fs.existsSync(backendStore)) {
+      fs.copyFileSync(backendStore, dashboardStore);
+      console.log('✅ Synchronized generated batch store to dashboard/src/data/demo-store.json');
+    }
+  } catch (syncErr) {
+    console.warn('Notice: Could not sync demo-store.json automatically:', syncErr);
+  }
 
   process.exit(0);
 }
