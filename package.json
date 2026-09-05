@@ -6,6 +6,7 @@
     "backend",
     "dashboard"
   ],
+  "type": "module",
   "scripts": {
     "dev:backend": "npm --prefix backend run dev",
     "dev:dashboard": "npm --prefix dashboard run dev",
@@ -16,7 +17,13 @@
     "phase2": "npm --prefix backend run phase2",
     "phase3": "npm --prefix backend run phase3",
     "batch": "npm --prefix backend run batch",
+    "sync:razorpay": "node scripts/sync-razorpay.js",
+    "build:vercel": "node scripts/sync-razorpay.js && npm --prefix dashboard run build",
     "build": "npm --prefix backend run build && npm --prefix dashboard run build"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "razorpay": "^2.9.6"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"

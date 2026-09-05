@@ -469,7 +469,7 @@ const { title, activeNav = 'summary', isProtected = true } = Astro.props;
         });
       });
 
-      // Pipeline runner (Standalone Demo + Backend Compatible)
+      // Pipeline runner (Supports Local Backend + Vercel Serverless Function)
       async function triggerLiveBatch() {
         const btn = document.getElementById('re-run-batch-btn');
         const text = document.getElementById('re-run-text');
@@ -482,13 +482,15 @@ const { title, activeNav = 'summary', isProtected = true } = Astro.props;
         icon.classList.add('animate-spin');
         
         try {
-          // If backend host is reachable, ping it; otherwise run simulated demo loop
-          const hasBackend = window.location.hostname === 'localhost';
-          if (hasBackend) {
-            try {
-              await fetch('http://localhost:3000/api/orders/seed', { method: 'POST', signal: AbortSignal.timeout(1000) });
-            } catch (_) {}
-          }
+          // If on localhost, ping local backend; on Vercel, hit /api/pipeline serverless function
+          const endpoint = window.location.hostname === 'localhost'
+            ? 'http://localhost:3000/api/orders/seed'
+            : '/api/pipeline';
+
+          try {
+            await fetch(endpoint, { method: 'POST', signal: AbortSignal.timeout(3000) });
+          } catch (_) {}
+
           await new Promise((r) => setTimeout(r, 600));
           text.innerText = '15 Orders Gated!';
           await new Promise((r) => setTimeout(r, 500));

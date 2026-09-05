@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "astro",
-  "buildCommand": "npm --prefix dashboard run build",
+  "buildCommand": "npm run build:vercel",
   "outputDirectory": "dashboard/dist",
-  "installCommand": "npm --prefix dashboard install"
+  "installCommand": "npm install"
 }
