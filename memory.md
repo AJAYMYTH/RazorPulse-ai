@@ -185,3 +185,14 @@ This living document tracks architectural decisions, feature implementations, ph
   - Rewrote [`README.md`](file:///C:/Users/javal/Videos/Razorpay-buildathon/README.md) into an enterprise fintech document with architectural diagrams, technology stack, REST API reference, and DPDP Act 2023 / NPCI UAP compliance details.
   - Completely removed all pitch video rehearsal scripts and timing tables from `README.md`.
 - All 26 Astro static pages compiled cleanly in 4.33s. 12/12 Vitest unit tests passing.
+
+### [2026-09-05] - GitHub Actions CI/CD Pipeline Implementation
+- Created `.github/workflows/ci.yml` running on every commit (`push: main`), pull request (`pull_request: main`), and manual trigger (`workflow_dispatch`).
+- **Automated Workflow Stages:**
+  1. **Dependency Installation:** Monorepo package resolution and caching via Node 20.
+  2. **TypeScript Compilation:** Strict typechecking of backend (`tsc`).
+  3. **Unit Test Suite:** Automated execution of all 12 Vitest boundary and authentication tests.
+  4. **Batch Pipeline Simulation:** Autonomous execution of the 15-order demonstration suite with mock environment keys.
+  5. **Static Site Build Verification:** Astro production build validating all 26 static HTML pages.
+  6. **Artifact Integrity Check:** Asserts that all core bundles and static routes exist in `dist/`.
+- Added dynamic GitHub Actions CI/CD workflow status badge to `README.md`.

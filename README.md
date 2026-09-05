@@ -1,5 +1,6 @@
 # RazorPulse AI — Autonomous Upsell & Cross-Sell Engine
 
+[![CI/CD Pipeline](https://github.com/AJAYMYTH/RazorPulse-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/AJAYMYTH/RazorPulse-ai/actions/workflows/ci.yml)
 [![Node Version](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
 [![Razorpay SDK](https://img.shields.io/badge/Razorpay%20SDK-v2.9-0066FF.svg)](https://razorpay.com/)

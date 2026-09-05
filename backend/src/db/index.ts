@@ -334,6 +334,7 @@ class DatabaseService {
       customers: [],
       orders: [],
       decisions: [],
+      users: [],
     };
     this.persistLocalStore();
   }
