@@ -205,12 +205,11 @@ const rejectedCount = orders.filter((o: any) => o.gate_result === 'rejected').le
           <div class="col-span-2 flex flex-col items-end space-y-2">
             {o.payment_link_url ? (
               <a
-                href={o.payment_link_url}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/orders/${o.id}?preview=checkout`}
                 class="font-mono text-[11px] text-[#0066FF] hover:underline font-semibold inline-flex items-center space-x-1"
+                title={o.payment_link_url.includes('plink_test') ? 'Open interactive sandbox checkout simulation' : 'Open Razorpay Link'}
               >
-                <span>Razorpay Link ↗</span>
+                <span>{o.payment_link_url.includes('plink_test') ? 'Sandbox Link ↗' : 'Razorpay Link ↗'}</span>
               </a>
             ) : o.gate_result === 'rejected' ? (
               <span class="text-[11px] font-mono text-mute">Halted at Gate</span>
@@ -291,12 +290,11 @@ const rejectedCount = orders.filter((o: any) => o.gate_result === 'rejected').le
             <div>
               {o.payment_link_url ? (
                 <a
-                  href={o.payment_link_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={`/orders/${o.id}?preview=checkout`}
                   class="font-mono text-xs text-[#0066FF] hover:underline font-semibold inline-flex items-center space-x-1"
+                  title="Open interactive checkout preview"
                 >
-                  <span>Open Payment Link ↗</span>
+                  <span>{o.payment_link_url.includes('plink_test') ? 'Sandbox Link ↗' : 'Payment Link ↗'}</span>
                 </a>
               ) : (
                 <span class="text-xs font-mono text-mute">Protected by Gate</span>

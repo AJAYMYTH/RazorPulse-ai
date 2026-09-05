@@ -385,19 +385,36 @@ const rule4Pass = confVal >= 0.60;
 
             <p class="text-xs text-body mb-3 font-mono">{executionStage?.reason || 'Payment link generated'}</p>
 
-            <div class="bg-canvas p-4 rounded-[6px] border border-hairline space-y-3 font-mono text-xs">
+            <div id="payment-link-card" class="bg-canvas p-4 rounded-[6px] border border-hairline space-y-3 font-mono text-xs">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-hairline">
                 <div>
-                  <span class="text-mute text-[10px] uppercase block">Payment Link URL:</span>
-                  <a
-                    href={executionStage?.payload?.short_url || '#'}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-[#0066FF] hover:underline font-semibold flex items-center space-x-1 mt-0.5 text-sm"
-                  >
-                    <span>{executionStage?.payload?.short_url || 'https://rzp.io/rzp/test'}</span>
-                    <span>↗</span>
-                  </a>
+                  <div class="flex items-center space-x-2">
+                    <span class="text-mute text-[10px] uppercase block">Payment Link URL:</span>
+                    {executionStage?.payload?.short_url?.includes('plink_test') && (
+                      <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-600 border border-amber-500/20 font-semibold">
+                        Demo Sandbox Link
+                      </span>
+                    )}
+                  </div>
+                  <div class="flex items-center space-x-2 mt-1">
+                    <button
+                      type="button"
+                      onclick="openCheckoutModal()"
+                      class="text-[#0066FF] hover:underline font-semibold flex items-center space-x-1 text-sm cursor-pointer text-left"
+                    >
+                      <span class="truncate max-w-[260px] sm:max-w-[340px]">{executionStage?.payload?.short_url || 'https://rzp.io/rzp/test'}</span>
+                      <span>↗</span>
+                    </button>
+                    <a
+                      href={executionStage?.payload?.short_url || '#'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-[10px] text-mute hover:text-ink underline ml-1"
+                      title="Open external URL directly on rzp.io (Note: mock IDs return 404 on live rzp.io servers)"
+                    >
+                      (Raw rzp.io)
+                    </a>
+                  </div>
                 </div>
                 <div class="sm:text-right">
                   <span class="text-mute text-[10px] uppercase block">Discounted Amount:</span>
@@ -410,7 +427,7 @@ const rule4Pass = confVal >= 0.60;
               <div class="flex flex-wrap items-center justify-between gap-3 pt-1 text-[11px] text-mute">
                 <div>Reference ID: <span class="text-ink font-semibold">{executionStage?.payload?.reference_id}</span></div>
                 <div class="flex items-center space-x-2">
-                  <span>Status: <strong class="text-ink uppercase">{executionStage?.payload?.status || 'created'}</strong></span>
+                  <span>Status: <strong id="link-status-badge" class="text-ink uppercase">{executionStage?.payload?.status || 'created'}</strong></span>
                   <button
                     id="copy-link-btn"
                     onclick={`
@@ -423,14 +440,14 @@ const rule4Pass = confVal >= 0.60;
                   >
                     Copy URL
                   </button>
-                  <a
-                    href={executionStage?.payload?.short_url || '#'}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    type="button"
+                    onclick="openCheckoutModal()"
                     class="h-7 px-3 rounded-[6px] bg-[#0066FF] text-white hover:bg-[#0052CC] font-medium transition cursor-pointer shadow-whisper inline-flex items-center space-x-1"
                   >
-                    <span>Open ↗</span>
-                  </a>
+                    <span>Preview Checkout</span>
+                    <span>↗</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -458,4 +475,207 @@ const rule4Pass = confVal >= 0.60;
     )}
 
   </div>
+
+  <!-- Interactive Razorpay Checkout Sandbox Modal -->
+  <div id="checkout-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full overflow-hidden border border-slate-200">
+      
+      <!-- Razorpay Branded Top Header -->
+      <div class="bg-[#0c2340] text-white px-5 py-4 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-8 rounded-lg bg-[#0066FF] flex items-center justify-center font-bold text-white text-base">
+            ₹
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="font-semibold text-sm tracking-tight text-white">Razorpay Standard Checkout</span>
+              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-amber-400 text-[#0c2340] font-black uppercase tracking-wider">Test Mode</span>
+            </div>
+            <p class="text-[11px] text-slate-300">Apex Electronics · Secured by Razorpay</p>
+          </div>
+        </div>
+        <button
+          type="button"
+          onclick="closeCheckoutModal()"
+          class="text-slate-400 hover:text-white transition p-1 text-xl leading-none cursor-pointer"
+          aria-label="Close"
+        >
+          &times;
+        </button>
+      </div>
+
+      <!-- Order & Pricing Summary -->
+      <div class="p-5 bg-slate-50 border-b border-slate-200">
+        <div class="flex items-start justify-between">
+          <div>
+            <span class="text-[10px] font-mono uppercase tracking-wider text-slate-500 font-semibold">Upsell Add-On Offer</span>
+            <h4 class="font-bold text-slate-900 text-sm mt-0.5">{decisionStage?.payload?.recommended_name || 'Recommended Upgrade'}</h4>
+            <div class="text-xs text-slate-600 font-mono mt-0.5">SKU: {decisionStage?.payload?.recommended_sku || 'SKU-OFFER'}</div>
+          </div>
+          <div class="text-right">
+            <span class="text-[10px] font-mono uppercase tracking-wider text-slate-500 font-semibold">Amount to Pay</span>
+            <div class="text-xl font-extrabold text-slate-900 font-mono">
+              ₹{executionStage?.payload?.amount?.toLocaleString() || '0'}
+            </div>
+            <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">
+              {decisionStage?.payload?.discount_pct || 10}% OFF APPLIED
+            </span>
+          </div>
+        </div>
+        
+        <div class="mt-3 pt-3 border-t border-slate-200/80 flex items-center justify-between text-[11px] text-slate-600 font-mono">
+          <span>Customer: {customer?.name || 'Valued Customer'}</span>
+          <span>Order Ref: {order.id.slice(0, 14)}</span>
+        </div>
+      </div>
+
+      <!-- Payment Method Simulation -->
+      <div class="p-5 space-y-4">
+        <!-- Initial Form State -->
+        <div id="checkout-form-state" class="space-y-3">
+          <span class="text-[11px] font-semibold text-slate-700 font-mono uppercase tracking-wider block">Select Payment Method</span>
+          
+          <div class="space-y-2 text-xs">
+            <label class="flex items-center justify-between p-3 rounded-lg border border-[#0066FF] bg-blue-50/50 cursor-pointer">
+              <div class="flex items-center space-x-2.5">
+                <input type="radio" name="sim-payment" checked class="text-[#0066FF] focus:ring-0" />
+                <span class="font-semibold text-slate-800">UPI Instant (GPay / PhonePe / Paytm)</span>
+              </div>
+              <span class="text-[10px] font-mono text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded font-bold">Fastest</span>
+            </label>
+
+            <label class="flex items-center justify-between p-3 rounded-lg border border-slate-200 hover:border-slate-300 bg-white cursor-pointer">
+              <div class="flex items-center space-x-2.5">
+                <input type="radio" name="sim-payment" class="text-[#0066FF] focus:ring-0" />
+                <span class="font-medium text-slate-700">Cards (Visa, Mastercard, RuPay)</span>
+              </div>
+              <span class="text-[10px] font-mono text-slate-400">•••• 4242</span>
+            </label>
+
+            <label class="flex items-center justify-between p-3 rounded-lg border border-slate-200 hover:border-slate-300 bg-white cursor-pointer">
+              <div class="flex items-center space-x-2.5">
+                <input type="radio" name="sim-payment" class="text-[#0066FF] focus:ring-0" />
+                <span class="font-medium text-slate-700">Netbanking (HDFC, ICICI, SBI)</span>
+              </div>
+              <span class="text-[10px] font-mono text-slate-400">All Banks</span>
+            </label>
+          </div>
+
+          <button
+            type="button"
+            id="btn-simulate-pay"
+            onclick="simulatePaymentSuccess()"
+            class="w-full mt-3 h-11 rounded-lg bg-[#0066FF] hover:bg-[#0052CC] text-white font-semibold text-sm transition shadow-md flex items-center justify-center space-x-2 cursor-pointer"
+          >
+            <span id="sim-pay-spinner" class="hidden animate-spin">◌</span>
+            <span id="sim-pay-label">Simulate Payment (₹{executionStage?.payload?.amount?.toLocaleString() || '0'})</span>
+          </button>
+        </div>
+
+        <!-- Success Result State -->
+        <div id="checkout-success-state" class="hidden text-center py-4 space-y-3">
+          <div class="w-14 h-14 mx-auto rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl font-bold shadow-sm">
+            ✓
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900">Payment Completed Successfully!</h3>
+            <p class="text-xs text-slate-600 mt-1 font-mono">Simulated Razorpay ID: <span id="sim-payment-id" class="font-bold text-slate-800">pay_sim_success</span></p>
+          </div>
+          <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-left text-[11px] font-mono text-emerald-800 space-y-1">
+            <div class="font-bold flex items-center space-x-1">
+              <span>●</span>
+              <span>Webhook Dispatched: payment.captured</span>
+            </div>
+            <div>Order: {order.id}</div>
+            <div>Upsell item SKU added to customer order manifest.</div>
+          </div>
+          <button
+            type="button"
+            onclick="closeCheckoutModal()"
+            class="px-5 h-9 rounded-lg bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 transition cursor-pointer"
+          >
+            Back to Order Trail
+          </button>
+        </div>
+
+        <!-- Diagnostic & Architecture Note -->
+        <div class="pt-3 border-t border-slate-200 text-[11px] text-slate-500 space-y-1.5">
+          <div class="flex items-center space-x-1.5 font-semibold text-slate-700">
+            <span class="text-amber-500">ℹ️</span>
+            <span>Why simulated in offline/standalone demo?</span>
+          </div>
+          <p class="leading-relaxed">
+            Razorpay's live domain (<code>https://rzp.io</code>) returns <strong>404 Not Found</strong> for synthetic links because mock IDs only exist in local memory/seed data. In live production with <code>RAZORPAY_KEY_ID</code> configured, real payment links are registered on Razorpay's API and load directly on <code>rzp.io</code>.
+          </p>
+          <div class="pt-1 flex items-center justify-between">
+            <span class="font-mono text-[10px] text-slate-400">Link ID: {executionStage?.payload?.payment_link_id || 'plink_demo'}</span>
+            <a
+              href={executionStage?.payload?.short_url || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-mono text-[10px] text-[#0066FF] hover:underline"
+            >
+              Open raw rzp.io link ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    function openCheckoutModal() {
+      const modal = document.getElementById('checkout-modal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeCheckoutModal() {
+      const modal = document.getElementById('checkout-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    // Close on backdrop click
+    document.getElementById('checkout-modal')?.addEventListener('click', (e) => {
+      if (e.target.id === 'checkout-modal') closeCheckoutModal();
+    });
+
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeCheckoutModal();
+    });
+
+    // Auto-open if query param ?preview=checkout is present
+    if (new URLSearchParams(window.location.search).get('preview') === 'checkout') {
+      setTimeout(openCheckoutModal, 300);
+    }
+
+    // Simulate payment completion
+    function simulatePaymentSuccess() {
+      const spinner = document.getElementById('sim-pay-spinner');
+      const label = document.getElementById('sim-pay-label');
+      const btn = document.getElementById('btn-simulate-pay');
+      
+      if (spinner) spinner.classList.remove('hidden');
+      if (label) label.innerText = 'Processing with Razorpay...';
+      if (btn) btn.disabled = true;
+
+      setTimeout(() => {
+        const formState = document.getElementById('checkout-form-state');
+        const successState = document.getElementById('checkout-success-state');
+        const simIdEl = document.getElementById('sim-payment-id');
+        const statusBadge = document.getElementById('link-status-badge');
+
+        const mockPayId = 'pay_' + Math.random().toString(36).substring(2, 10);
+        if (simIdEl) simIdEl.innerText = mockPayId;
+        if (formState) formState.classList.add('hidden');
+        if (successState) successState.classList.remove('hidden');
+
+        // Update badge on background page to PAID
+        if (statusBadge) {
+          statusBadge.innerText = 'PAID';
+          statusBadge.className = 'text-emerald-600 font-bold uppercase';
+        }
+      }, 900);
+    }
+  </script>
 </Layout>
