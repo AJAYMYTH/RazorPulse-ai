@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Layout title="404 · Page Not Found" isProtected={false} activeNav="">
+  <div class="min-h-[70vh] flex items-center justify-center py-16 px-4">
+    <div class="max-w-xl w-full text-center space-y-6">
+      
+      <!-- Technical Eyebrow Badge -->
+      <div class="inline-flex items-center space-x-2 font-mono text-xs uppercase text-mute tracking-wider px-3 py-1 rounded-[6px] bg-canvas-elevated border border-hairline shadow-whisper">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+        <span>HTTP 404 · Route Not Found</span>
+      </div>
+
+      <!-- Display Code -->
+      <div class="font-mono text-7xl sm:text-8xl font-bold tracking-tight text-ink/90 select-none">
+        404
+      </div>
+
+      <!-- Headline -->
+      <h1 class="text-2xl sm:text-3xl font-semibold text-ink tracking-tight">
+        Order Trail or Route Missing
+      </h1>
+
+      <!-- Description -->
+      <p class="text-body text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
+        The requested URL does not match any active order trail, decision ledger record, or merchant endpoint in the UpsellX autonomous commerce network.
+      </p>
+
+      <!-- Diagnostic Card -->
+      <div class="p-4 rounded-md bg-canvas-elevated border border-hairline shadow-whisper text-left font-mono text-xs space-y-2 text-mute">
+        <div class="flex items-center justify-between border-b border-hairline pb-2 text-ink font-semibold">
+          <span>Diagnostic Trace</span>
+          <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-600 border border-amber-500/20 font-bold">NON-FATAL</span>
+        </div>
+        <div class="space-y-1.5 text-[11px] pt-1">
+          <div class="flex items-center justify-between">
+            <span>Requested Route:</span>
+            <span id="diagnostic-path" class="text-ink truncate max-w-[240px] font-semibold">/</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span>Gate Interceptor:</span>
+            <span class="text-ink">UpsellX Invariant Guard</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span>Action Taken:</span>
+            <span class="text-emerald-600 font-medium">Deterministic Safe Halt</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+        <a
+          href="/"
+          class="h-9 px-4 rounded-pill bg-ink hover:bg-[#2a2a2a] text-white text-xs font-medium transition shadow-whisper inline-flex items-center space-x-2 cursor-pointer"
+        >
+          <Icon name="arrow-left" class="w-3.5 h-3.5" />
+          <span>Return to Dashboard</span>
+        </a>
+        <a
+          href="/orders"
+          class="h-9 px-4 rounded-pill bg-white text-ink border border-[#d4d4d4] hover:border-ink text-xs font-medium hover:bg-[#f5f5f5] transition shadow-whisper inline-flex items-center space-x-2 cursor-pointer"
+        >
+          <span>Explore 15 Order Trails</span>
+          <span>&rarr;</span>
+        </a>
+        <a
+          href="/failures"
+          class="h-9 px-4 rounded-pill bg-white text-ink border border-[#d4d4d4] hover:border-ink text-xs font-medium hover:bg-[#f5f5f5] transition shadow-whisper inline-flex items-center space-x-2 cursor-pointer"
+        >
+          <Icon name="alert-triangle" class="w-3.5 h-3.5 text-amber-500" />
+          <span>Failure Log</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const pathEl = document.getElementById('diagnostic-path');
+      if (pathEl && typeof window !== 'undefined') {
+        pathEl.innerText = window.location.pathname || '/';
+      }
+    });
+  </script>
+</Layout>

@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Layout title="500 · Internal Server Error" isProtected={false} activeNav="">
+  <div class="min-h-[70vh] flex items-center justify-center py-16 px-4">
+    <div class="max-w-xl w-full text-center space-y-6">
+      
+      <!-- Technical Eyebrow Badge -->
+      <div class="inline-flex items-center space-x-2 font-mono text-xs uppercase text-mute tracking-wider px-3 py-1 rounded-[6px] bg-canvas-elevated border border-hairline shadow-whisper">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#ee0000] animate-pulse"></span>
+        <span>HTTP 500 · Deterministic Shield Active</span>
+      </div>
+
+      <!-- Display Code -->
+      <div class="font-mono text-7xl sm:text-8xl font-bold tracking-tight text-[#ee0000] select-none">
+        500
+      </div>
+
+      <!-- Headline -->
+      <h1 class="text-2xl sm:text-3xl font-semibold text-ink tracking-tight">
+        Unexpected Execution Exception
+      </h1>
+
+      <!-- Description -->
+      <p class="text-body text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
+        An unhandled execution exception occurred. Following the UpsellX deterministic resilience policy, transaction execution was immediately halted to prevent corrupted order state or unauthorized payment creation.
+      </p>
+
+      <!-- Diagnostic Card -->
+      <div class="p-4 rounded-md bg-canvas-elevated border border-hairline shadow-whisper text-left font-mono text-xs space-y-2 text-mute">
+        <div class="flex items-center justify-between border-b border-hairline pb-2 text-ink font-semibold">
+          <span>Invariants & Safety Status</span>
+          <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 font-bold">MONEY SAFE</span>
+        </div>
+        <div class="space-y-1.5 text-[11px] pt-1">
+          <div class="flex items-center justify-between">
+            <span>Money API Status:</span>
+            <span class="text-emerald-600 font-semibold">0 Calls Made (Isolated)</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span>Circuit Breaker:</span>
+            <span class="text-ink font-semibold">Tripped & Halted Safely</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span>Anti-Retry Storm:</span>
+            <span class="text-ink">Enforced (0 Spam Retries)</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span>Audit Ledger:</span>
+            <span class="text-ink">Immutable State Preserved</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+        <button
+          onclick="window.location.reload()"
+          class="h-9 px-4 rounded-pill bg-ink hover:bg-[#2a2a2a] text-white text-xs font-medium transition shadow-whisper inline-flex items-center space-x-2 cursor-pointer"
+        >
+          <Icon name="refresh-cw" class="w-3.5 h-3.5" />
+          <span>Retry Execution</span>
+        </button>
+        <a
+          href="/"
+          class="h-9 px-4 rounded-pill bg-white text-ink border border-[#d4d4d4] hover:border-ink text-xs font-medium hover:bg-[#f5f5f5] transition shadow-whisper inline-flex items-center space-x-2 cursor-pointer"
+        >
+          <span>Return to Dashboard</span>
+        </a>
+        <a
+          href="/failures"
+          class="h-9 px-4 rounded-pill bg-white text-ink border border-[#d4d4d4] hover:border-ink text-xs font-medium hover:bg-[#f5f5f5] transition shadow-whisper inline-flex items-center space-x-2 cursor-pointer"
+        >
+          <Icon name="alert-triangle" class="w-3.5 h-3.5 text-amber-500" />
+          <span>Handled Failure Log</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</Layout>
